@@ -1,0 +1,985 @@
+<!doctype html>
+<html lang="ko" data-theme-mode="light" data-effective-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="supported-color-schemes" content="light dark">
+  <link rel="preload" href="assets/data/beomgye-station.ab2c50008d4ebe38.json" as="fetch" crossorigin="anonymous" data-region-data>
+  <title>범계역 아/점심</title>
+  <style>
+    :root{--orange-accent:#ff8a24;--orange-line:6px;--hero-bg:#c8f1ff;--hero-image:url("assets/hero-beomgye-station-lunch-v2.webp");color-scheme:light dark}
+    *{box-sizing:border-box}
+    html{background:var(--page-bg);color-scheme:light dark}
+    html[data-effective-theme="light"]{--page-bg:#eaf8ff;--page-text:#17364a;--heading:#123247;--title-border:#2089c1;--title-bg:rgba(255,255,255,.9);--title-shadow:7px 7px 0 rgba(42,155,212,.18);--title-label:#1681b9;--meta-text:#457388;--subtle-text:#527386;--body-text:#32566b;--strong-text:#123247;--panel-border:#2d9dd4;--panel-bg:#f7fdff;--panel-shadow:5px 5px 0 rgba(42,155,212,.14);--motion-shadow:rgba(18,50,71,.08);--panel-sheen:linear-gradient(110deg,transparent 37%,rgba(255,255,255,.54) 50%,transparent 63%);--category-image-filter:drop-shadow(0 3px 0 rgba(42,155,212,.16));--nav-bg:rgba(255,255,255,.72);--nav-hover-bg:#fff4df;--nav-shadow:0 5px 14px rgba(18,50,71,.14);--card-border:#56b7d9;--card-bg:#fff;--card-shadow:5px 5px 0 rgba(56,151,196,.12);--home-border:#ffd29b;--home-bg:#fff0d8;--home-text:#d56212;--price-bg:#e4f6ff;--price-text:#146f9b;--location-border:#9bd6bc;--location-bg:#effbf5;--location-text:#237957;--location-status:#527386;--inline-border:#dff4e8;--inline-bg:#dff4e8;--inline-text:#23664a;--review-link-border:#b9ebd1;--review-link-bg:#e8f9f0;--review-link-text:#23805b;--review-chip-bg:#fff4b8;--review-chip-text:#24546a;--gallery-bg:#ddf5ff;--meal-toggle-border:#2d9dd4;--meal-toggle-bg:rgba(255,255,255,.92);--meal-toggle-core:#9eeaff;--meal-lunch-icon:#ff8a24;--meal-dinner-icon:#fff2a6;--meal-toggle-shadow:4px 4px 0 rgba(42,155,212,.16);--meal-toggle-core-shadow:0 2px 7px rgba(18,50,71,.18);--meal-dinner-border:#ffdd83;--meal-dinner-bg:#17205a;--meal-dinner-core:#17205a;--meal-dinner-shadow:4px 4px 0 rgba(0,0,0,.24);color-scheme:light dark}
+    html[data-effective-theme="dark"]{--page-bg:#091236;--page-text:#f5fbff;--heading:#f5fbff;--title-border:#52c8ee;--title-bg:rgba(9,18,54,.88);--title-shadow:7px 7px 0 rgba(0,0,0,.24);--title-label:#9de8ff;--meta-text:#c6d4ef;--subtle-text:#c6d4ef;--body-text:#c6d4ef;--strong-text:#f5fbff;--panel-border:#52c8ee;--panel-bg:#101c45;--panel-shadow:5px 5px 0 rgba(0,0,0,.24);--motion-shadow:rgba(0,0,0,.18);--panel-sheen:linear-gradient(110deg,transparent 37%,rgba(255,255,255,.18) 50%,transparent 63%);--category-image-filter:drop-shadow(0 3px 0 rgba(0,0,0,.2));--nav-bg:rgba(12,27,65,.82);--nav-hover-bg:#2b2542;--nav-shadow:0 5px 14px rgba(0,0,0,.24);--card-border:#52c8ee;--card-bg:#101c45;--card-shadow:5px 5px 0 rgba(0,0,0,.24);--home-border:#7a5a31;--home-bg:#2b2542;--home-text:#ffbd73;--price-bg:#143b5a;--price-text:#bcecff;--location-border:#2f7556;--location-bg:#173e30;--location-text:#b8f2d1;--location-status:#c6d4ef;--inline-border:#2f7556;--inline-bg:#173e30;--inline-text:#b8f2d1;--review-link-border:#2f7556;--review-link-bg:#173e30;--review-link-text:#b8f2d1;--review-chip-bg:#544a15;--review-chip-text:#fff2a6;--gallery-bg:#182c55;--meal-toggle-border:#ffdd83;--meal-toggle-bg:#17205a;--meal-toggle-core:#9eeaff;--meal-lunch-icon:#ff8a24;--meal-dinner-icon:#fff2a6;--meal-toggle-shadow:4px 4px 0 rgba(0,0,0,.24);--meal-toggle-core-shadow:0 2px 7px rgba(0,0,0,.28);--meal-dinner-border:#ffdd83;--meal-dinner-bg:#17205a;--meal-dinner-core:#17205a;--meal-dinner-shadow:4px 4px 0 rgba(0,0,0,.24);color-scheme:light dark}
+    body{margin:0;background:var(--page-bg);color:var(--page-text);color-scheme:light dark;font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",system-ui,-apple-system,sans-serif;line-height:1.45;display:flex;flex-direction:column;height:100dvh;overflow:hidden}
+    button{appearance:none;-webkit-appearance:none;font:inherit}
+    a{color:inherit;text-decoration:none}
+    body[data-meal-mode="lunch"]{--hero-bg:#c8f1ff}
+    body[data-meal-mode="dinner"]{--hero-bg:#20175a}
+    body[data-meal-mode="cafe"]{--hero-bg:#dff4e8}
+    .title-screen{flex:0 0 200px;width:100%;height:200px;min-height:200px;background-color:var(--hero-bg);background-image:var(--hero-image);background-position:center;background-size:cover;background-repeat:no-repeat}
+    .title-copy{display:flex;align-items:center;justify-content:flex-start;width:min(860px,calc(100% - 24px));height:154px;min-height:154px;margin:0 auto;padding:16px 2px 36px}
+    .title-text{display:inline-flex;flex-direction:column;align-items:flex-start;gap:5px;padding:12px 15px 14px;border:3px solid var(--title-border);border-radius:18px;background:var(--title-bg);text-align:left;box-shadow:var(--title-shadow);transform:translateY(-4px)}
+    .title-label{color:var(--title-label);font-size:12px;font-weight:900;line-height:1}
+    h1{margin:0;color:var(--heading);font-size:29px;line-height:1.1;letter-spacing:0}
+    main{flex:1 1 auto;min-height:0;width:min(860px,calc(100% - 24px));margin:-98px auto 0;padding:0}
+    .section{--slide-depth:0;--slide-tilt:0deg;--slide-lift:0px;--slide-shift:0px;--slide-icon-rotate:0deg;--slide-sheen-x:-70%;--slide-sheen-opacity:0;--slide-shadow-y:0px;--slide-shadow-blur:0px;--scroll-flash-y-size:3px;--scroll-flash-y-bottom:7px;--scroll-flash-x-size:4px;--scroll-flash-x-bottom:3px;display:flex;position:relative;flex-direction:column;height:100%;min-height:0}
+    .visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .category-swipe-meta{display:flex;position:relative;z-index:2;flex:0 0 auto;align-items:center;justify-content:space-between;gap:8px;margin:0 2px 13px;color:var(--meta-text);font-size:13px;font-weight:800}
+    .category-status{display:block;position:relative;flex:1 1 auto;min-width:0;height:88px;min-height:88px;padding:0;overflow:hidden;border:3px solid var(--panel-border);border-radius:20px;background:var(--panel-bg);box-shadow:var(--panel-shadow);transform:translateZ(0)}
+    #categorySwipeTarget{touch-action:pan-y;user-select:none;-webkit-user-select:none;cursor:grab}
+    #categorySwipeTarget.is-swiping{cursor:grabbing}
+    .category-track{display:block;position:relative;z-index:2;width:100%;height:82px;min-height:82px;contain:layout paint}
+    .category-slide{display:grid;visibility:hidden;position:absolute;inset:0;grid-template-columns:76px minmax(0,1fr);align-items:center;width:100%;height:82px;min-height:82px;padding:8px 16px 8px 8px;overflow:hidden;pointer-events:none;transform:translate3d(100%,0,0);backface-visibility:hidden}
+    .category-slide.is-visible{visibility:visible;will-change:transform}
+    .category-status::after{content:"";position:absolute;inset:-35% -20%;z-index:1;pointer-events:none;background:var(--panel-sheen);opacity:var(--slide-sheen-opacity);transform:translateX(var(--slide-sheen-x)) rotate(2deg);transition:opacity 150ms ease,transform 150ms ease}
+    .category-image{display:block;position:relative;z-index:1;width:66px;height:66px;object-fit:contain;filter:var(--category-image-filter);transform:translateX(var(--slide-shift)) rotate(var(--slide-icon-rotate)) translateZ(10px);transition:transform 150ms ease}
+    .category-copy{position:relative;z-index:1;min-width:0;transform:translateZ(6px)}
+    .category-status span{display:block;min-width:0}
+    .category-progress{position:absolute;right:14px;bottom:3px;left:14px;z-index:0;height:8px;overflow:visible;pointer-events:none}
+    .category-progress.is-visible{opacity:1}
+    #categoryProgress{width:8px;height:8px;border-radius:50%;background:var(--orange-accent);will-change:transform}
+    .category-slide-label{overflow:hidden;color:var(--heading);font-size:17px;line-height:1.2;text-overflow:ellipsis;white-space:nowrap}
+    .category-slide-desc{display:-webkit-box;max-height:2.6em;margin-top:3px;overflow:hidden;color:var(--subtle-text);font-size:12px;font-weight:800;line-height:1.3;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+    .category-nav{display:inline-flex;flex:0 0 auto;align-items:center;justify-content:center;width:50px;height:50px;border:0;border-radius:999px;background:var(--nav-bg);color:var(--orange-accent);-webkit-text-fill-color:var(--orange-accent);color-scheme:light dark;forced-color-adjust:none;cursor:pointer;font:inherit;line-height:1;box-shadow:var(--nav-shadow)}
+    .category-nav svg{display:block;width:30px;height:30px;stroke:var(--orange-accent)!important;stroke-width:var(--orange-line);stroke-linecap:round;stroke-linejoin:round;fill:none;forced-color-adjust:none}
+    .category-nav path{stroke:var(--orange-accent)!important;forced-color-adjust:none}
+    .category-nav:not(:disabled):hover{background:var(--nav-hover-bg);transform:translateY(-1px)}
+    .category-nav:disabled{cursor:default;opacity:.38}
+    .sort-tabs{display:grid;flex:0 0 auto;grid-template-columns:1fr 1fr;margin:0 2px 5px;overflow:hidden;border:1px solid var(--panel-border);border-radius:10px;background:var(--panel-bg)}
+    .sort-tab{display:flex;position:relative;isolation:isolate;align-items:center;justify-content:center;min-height:37px;padding:5px 14px;overflow:hidden;border:0;background:transparent;color:var(--heading);font-size:14px;font-weight:900;line-height:1.2;cursor:pointer;transition:background 140ms ease,color 140ms ease,opacity 140ms ease}
+    .sort-tab>span{position:relative;z-index:2}
+    .sort-tab + .sort-tab{border-left:1px solid var(--panel-border)}
+    .sort-tab[aria-selected="true"]{background:#1681b9;color:#fff}
+    .sort-tab:hover:not(:disabled):not([aria-selected="true"]){background:var(--nav-hover-bg)}
+    .sort-tab:focus-visible{position:relative;z-index:1;outline:3px solid var(--orange-accent);outline-offset:-3px}
+    .sort-tab:disabled{background:rgba(128,148,158,.12);color:var(--subtle-text);cursor:not-allowed;opacity:.48}
+    .sort-tab.is-loading{cursor:wait;opacity:1}
+    #nearbySortButton{--location-progress:0%}
+    #nearbySortButton::before{content:"";position:absolute;inset:0 auto 0 0;z-index:1;width:var(--location-progress);pointer-events:none;background:linear-gradient(90deg,rgba(22,129,185,.18),rgba(82,200,238,.58));opacity:0;transition:width 120ms linear,opacity 180ms ease}
+    #nearbySortButton.is-loading::before{opacity:1}
+    html[data-effective-theme="dark"] #nearbySortButton::before{background:linear-gradient(90deg,rgba(82,200,238,.18),rgba(255,221,131,.4))}
+    html[data-effective-theme="dark"] .sort-tab[aria-selected="true"]{background:#2089c1}
+    body[data-nearby-unavailable="true"] .distance-chip{border-color:rgba(128,148,158,.28);background:rgba(128,148,158,.12);color:var(--subtle-text)}
+    .location-toast{position:fixed;z-index:30;left:50%;bottom:22px;max-width:min(90vw,430px);padding:10px 14px;border:1px solid rgba(255,255,255,.28);border-radius:999px;background:rgba(25,36,43,.94);box-shadow:0 8px 24px rgba(0,0,0,.24);color:#fff;font-size:13px;font-weight:800;line-height:1.35;text-align:center;opacity:0;pointer-events:none;transform:translate(-50%,12px);transition:opacity 160ms ease,transform 160ms ease}
+    .location-toast.is-visible{opacity:1;transform:translate(-50%,0)}
+    #cardsGrid{display:flex;flex:1 1 auto;width:100%;min-height:0;gap:0;overflow-x:auto;overflow-y:hidden;scroll-behavior:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;scrollbar-width:none;cursor:grab;contain:layout paint}
+    #cardsGrid::-webkit-scrollbar{height:0}
+    #cardsGrid.is-dragging{cursor:grabbing;scroll-behavior:auto;scroll-snap-type:none;user-select:none}
+    #cardsGrid.is-dragging a{pointer-events:none}
+    #cardsGrid.is-sliding{scroll-snap-type:none;pointer-events:none}
+    .section.is-live-motion .category-status,.section.is-live-motion .category-status::after,.section.is-live-motion .category-image{transition:none}
+    .ranked-section{flex:0 0 100%;width:100%;height:100%;min-width:0;margin:0;padding:0 2px 28px;overflow-x:hidden;overflow-y:auto;scroll-snap-align:start;scroll-snap-stop:always;overscroll-behavior-y:contain;overflow-anchor:none;scrollbar-width:none;contain:layout paint style}
+    .ranked-section::-webkit-scrollbar{width:0}
+    .ranked-section.is-prime .place-row{content-visibility:visible}
+    .place-list{display:block;padding:0}
+    .virtual-items{display:grid;gap:10px;padding-bottom:10px}
+    .virtual-spacer{display:block;width:1px;pointer-events:none}
+    .place-row{display:block;padding:14px;border:1px solid var(--card-border);border-radius:8px;background:var(--card-bg);box-shadow:var(--card-shadow);content-visibility:auto;contain-intrinsic-size:auto 520px}
+    .place-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:6px}
+    .place-title{min-width:0}
+    .place-name-line{display:block;min-width:0}
+    .place-title h4{display:inline;margin:0;color:var(--heading);font-size:20px;line-height:1.22;word-break:keep-all}
+    .title-actions{display:inline-flex;align-items:center;gap:4px;margin-left:6px;vertical-align:2px;white-space:nowrap}
+    .title-action-link{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;padding:0;border:1px solid var(--home-border);border-radius:999px;background:var(--home-bg);color:var(--home-text);text-decoration:none;line-height:1}
+    .title-action-link:hover{transform:translateY(-1px)}
+    .title-action-link svg{display:block;width:14px;height:14px;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;fill:none}
+    .homepage-link{border-color:var(--review-link-border);background:var(--review-link-bg);color:var(--review-link-text)}
+    .instagram-link{border-color:#e8acd2;background:#fff0f8;color:#c13584}
+    .youtube-link{border-color:#ffb8b8;background:#fff0f0;color:#e62117}
+    .title-action-link .brand-fill{fill:currentColor;stroke:none}
+    html[data-effective-theme="dark"] .instagram-link{border-color:#8b4672;background:#3b1b31;color:#ff94cf}
+    html[data-effective-theme="dark"] .youtube-link{border-color:#8e4545;background:#3b1d22;color:#ff8d88}
+    .zone-text{display:block;margin-top:2px;color:var(--subtle-text);font-size:12px;line-height:1.35;word-break:keep-all}
+    .price-chip{flex:0 0 auto;max-width:140px;padding:4px 7px;border-radius:999px;background:var(--price-bg);color:var(--price-text);font-size:11px;font-weight:900;line-height:1.2;text-align:right;white-space:nowrap}
+    .place-meta-chips{display:flex;flex:0 0 auto;flex-direction:column;align-items:flex-end;gap:4px}
+    .distance-chip{padding:4px 7px;border:1px solid var(--location-border);border-radius:999px;background:var(--location-bg);color:var(--location-text);font-size:11px;font-weight:900;line-height:1.2;text-decoration:none;white-space:nowrap}
+    .delivery-chip{display:inline-flex;align-items:center;gap:4px;padding:4px 7px;border:1px solid #20a8a4;border-radius:999px;background:#e6fbfa;color:#087b78;font-size:11px;font-weight:900;line-height:1.2;text-decoration:none;white-space:nowrap}
+    .delivery-chip[data-delivery-status="available"]{border-color:#51aa73;background:#e8f8ee;color:#267248}
+    .delivery-chip[data-delivery-status="unavailable"]{border-color:rgba(128,148,158,.35);background:rgba(128,148,158,.12);color:var(--subtle-text)}
+    .delivery-chip svg{width:13px;height:13px;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;fill:none}
+    .delivery-chip:not(a){cursor:default}
+    html[data-effective-theme="dark"] .delivery-chip{border-color:#49d7d2;background:#123e45;color:#9af2ee}
+    html[data-effective-theme="dark"] .delivery-chip[data-delivery-status="available"]{border-color:#63c88c;background:#173e30;color:#b8f2d1}
+    .distance-chip:hover,.delivery-chip:hover{transform:translateY(-1px)}
+    .delivery-chip:not(a):hover{transform:none}
+    .place-fit{margin:0 0 8px;color:var(--page-text);font-size:14px;font-weight:800;line-height:1.42;word-break:keep-all}
+    .category-match-reason{display:flex;align-items:flex-start;gap:5px;margin:0 0 8px;padding:7px 8px;border:1px solid var(--inline-border);border-radius:8px;background:var(--inline-bg);color:var(--inline-text);font-size:12px;font-weight:750;line-height:1.4}
+    .category-match-reason b{flex:0 0 auto;color:var(--strong-text);font-size:11px;font-weight:950;white-space:nowrap}
+    .place-info-grid{display:grid;gap:4px;margin:0 0 8px;color:var(--body-text);font-size:13px;line-height:1.42}
+    .place-info-row{display:grid;grid-template-columns:40px minmax(0,1fr);gap:5px;align-items:start}
+    .place-info-row b{color:var(--strong-text);font-size:12px;white-space:nowrap}
+    .place-info-row span{min-width:0;word-break:keep-all;overflow-wrap:break-word}
+    .review-details{margin-top:8px}
+    .review-heading{display:flex;align-items:center;justify-content:space-between;gap:6px;color:var(--strong-text);font-size:13px;font-weight:900}
+    .review-links{display:inline-flex;flex-wrap:wrap;gap:5px;color:var(--review-link-text);font-size:12px;white-space:nowrap}
+    .review-links a{display:inline-flex;align-items:center;min-height:26px;padding:2px 8px;border:1px solid var(--review-link-border);border-radius:999px;background:var(--review-link-bg);color:var(--review-link-text);font-weight:900;text-decoration:none;line-height:1.25}
+    .review-source{margin-top:5px;color:var(--body-text);font-size:13px}
+    .review-counts{margin:0 0 5px;color:var(--subtle-text);font-size:12px;line-height:1.35}
+    .review-chips{display:flex;flex-wrap:wrap;gap:5px}
+    .review-chip{display:inline-flex;align-items:center;min-height:22px;padding:2px 7px;border-radius:999px;background:var(--review-chip-bg);color:var(--review-chip-text);font-size:12px;font-weight:800;line-height:1.35}
+    .soft-note{margin:8px 0 0;color:var(--subtle-text);font-size:12px;line-height:1.42;word-break:keep-all}
+    .soft-note b{color:var(--strong-text)}
+    .place-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;margin-top:10px}
+    .gallery-item{display:block;width:100%;height:150px;overflow:hidden;border-radius:8px;background:var(--gallery-bg)}
+    .gallery-item img{width:100%;height:100%;object-fit:cover}
+    .scroll-flash{position:absolute;z-index:12;pointer-events:none;opacity:0;transition:opacity 180ms ease}
+    .scroll-flash.is-visible{opacity:1}
+    .scroll-flash-thumb{position:absolute;border-radius:999px;background:var(--orange-accent)!important;forced-color-adjust:none}
+    .scroll-flash-y{top:0;right:-10px;bottom:var(--scroll-flash-y-bottom);width:var(--scroll-flash-y-size)}
+    .scroll-flash-y.has-overflow{opacity:.38}
+    .scroll-flash-y.has-overflow.is-visible{opacity:1}
+    .scroll-flash-y .scroll-flash-thumb{right:0;width:var(--scroll-flash-y-size);min-height:32px;transform:translateY(0)}
+    .scroll-flash-x{right:8px;bottom:var(--scroll-flash-x-bottom);left:2px;height:var(--scroll-flash-x-size)}
+    .scroll-flash-x .scroll-flash-thumb{bottom:0;left:0;height:var(--scroll-flash-x-size);min-width:32px;transform:translateX(0)}
+    .meal-toggle{display:inline-flex;position:fixed;top:14px;right:14px;z-index:30;align-items:center;justify-content:flex-start;width:104px;height:44px;padding:0 12px 0 43px;overflow:hidden;border:1px solid var(--meal-toggle-border);border-radius:999px;background:var(--meal-toggle-bg);color:#fff;color-scheme:light dark;forced-color-adjust:none;cursor:pointer;box-shadow:var(--meal-toggle-shadow);transition:background 150ms ease,border-color 150ms ease,transform 150ms ease,box-shadow 150ms ease}
+    .meal-toggle::before{content:"";position:absolute;top:4px;bottom:4px;left:4px;width:34px;border-radius:999px;background:var(--meal-lunch-icon);forced-color-adjust:none;box-shadow:var(--meal-toggle-core-shadow);transition:background 150ms ease}
+    .meal-toggle:hover{transform:translateY(-1px)}
+    .meal-toggle svg{display:block;position:absolute;left:10px;z-index:1;width:23px;height:23px;stroke:currentColor;stroke-width:2.25;stroke-linecap:round;stroke-linejoin:round;fill:none;forced-color-adjust:none;opacity:0;transform:scale(.68) rotate(18deg);transition:opacity 150ms ease,transform 150ms ease,color 150ms ease}
+    .meal-toggle-label{position:relative;z-index:1;color:var(--strong-text);font-size:13px;font-weight:800;line-height:1;white-space:nowrap}
+    .meal-toggle .face{stroke-width:2}
+    .meal-toggle .breakfast-icon{color:#fff8d2}
+    .meal-toggle .lunch-icon{color:#fff}
+    .meal-toggle .dinner-icon{color:#fff2a6}
+    .meal-toggle .cafe-icon{color:#fff}
+    body[data-meal-mode="breakfast"] .meal-toggle .breakfast-icon,body[data-meal-mode="lunch"] .meal-toggle .lunch-icon,body[data-meal-mode="dinner"] .meal-toggle .dinner-icon,body[data-meal-mode="cafe"] .meal-toggle .cafe-icon{opacity:1;transform:scale(1) rotate(0)}
+    body[data-meal-mode="breakfast"] .meal-toggle::before{background:#ed9b35}
+    body[data-meal-mode="dinner"] .meal-toggle{border-color:var(--meal-dinner-border);background:var(--meal-dinner-bg);box-shadow:var(--meal-dinner-shadow)}
+    body[data-meal-mode="dinner"] .meal-toggle::before{background:#17205a}
+    body[data-meal-mode="dinner"] .meal-toggle-label{color:#fff2a6}
+    body[data-meal-mode="cafe"] .meal-toggle::before{background:#45a978}
+    @media(max-width:680px){.title-screen{flex-basis:152px;height:152px;min-height:152px;background-size:cover;background-position:center top}.title-copy{width:calc(100% - 18px);height:112px;min-height:112px;padding:8px 0 28px}.title-text{padding:7px 11px 7px;border-width:3px;box-shadow:var(--title-shadow);transform:translateY(-12px)}.title-label{font-size:11px}h1{font-size:22px}main{width:calc(100% - 18px);margin-top:-88px}.section{--scroll-flash-y-bottom:6px;--scroll-flash-x-bottom:2px}.category-swipe-meta{gap:6px;margin-bottom:14px}.category-status{height:82px;min-height:82px;padding:0}.category-track{height:76px;min-height:76px}.category-slide{grid-template-columns:56px minmax(0,1fr);height:76px;min-height:76px;padding:6px 10px 6px 6px}.category-slide-label{font-size:15px}.category-slide-desc{font-size:12px}.category-image{width:50px;height:50px}.category-nav{width:44px;height:44px}.category-nav svg{width:27px;height:27px}.sort-tabs{margin-bottom:5px}.sort-tab{min-height:35px;padding:4px 12px;font-size:13px}.place-row{padding:12px}.place-title h4{font-size:19px}.place-info-row{grid-template-columns:36px minmax(0,1fr);gap:4px}.place-gallery{gap:4px;margin-top:10px}.gallery-item{height:104px}.scroll-flash-y{right:-7px}.scroll-flash-x{right:6px}.review-heading{align-items:flex-start}.review-links{justify-content:flex-end;gap:5px;min-width:0;max-width:calc(100% - 42px);white-space:normal}}
+    @media(max-width:680px){.category-progress{bottom:2px}.category-slide-desc{max-height:3.6em;font-size:10.5px;line-height:1.2;-webkit-line-clamp:3}}
+    @media(max-width:360px){.category-slide{grid-template-columns:50px minmax(0,1fr);padding-right:6px;padding-left:4px}.category-image{width:44px;height:44px}.category-slide-label{font-size:13px}}
+    @media(max-width:420px){.place-head{display:grid;grid-template-columns:minmax(0,1fr);gap:8px}.place-meta-chips{width:100%;flex-direction:row;flex-wrap:wrap;justify-content:flex-end;align-items:center}.distance-chip{max-width:100%;overflow:hidden;text-overflow:ellipsis}}
+    @media(max-width:680px){.meal-toggle{top:10px;right:10px;width:96px;height:40px;padding-left:39px;padding-right:9px}.meal-toggle::before{width:30px}.meal-toggle svg{left:9px;width:20px;height:20px}.meal-toggle-label{font-size:12px}}
+    @media(prefers-reduced-motion:reduce){.meal-toggle,.meal-toggle::before,.meal-toggle svg,.category-progress{transition:none}}
+  </style>
+</head>
+<body data-theme-mode="light" data-effective-theme="light" data-meal-mode="lunch">
+  <script>
+    (()=>{try{const key='food.themeMode'; const modes=['light','system','dark']; const mode=modes.includes(localStorage.getItem(key))?localStorage.getItem(key):'light'; const effective=mode==='dark'||(mode==='system'&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light'; document.documentElement.setAttribute('data-theme-mode',mode); document.documentElement.setAttribute('data-effective-theme',effective); document.body.setAttribute('data-theme-mode',mode); document.body.setAttribute('data-effective-theme',effective)}catch{}})();
+  </script>
+  <button id="mealToggle" class="meal-toggle" type="button" aria-label="현재 점심 모드, 저녁 모드로 전환" title="점심 모드">
+    <svg class="breakfast-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M4 17h16M6 17a6 6 0 0 1 12 0M12 4v3M4.9 8.2l2.1 2.1M19.1 8.2 17 10.3"/>
+      <path class="face" d="M10.2 14h.01M13.8 14h.01M10.8 15.6c.7.5 1.7.5 2.4 0"/>
+    </svg>
+    <svg class="lunch-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="4.6"/>
+      <path d="M12 2.8v2M12 19.2v2M4.8 4.8l1.4 1.4M17.8 17.8l1.4 1.4M2.8 12h2M19.2 12h2M6.2 17.8l-1.4 1.4M19.2 4.8l-1.4 1.4"/>
+      <path class="face" d="M9.9 12.6h.01M14.1 12.6h.01M10.4 14.8c.9.7 2.3.7 3.2 0"/>
+    </svg>
+    <svg class="dinner-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M18.8 15.2A6.8 6.8 0 0 1 8.8 5.2 7.6 7.6 0 1 0 18.8 15.2z"/>
+      <path class="face" d="M12.2 11.8h.01M15.6 11.8h.01M12.8 14c.7.5 1.7.5 2.4 0"/>
+    </svg>
+    <svg class="cafe-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M5 8h12v6.5A4.5 4.5 0 0 1 12.5 19h-3A4.5 4.5 0 0 1 5 14.5V8Z"/><path d="M17 10h1.5a2.5 2.5 0 0 1 0 5H17M4 21h14M8 3.5c1 1 .9 1.8 0 2.7M12 3.5c1 1 .9 1.8 0 2.7"/>
+      <path class="face" d="M8.8 12h.01M13.2 12h.01M9.7 14.3c.8.6 1.8.6 2.6 0"/>
+    </svg>
+    <span id="mealToggleLabel" class="meal-toggle-label">점심</span>
+  </button>
+  <header class="title-screen"><div class="title-copy"><div class="title-text"><h1 id="pageTitle">범계역 아/점심</h1></div></div></header>
+  <main>
+    <section id="cards" class="section" aria-labelledby="cards-title">
+      <h2 id="cards-title" class="visually-hidden">범계역 아/점심 후보</h2>
+      <div class="category-swipe-meta">
+        <button id="categoryPrevButton" class="category-nav" type="button" aria-label="이전 카테고리"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18 9 12l6-6"/></svg></button>
+        <div id="categorySwipeTarget" class="category-status"><div id="categoryTrack" class="category-track"><div class="category-slide"><img class="category-image" src="assets/category-korean.svg" alt="" aria-hidden="true"><div class="category-copy"><span class="category-slide-label">백반/정식</span><span class="category-slide-desc">백반, 한정식, 쌈밥, 솥밥처럼 반찬과 밥이 중심인 식사.</span></div></div></div><div class="category-progress" aria-hidden="true"><span id="categoryProgress"></span></div></div>
+        <button id="categoryNextButton" class="category-nav" type="button" aria-label="다음 카테고리"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+        <span id="categoryAnnouncement" class="visually-hidden" aria-live="polite"></span>
+      </div>
+      <div class="sort-tabs" role="tablist" aria-label="식당 정렬 방식">
+        <button id="recommendationSortButton" class="sort-tab" type="button" role="tab" aria-selected="true"><span>인기순</span></button>
+        <button id="nearbySortButton" class="sort-tab" type="button" role="tab" aria-selected="false"><span id="nearbySortLabel">가까운순</span></button>
+      </div>
+      <span id="locationAnnouncement" class="location-toast" role="status" aria-live="polite"></span>
+      <div id="cardsGrid"></div>
+      <div id="scrollFlashY" class="scroll-flash scroll-flash-y" aria-hidden="true"><span class="scroll-flash-thumb"></span></div>
+      <div id="scrollFlashX" class="scroll-flash scroll-flash-x" aria-hidden="true"><span class="scroll-flash-thumb"></span></div>
+    </section>
+  </main>
+  <script>
+    (async()=>{
+    const DATA_URL='assets/data/beomgye-station.ab2c50008d4ebe38.json';
+    const DATA = await fetch(DATA_URL,{credentials:'omit'}).then(response=>{
+      if(!response.ok)throw new Error(`지역 데이터 요청 실패: ${response.status}`);
+      return response.json();
+    });
+    const {places, categoryOrder, mealCategories, categoryLabels, categoryDescriptions, specialCategoryPlaces, priceByName, priceByCategory, naverPlaceData} = DATA;
+    const placeByKey=new Map();
+    places.forEach(place=>{if(place.id)placeByKey.set(place.id,place);if(place.name&&!placeByKey.has(place.name))placeByKey.set(place.name,place)});
+    const categoryImages=DATA.categoryImages||{};
+    const cardsSection=document.getElementById('cards');
+    const cardsGrid=document.getElementById('cardsGrid');
+    const pageBody=document.body;
+    const categoryProgress=document.getElementById('categoryProgress');
+    const categoryProgressTrack=document.querySelector('.category-progress');
+    const categorySwipeTarget=document.getElementById('categorySwipeTarget');
+    const categoryTrack=document.getElementById('categoryTrack');
+    const categoryPrevButton=document.getElementById('categoryPrevButton');
+    const categoryNextButton=document.getElementById('categoryNextButton');
+    const categoryAnnouncement=document.getElementById('categoryAnnouncement');
+    const mealToggle=document.getElementById('mealToggle');
+    const mealToggleLabel=document.getElementById('mealToggleLabel');
+    const recommendationSortButton=document.getElementById('recommendationSortButton');
+    const nearbySortButton=document.getElementById('nearbySortButton');
+    const nearbySortLabel=document.getElementById('nearbySortLabel');
+    const locationAnnouncement=document.getElementById('locationAnnouncement');
+    const pageTitle=document.getElementById('pageTitle');
+    const cardsTitle=document.getElementById('cards-title');
+    const scrollFlashY=document.getElementById('scrollFlashY');
+    const scrollFlashYThumb=scrollFlashY?.querySelector('span');
+    const scrollFlashX=document.getElementById('scrollFlashX');
+    const scrollFlashXThumb=scrollFlashX?.querySelector('span');
+    const mealModes=['lunch','dinner','cafe'].filter(mode=>(mealCategories?.[mode]?.categoryOrder||[]).length);
+    const themeStorageKey='food.themeMode';
+    const locationCacheKey='food.sessionLocation.v1';
+    const locationCacheMaxAge=5*60*1000;
+    const themeModes=['light','system','dark'];
+    const systemTheme=window.matchMedia('(prefers-color-scheme: dark)');
+    const requestedMealMode=new URLSearchParams(location.search).get('meal');
+    const currentHour=new Date().getHours();
+    const timeBasedMealMode=currentHour>=17&&mealModes.includes('dinner')?'dinner':'lunch';
+    let currentMealMode=mealModes.includes(requestedMealMode)?requestedMealMode:mealModes.includes(timeBasedMealMode)?timeBasedMealMode:mealModes[0];
+    let currentUserLocation=readCachedUserLocation();
+    let sortByDistance=false;
+    let nearbySortRequested=false;
+    let nearbySortDisabled=false;
+    let locationRequestInFlight=false;
+    let locationProgressTimer=0;
+    let idleLocationRefreshTimer=0;
+    let idleLocationRefreshDueAt=0;
+    let locationToastTimer=0;
+    let renderedCategories=[]; let categorySections=[]; let categoryTrackSlides=[]; let categoryTrackVisibleIndices=new Set(); let categoryTrackActiveIndex=-1; let categoryPlaceCache=new Map(); let virtualStates=new Map(); let dragState=null; let categorySwipeState=null; let suppressClickUntil=0; let scrollFlashTimer=0; let categoryProgressTimer=0; let scrollMotionTimer=0; let slideAnimation=0; let categoryTitleAnimations=[]; let categoryMotionFrame=0; let pendingCategoryMotion=null; let categoryMetaFrame=0; let verticalScrollFrame=0; let pendingScrolledSection=null; let pendingScrolledIndex=-1; let isProgrammaticSlide=false; let primedCategoryIndex=-1; let categoryMaintenanceHandle=0; let categoryMaintenanceToken=0; let galleryObserver=null; let virtualResizeObserver=null; let lastCardsScrollLeft=0;
+    const compactViewport=window.matchMedia('(max-width:680px)').matches;
+    const virtualEstimatedExtent=compactViewport?445:555;
+    const virtualChunkSize=compactViewport?3:4;
+    const virtualWindowSize=compactViewport?8:10;
+    function esc(v){return String(v??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;')}
+    function mapQuery(place){return `${place.alias||place.name} ${DATA.searchArea||''}`.trim()}
+    function naverDataFor(place){return naverPlaceData[place.id]||naverPlaceData[place.name]||null}
+    function linksFor(place){
+      const q=encodeURIComponent(mapQuery(place)); const nd=naverDataFor(place);
+      const hasId=!!(nd&&nd.id);
+      const naver=hasId?`https://map.naver.com/p/entry/place/${nd.id}`:'';
+      const naverSearch=`https://search.naver.com/search.naver?query=${q}`;
+      const kakaoMap=place.kakaoMap||'';
+      const googleMap=place.googleMap||'';
+      const map=naver||kakaoMap||googleMap||naverSearch;
+      const mapProvider=naver?'네이버':kakaoMap?'카카오':googleMap?'구글':'네이버 검색';
+      return {
+        hasNaverId:hasId,
+        naver,
+        naverSearch,
+        naverReview:place.naverReview||(hasId?`https://m.place.naver.com/restaurant/${nd.id}/review/visitor`:''),
+        googleReview:place.googleReview||'',
+        kakaoMap,
+        googleMap,
+        map,
+        mapProvider,
+        baemin:place.baeminUrl||''
+      }
+    }
+    function deliveryActionFor(place,links){
+      const status=String(place.deliveryStatus||'check').toLowerCase();
+      if(!links.baemin&&status!=='available')return '';
+      const icon='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h11l2 9H6L4 7Z"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/><circle cx="8" cy="19" r="1.5"/><circle cx="16" cy="19" r="1.5"/></svg>';
+      if(!links.baemin){
+        const title=`${place.name} 배달 가능`;
+        return `<span class="delivery-chip" data-delivery-status="available" aria-label="${esc(title)}" title="${esc(title)}">${icon}배달 가능</span>`;
+      }
+      const label=status==='available'?'배달 가능 · 배민':status==='unavailable'?'배달 불가 · 배민':'배민 매장 열기';
+      const title=`${place.name} 배민 앱 매장 페이지 열기`;
+      return `<a class="delivery-chip" data-delivery-status="${esc(status)}" href="${esc(links.baemin)}" aria-label="${esc(title)}" title="${esc(title)}">${icon}${esc(label)}</a>`;
+    }
+    function homepageFor(place,links){
+      const homepage=String(place.homepage||place.website||place.url||'').trim();
+      if(!homepage||homepage===links.naver||homepage===links.naverSearch)return '';
+      try{const host=new URL(homepage,location.href).hostname.toLowerCase();if(host==='map.naver.com'||host==='m.place.naver.com')return ''}catch{}
+      return homepage;
+    }
+    function titleActionsFor(place,links){
+      const mapUrl=links.map; const homepage=homepageFor(place,links); const instagram=String(place.instagram||'').trim(); const youtube=String(place.youtube||'').trim();
+      const mapLabel=`${place.name} ${links.mapProvider} 지도 열기`; const homepageLabel=`${place.name} 홈페이지 열기`; const instagramLabel=`${place.name} 인스타그램 열기`; const youtubeLabel=`${place.name} 유튜브 열기`;
+      const mapAction=`<a class="title-action-link map-link" href="${esc(mapUrl)}" target="_blank" rel="noreferrer" aria-label="${esc(mapLabel)}" title="${esc(mapLabel)}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.1 7-12A7 7 0 1 0 5 9c0 5.9 7 12 7 12Z"/><circle cx="12" cy="9" r="2.5"/></svg></a>`;
+      const homepageAction=homepage?`<a class="title-action-link homepage-link" href="${esc(homepage)}" target="_blank" rel="noreferrer" aria-label="${esc(homepageLabel)}" title="${esc(homepageLabel)}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z"/></svg></a>`:'';
+      const instagramAction=instagram?`<a class="title-action-link instagram-link" href="${esc(instagram)}" target="_blank" rel="noreferrer" aria-label="${esc(instagramLabel)}" title="${esc(instagramLabel)}"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle class="brand-fill" cx="17.4" cy="6.7" r="1.2"/></svg></a>`:'';
+      const youtubeAction=youtube?`<a class="title-action-link youtube-link" href="${esc(youtube)}" target="_blank" rel="noreferrer" aria-label="${esc(youtubeLabel)}" title="${esc(youtubeLabel)}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8.1a2.8 2.8 0 0 0-2-2C17.2 5.6 12 5.6 12 5.6s-5.2 0-7 .5a2.8 2.8 0 0 0-2 2A29 29 0 0 0 2.5 12 29 29 0 0 0 3 15.9a2.8 2.8 0 0 0 2 2c1.8.5 7 .5 7 .5s5.2 0 7-.5a2.8 2.8 0 0 0 2-2 29 29 0 0 0 .5-3.9 29 29 0 0 0-.5-3.9Z"/><path class="brand-fill" d="m10 9 5 3-5 3Z"/></svg></a>`:'';
+      return `<span class="title-actions">${mapAction}${homepageAction}${instagramAction}${youtubeAction}</span>`;
+    }
+    function reviewActionsFor(links){
+      const actions=[];
+      if(links.naverReview)actions.push(`<a href="${esc(links.naverReview)}" target="_blank" rel="noreferrer">네이버 리뷰 원문</a>`);
+      if(links.kakaoMap)actions.push(`<a href="${esc(links.kakaoMap)}" target="_blank" rel="noreferrer">카카오 지도</a>`);
+      if(links.googleReview)actions.push(`<a href="${esc(links.googleReview)}" target="_blank" rel="noreferrer">구글 지도</a>`);
+      return actions.join('');
+    }
+    function usablePrice(value){const price=String(value||'').trim();return !price||price==='가격 정보 부족'||price==='확인 필요'?'':price}
+    function priceLabel(place){return usablePrice(priceByName[place.id])||usablePrice(priceByName[place.name])||usablePrice(priceByCategory[place.category])}
+    function mealTimes(place){return Array.isArray(place.mealTimes)&&place.mealTimes.length?place.mealTimes:['dinner']}
+    function mealMatches(place){return mealTimes(place).includes(currentMealMode)}
+    function titleForMeal(){return DATA.mealTitles?.[currentMealMode]||DATA.pageTitle||document.title}
+    function updatePageTitle(){
+      const title=titleForMeal();
+      document.title=title;
+      if(pageTitle)pageTitle.textContent=title;
+      if(cardsTitle)cardsTitle.textContent=`${title} 후보`;
+    }
+    function updateMealToggle(){
+      const currentIndex=mealModes.indexOf(currentMealMode);
+      const nextMealMode=mealModes[(currentIndex+1)%mealModes.length];
+      const labelByMode={breakfast:'아침 모드',lunch:'아침/점심 모드',dinner:'저녁 모드',cafe:'카페 모드'};
+      const shortLabelByMode={breakfast:'아침',lunch:'아/점심',dinner:'저녁',cafe:'카페'};
+      mealToggle?.setAttribute('aria-label',`현재 ${labelByMode[currentMealMode]}, ${labelByMode[nextMealMode]}로 전환`);
+      mealToggle?.setAttribute('title',labelByMode[currentMealMode]);
+      if(mealToggleLabel)mealToggleLabel.textContent=shortLabelByMode[currentMealMode];
+    }
+    function currentMealConfig(){return mealCategories?.[currentMealMode]||null}
+    function currentCategoryOrder(){return currentMealConfig()?.categoryOrder||categoryOrder||[]}
+    function heroForMeal(){return currentMealConfig()?.heroImage||'assets/pangyo-food-hero-sky.webp'}
+    function storedThemeMode(){try{const stored=localStorage.getItem(themeStorageKey); if(themeModes.includes(stored))return stored}catch{} return 'light'}
+    function effectiveTheme(mode){return mode==='system'&&systemTheme.matches?'dark':mode==='dark'?'dark':'light'}
+    function applyThemeMode(mode=storedThemeMode()){
+      const nextMode=themeModes.includes(mode)?mode:'light';
+      const nextEffective=effectiveTheme(nextMode);
+      document.documentElement.setAttribute('data-theme-mode',nextMode);
+      document.documentElement.setAttribute('data-effective-theme',nextEffective);
+      pageBody?.setAttribute('data-theme-mode',nextMode);
+      pageBody?.setAttribute('data-effective-theme',nextEffective);
+    }
+    function setHeroForMeal(){const hero=heroForMeal(); document.documentElement.style.setProperty('--hero-image',`url("${hero}")`); pageBody?.setAttribute('data-meal-mode',currentMealMode)}
+    function setMealMode(mode){
+      if(!mealModes.includes(mode)||mode===currentMealMode)return;
+      stopSlideAnimation(); dragState=null; cardsGrid.classList.remove('is-dragging'); currentMealMode=mode; primedCategoryIndex=-1; cardsGrid.scrollLeft=0; updatePageTitle(); setHeroForMeal(); updateMealToggle(); renderCategories(); updateContentScrollbars(false);
+    }
+    function reviewPoints(place){return [place.pros?.[0]||place.fit, place.cons?.[0]||'당일 운영 확인 필요', place.viral].filter(Boolean)}
+    function reviewBlock(place,nd){
+      const naverItems=nd?[...(nd.k||[]),...(nd.m||[]).slice(0,2).map(x=>`메뉴 언급 ${x}`)]:[];
+      const items=naverItems.length?naverItems:reviewPoints(place).slice(0,3);
+      const counts=nd?[nd.vc?`방문자 ${nd.vc}`:'',nd.bc?`블로그 ${nd.bc}`:''].filter(Boolean).join(' · '):'최신 리뷰는 링크에서 확인';
+      return `<div class="review-source"><p class="review-counts">${esc(counts||'리뷰 확인 가능')}</p><div class="review-chips">${items.slice(0,6).map(x=>`<span class="review-chip">${esc(x)}</span>`).join('')}</div></div>`
+    }
+    function imageCanonicalKey(url){
+      const raw=String(url||'').trim();
+      if(!raw)return '';
+      try{
+        const outer=new URL(raw,location.href);
+        const proxied=outer.hostname==='search.pstatic.net'?outer.searchParams.get('src'):null;
+        const target=new URL(proxied||outer.href,location.href);
+        if(/^encrypted-tbn\d\.gstatic\.com$/i.test(target.hostname))return `google:${target.searchParams.get('q')||target.href}`;
+        if(/(^|\.)mm\.bing\.net$/i.test(target.hostname)||target.hostname==='th.bing.com')return `bing:${target.searchParams.get('id')||target.href}`;
+        target.hash='';
+        ['type','autoRotate'].forEach(key=>target.searchParams.delete(key));
+        return target.href.replace(/\/\d+x\d+(?=$|[?#])/,'').toLowerCase();
+      }catch{
+        return raw.split('#')[0].replace(/([?&])(type|autoRotate)=[^&]*/g,'$1').replace(/\/\d+x\d+(?=$|[?#])/,'').toLowerCase();
+      }
+    }
+    function imageDisplayUrl(url){
+      const raw=String(url||'').trim();
+      if(!raw)return '';
+      try{
+        const parsed=new URL(raw,location.href);
+        if(parsed.hostname==='search.pstatic.net')return raw;
+        if(parsed.hostname.endsWith('pstatic.net'))return `https://search.pstatic.net/common/?autoRotate=true&type=w560_sharpen&src=${encodeURIComponent(parsed.href)}`;
+      }catch{}
+      return raw;
+    }
+    function galleryImageCandidates(urls){
+      const seen=new Set();
+      return (urls||[]).map(url=>String(url||'').trim()).filter(Boolean).filter(url=>{const key=imageCanonicalKey(url); if(!key||seen.has(key))return false; seen.add(key); return true});
+    }
+    function gallerySourceList(gallery){try{return JSON.parse(gallery?.dataset?.gallerySrcs||'[]')}catch{return []}}
+    function activeGalleryKeys(gallery){
+      const keys=new Set(gallery?Array.from(gallery.querySelectorAll('.gallery-img')).map(img=>imageCanonicalKey(img.dataset.src||img.currentSrc||img.src)).filter(Boolean):[]);
+      if(gallery?._failedImageKeys)gallery._failedImageKeys.forEach(key=>keys.add(key));
+      return keys;
+    }
+    function handleGalleryError(img,removeWhenExhausted=true){
+      const gallery=img?.closest?.('.place-gallery');
+      const item=img?.closest?.('.gallery-item');
+      if(!gallery){item?.remove();return}
+      const failedKey=imageCanonicalKey(img.currentSrc||img.src||img.dataset.src);
+      gallery._failedImageKeys=gallery._failedImageKeys||new Set();
+      if(failedKey)gallery._failedImageKeys.add(failedKey);
+      const used=activeGalleryKeys(gallery);
+      const next=gallerySourceList(gallery).find(url=>!used.has(imageCanonicalKey(url)));
+      if(!next){if(removeWhenExhausted)item?.remove();return}
+      img.removeAttribute('src');
+      img.dataset.src=next;
+      window.setTimeout(()=>loadGalleryImage(img),0);
+    }
+    function renderGallery(place,nd,links){
+      const imageUrls=galleryImageCandidates(nd?.i);
+      if(!imageUrls.length)return '';
+      return `<div class="place-gallery" aria-label="${esc(place.name)} 매장 사진" data-gallery-srcs="${esc(JSON.stringify(imageUrls))}">${imageUrls.slice(0,3).map(url=>`<a class="gallery-item" href="${esc(links.map)}" target="_blank" rel="noreferrer"><img class="gallery-img" data-src="${esc(url)}" alt="${esc(place.name)} 매장 사진" loading="lazy" decoding="async" fetchpriority="low" referrerpolicy="no-referrer" onerror="handleGalleryError(this)"></a>`).join('')}</div>`
+    }
+    function renderReferenceNote(place){const note=String(place.viral||'').trim(); return note?`<p class="soft-note"><b>참고</b> ${esc(note)}</p>`:''}
+    function categoryMatchReason(place,category){
+      const base=String(place.originalCategory||place.category||'');
+      if(category==='혼술'){
+        if(/야키토리|이자카야|술집/.test(base))return '꼬치·사케·하이볼처럼 혼자 고르기 쉬운 단품 안주가 중심인 소규모 술상 후보.';
+        if(/와인|바/.test(base))return '한 잔 단위로 주문하기 쉬운 바·와인 계열이라 짧게 머무는 혼술에 맞는 후보.';
+        if(/맥주|펍|치킨|호프/.test(base))return '맥주와 단품 안주 조합으로 식사 부담 없이 혼자 이용하기 쉬운 후보.';
+        return '메뉴를 소량으로 나눠 주문하기 쉬워 혼자 가볍게 술을 시작하기 좋은 후보.';
+      }
+      if(category==='헌팅'){
+        if(/맥주|펍|치킨|호프/.test(base))return '치맥·생맥주 중심의 캐주얼한 2차 업종이라 활기찬 시간대를 기대할 수 있는 후보.';
+        if(/이자카야|술집|야키토리/.test(base))return '요리주점·이자카야 계열 중 2차 이용이 쉬워 늦은 시간 분위기를 보기 좋은 후보.';
+        if(/와인|바/.test(base))return '바 형태의 2차 업종이라 대화와 교류가 생기기 쉬운 시간대를 기대할 수 있는 후보.';
+        return '단체와 2차 손님이 섞이기 쉬운 업종으로 활기찬 분위기를 기대할 수 있는 후보.';
+      }
+      return '';
+    }
+    function renderPlace(place,originalIndex=0,category=''){
+      const nd=naverDataFor(place); const links=linksFor(place); const titleActions=titleActionsFor(place,links); const reviewActions=reviewActionsFor(links); const deliveryAction=deliveryActionFor(place,links); const price=priceLabel(place); const priceAction=price?`<span class="price-chip">${esc(price)}</span>`:''; const reason=categoryMatchReason(place,category); const reasonBlock=reason?`<p class="category-match-reason"><b>${esc(category)} 선정 이유</b><span>${esc(reason)}</span></p>`:'';
+      return `<article class="place-row" data-place-id="${esc(place.id)}" data-original-index="${originalIndex}"><div class="place-head"><div class="place-title"><div class="place-name-line"><h4>${esc(place.name)}</h4>${titleActions}</div><span class="zone-text">${esc(place.zone||'')}</span></div><div class="place-meta-chips">${priceAction}${deliveryAction}<a class="distance-chip" href="${esc(links.map)}" target="_blank" rel="noreferrer" hidden></a></div></div><p class="place-fit">${esc(place.fit||'')}</p>${reasonBlock}<div class="place-info-grid"><div class="place-info-row"><b>위치</b><span>${esc(place.location||'')} · ${esc(place.hours||'확인 필요')}</span></div><div class="place-info-row"><b>메뉴</b><span>${esc(place.menu||'')}</span></div><div class="place-info-row"><b>좋음</b><span>${esc(place.pros?.[0]||place.fit||'')}</span></div><div class="place-info-row"><b>주의</b><span>${esc(place.cons?.[0]||'당일 운영 확인 필요')}</span></div></div><div class="review-details"><div class="review-heading"><span>리뷰</span><span class="review-links">${reviewActions}</span></div>${reviewBlock(place,nd)}</div>${renderReferenceNote(place)}${renderGallery(place,nd,links)}</article>`
+    }
+    function byPlaceKey(key){return placeByKey.get(key)}
+    function validPlaceCoordinate(place){return Number.isFinite(place?.latitude)&&Number.isFinite(place?.longitude)}
+    function distanceMeters(from,to){
+      const radians=value=>value*Math.PI/180;
+      const earthRadius=6371000;
+      const dLat=radians(to.latitude-from.latitude);
+      const dLon=radians(to.longitude-from.longitude);
+      const lat1=radians(from.latitude);
+      const lat2=radians(to.latitude);
+      const a=Math.sin(dLat/2)**2+Math.cos(lat1)*Math.cos(lat2)*Math.sin(dLon/2)**2;
+      return earthRadius*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+    }
+    function formatDistance(meters){
+      if(meters<50)return '직선 50m 이내';
+      if(meters<1000)return `직선 ${Math.round(meters/10)*10}m`;
+      return `직선 ${(meters/1000).toFixed(meters<10000?1:0)}km`;
+    }
+    function readCachedUserLocation(){
+      try{
+        const cached=JSON.parse(sessionStorage.getItem(locationCacheKey)||'null');
+        const latitude=Number(cached?.latitude); const longitude=Number(cached?.longitude); const updatedAt=Number(cached?.updatedAt);
+        if(!Number.isFinite(latitude)||!Number.isFinite(longitude)||!Number.isFinite(updatedAt)||Date.now()-updatedAt>locationCacheMaxAge)return null;
+        return {latitude,longitude,accuracy:Number(cached?.accuracy)||0,updatedAt};
+      }catch{return null}
+    }
+    function cacheUserLocation(location){try{sessionStorage.setItem(locationCacheKey,JSON.stringify(location))}catch{}}
+    function setLocationProgress(value){nearbySortButton?.style.setProperty('--location-progress',`${Math.min(100,Math.max(0,value)).toFixed(1)}%`)}
+    function startLocationProgress(){
+      clearInterval(locationProgressTimer);
+      const startedAt=Date.now(); const initial=currentUserLocation?24:8;
+      setLocationProgress(initial);
+      locationProgressTimer=window.setInterval(()=>{const elapsed=Date.now()-startedAt; setLocationProgress(Math.min(90,initial+(1-Math.exp(-elapsed/1800))*(90-initial)))},120);
+    }
+    function finishLocationProgress(){
+      clearInterval(locationProgressTimer); locationProgressTimer=0; setLocationProgress(100);
+      window.setTimeout(()=>{if(!locationRequestInFlight)setLocationProgress(0)},240);
+    }
+    function distanceForPlace(place){return currentUserLocation&&validPlaceCoordinate(place)?distanceMeters(currentUserLocation,place):Number.POSITIVE_INFINITY}
+    function applyDistanceSort(){
+      const active=currentCategoryIndex();
+      categoryPlaceCache=new Map();virtualStates=new Map();primedCategoryIndex=-1;
+      categorySections.forEach(section=>{section.replaceChildren();section.scrollTop=0;section.dataset.rendered='false'});
+      primeCategoryWindow(active);updateContentScrollbars(false);
+    }
+    const nearbyMaximumDistance=10000;
+    const idleLocationRefreshInterval=30000;
+    function announceLocation(message,visible=false){
+      if(!locationAnnouncement)return;
+      clearTimeout(locationToastTimer);
+      locationAnnouncement.textContent=message;
+      locationAnnouncement.classList.toggle('is-visible',visible);
+      if(visible)locationToastTimer=window.setTimeout(()=>locationAnnouncement.classList.remove('is-visible'),3200);
+    }
+    function updateSortTabs(){
+      recommendationSortButton?.setAttribute('aria-selected',String(!sortByDistance));
+      nearbySortButton?.setAttribute('aria-selected',String(sortByDistance));
+      if(nearbySortButton){
+        nearbySortButton.disabled=nearbySortDisabled||(locationRequestInFlight&&!currentUserLocation);
+        nearbySortButton.classList.toggle('is-loading',locationRequestInFlight);
+        nearbySortButton.setAttribute('aria-busy',String(locationRequestInFlight));
+        if(nearbySortLabel)nearbySortLabel.textContent=nearbySortDisabled?'가까운순 · 10km 밖':'가까운순';
+        nearbySortButton.setAttribute('aria-label',locationRequestInFlight?'가까운순, 현재 위치 확인 중':'가까운순');
+        nearbySortButton.title=nearbySortDisabled?'지역 중심에서 10km 이상 떨어져 있어 사용할 수 없습니다.':'';
+      }
+      pageBody?.setAttribute('data-nearby-unavailable',String(nearbySortDisabled));
+    }
+    function setRecommendationSort(stopNearbyRefresh=true){
+      sortByDistance=false;
+      if(stopNearbyRefresh)nearbySortRequested=false;
+      applyDistanceSort();
+      updateSortTabs();
+      if(stopNearbyRefresh)cancelIdleLocationRefresh();
+    }
+    function distanceFromRegionAnchor(location){
+      return validPlaceCoordinate(DATA.anchorCoordinate)?distanceMeters(location,DATA.anchorCoordinate):Number.POSITIVE_INFINITY;
+    }
+    function updateLocationDistances(resort=true,root=document){
+      root.querySelectorAll('.place-row[data-place-id]').forEach(row=>{
+        const chip=row.querySelector('.distance-chip');
+        const place=byPlaceKey(row.dataset.placeId);
+        if(!chip)return;
+        if(!currentUserLocation||!validPlaceCoordinate(place)){chip.hidden=true;chip.textContent='';return}
+        const label=formatDistance(distanceMeters(currentUserLocation,place));
+        chip.textContent=label;
+        chip.setAttribute('aria-label',`${place.name}, 현재 위치에서 ${label}, 지도 열기`);
+        chip.hidden=false;
+      });
+      if(resort)applyDistanceSort();
+    }
+    function cancelIdleLocationRefresh(){clearTimeout(idleLocationRefreshTimer);idleLocationRefreshTimer=0;idleLocationRefreshDueAt=0}
+    function armIdleLocationRefresh(){
+      clearTimeout(idleLocationRefreshTimer);
+      if(!nearbySortRequested)return;
+      const delay=Math.max(0,idleLocationRefreshDueAt-Date.now());
+      idleLocationRefreshTimer=window.setTimeout(()=>{
+        idleLocationRefreshTimer=0;
+        if(!nearbySortRequested)return;
+        if(document.hidden){resetIdleLocationRefresh();return}
+        requestCurrentLocation(true);
+      },delay);
+    }
+    function resetIdleLocationRefresh(){
+      if(!nearbySortRequested){cancelIdleLocationRefresh();return}
+      idleLocationRefreshDueAt=Date.now()+idleLocationRefreshInterval;
+      armIdleLocationRefresh();
+    }
+    function noteUserActivity(){if(nearbySortRequested)resetIdleLocationRefresh()}
+    async function geolocationErrorMessage(error){
+      if(!window.isSecureContext)return '보안 연결에서만 위치를 사용할 수 있습니다.';
+      if(error.code===3)return '위치 확인 시간이 초과됐습니다. 다시 눌러 주세요.';
+      if(error.code!==1)return '기기에서 현재 위치를 가져오지 못했습니다.';
+      let permissionState='unknown';
+      try{permissionState=(await navigator.permissions?.query({name:'geolocation'}))?.state||'unknown'}catch{}
+      if(permissionState==='denied')return '이 사이트의 위치 권한이 차단돼 있습니다. 주소창의 사이트 설정에서 허용해 주세요.';
+      if(permissionState==='granted')return '사이트 권한은 허용됐지만 기기가 위치를 제공하지 않았습니다. 기기 위치 서비스와 브라우저 앱 권한을 확인해 주세요.';
+      if(permissionState==='prompt')return '브라우저의 위치 사용 요청에서 허용을 선택해 주세요.';
+      return '브라우저 또는 기기에서 위치 접근을 차단했습니다. 기기 위치 서비스와 앱 권한을 확인해 주세요.';
+    }
+    function activateNearbyFromKnownLocation(showOutsideMessage=false){
+      if(!currentUserLocation)return false;
+      const regionDistance=distanceFromRegionAnchor(currentUserLocation);
+      nearbySortDisabled=!Number.isFinite(regionDistance)||regionDistance>=nearbyMaximumDistance;
+      sortByDistance=!nearbySortDisabled;
+      updateLocationDistances();
+      updateSortTabs();
+      if(showOutsideMessage&&nearbySortDisabled)announceLocation(`현재 위치가 ${DATA.searchArea||'이 지역'} 중심에서 ${formatDistance(regionDistance)} 떨어져 있어 인기순으로 표시합니다.`,true);
+      return !nearbySortDisabled;
+    }
+    function settleLocationRequest(){finishLocationProgress(); locationRequestInFlight=false; updateSortTabs()}
+    function requestCurrentLocation(automatic=false){
+      nearbySortRequested=true;
+      if(!automatic&&currentUserLocation)activateNearbyFromKnownLocation(true);
+      if(locationRequestInFlight)return;
+      if(!navigator.geolocation){
+        if(!currentUserLocation){nearbySortDisabled=true;sortByDistance=false;nearbySortRequested=false;updateLocationDistances()}
+        updateSortTabs();
+        announceLocation('이 브라우저는 위치 기능을 지원하지 않습니다. 저장된 위치가 있으면 마지막 거리 정보를 유지합니다.',true);
+        return;
+      }
+      locationRequestInFlight=true;
+      startLocationProgress();
+      updateSortTabs();
+      navigator.geolocation.getCurrentPosition(position=>{
+        const latitude=Number(position.coords.latitude); const longitude=Number(position.coords.longitude);
+        if(!Number.isFinite(latitude)||!Number.isFinite(longitude)){
+          settleLocationRequest();
+          if(!automatic){
+            if(currentUserLocation){activateNearbyFromKnownLocation();announceLocation('새 위치를 확인하지 못해 마지막 위치 기준 거리를 유지합니다.',true)}
+            else{nearbySortRequested=false;nearbySortDisabled=false;sortByDistance=false;updateLocationDistances();updateSortTabs();announceLocation('현재 위치를 확인할 수 없습니다.',true)}
+          }
+          if(nearbySortRequested)resetIdleLocationRefresh();
+          return;
+        }
+        currentUserLocation={latitude,longitude,accuracy:Number(position.coords.accuracy)||0,updatedAt:Date.now()};
+        cacheUserLocation(currentUserLocation);
+        const regionDistance=distanceFromRegionAnchor(currentUserLocation);
+        nearbySortDisabled=!Number.isFinite(regionDistance)||regionDistance>=nearbyMaximumDistance;
+        if(automatic){
+          updateLocationDistances(false);
+          settleLocationRequest();
+          announceLocation('현재 위치와 거리 정보를 업데이트했습니다.');
+          resetIdleLocationRefresh();
+          return;
+        }
+        sortByDistance=!nearbySortDisabled;
+        updateLocationDistances();
+        settleLocationRequest();
+        if(nearbySortDisabled)announceLocation(`현재 위치가 ${DATA.searchArea||'이 지역'} 중심에서 ${formatDistance(regionDistance)} 떨어져 있어 인기순으로 표시합니다.`,true);
+        else if(Number(position.coords.accuracy)>1000)announceLocation('가까운순으로 정렬했습니다. 위치 정확도가 낮아 거리는 참고용입니다.',true);
+        else announceLocation('현재 위치 기준 가까운순으로 정렬했습니다.',true);
+        resetIdleLocationRefresh();
+      },async error=>{
+        const message=await geolocationErrorMessage(error);
+        settleLocationRequest();
+        if(!automatic){
+          if(currentUserLocation){activateNearbyFromKnownLocation();announceLocation(`${message} 마지막 위치 기준 거리를 유지합니다.`,true)}
+          else{nearbySortRequested=false;nearbySortDisabled=false;sortByDistance=false;updateLocationDistances();updateSortTabs();announceLocation(message,true)}
+        }else{
+          updateSortTabs();
+          announceLocation(message,false);
+        }
+        if(nearbySortRequested)resetIdleLocationRefresh(); else cancelIdleLocationRefresh();
+      },{enableHighAccuracy:false,timeout:6000,maximumAge:automatic?15000:60000});
+    }
+    function countNumber(v){return Number(String(v??'').replace(/[^0-9]/g,''))||0}
+    function popularityScore(place){const nd=naverDataFor(place);const naverScore=nd?countNumber(nd.vc)*2+countNumber(nd.bc):0;const mapScore=countNumber(place.mapReviewCount)*2;return Math.max(naverScore,mapScore)}
+    function sortByPopularity(list){return list.slice().sort((a,b)=>popularityScore(b)-popularityScore(a)||(a.priority??99)-(b.priority??99)||a.name.localeCompare(b.name,'ko'))}
+    function categoryPlaces(category){
+      if(categoryPlaceCache.has(category))return categoryPlaceCache.get(category);
+      const mealPlaceKeys=currentMealConfig()?.categoryPlaces?.[category];
+      const list=mealPlaceKeys
+        ? sortByPopularity(mealPlaceKeys.map(byPlaceKey).filter(Boolean))
+        : sortByPopularity((specialCategoryPlaces[category]?specialCategoryPlaces[category].map(byPlaceKey).filter(Boolean):places.filter(p=>p.category===category)).filter(mealMatches));
+      if(sortByDistance)list.sort((a,b)=>{
+        const distanceA=distanceForPlace(a);const distanceB=distanceForPlace(b);
+        if(Number.isFinite(distanceA)&&!Number.isFinite(distanceB))return -1;
+        if(!Number.isFinite(distanceA)&&Number.isFinite(distanceB))return 1;
+        return Number.isFinite(distanceA)&&Number.isFinite(distanceB)?distanceA-distanceB:0;
+      });
+      categoryPlaceCache.set(category,list);
+      return list;
+    }
+    function hasCategoryPlaces(c){return categoryPlaces(c).length>0}
+    function rebuildVirtualOffsets(state){
+      state.offsets[0]=0;
+      for(let i=0;i<state.items.length;i++)state.offsets[i+1]=state.offsets[i]+(state.sizes[i]||virtualEstimatedExtent);
+    }
+    function virtualStateFor(category){
+      const items=categoryPlaces(category);let state=virtualStates.get(category);
+      if(state&&state.items===items)return state;
+      state={category,items,sizes:new Float64Array(items.length),offsets:new Float64Array(items.length+1),start:-1,end:-1,scrollTop:0};
+      rebuildVirtualOffsets(state);virtualStates.set(category,state);return state;
+    }
+    function virtualIndexAtOffset(state,offset){
+      let low=0;let high=state.items.length;
+      while(low<high){const middle=(low+high)>>1;if(state.offsets[middle+1]<=offset)low=middle+1;else high=middle}
+      return Math.min(state.items.length-1,Math.max(0,low));
+    }
+    function virtualRangeFor(state,scrollTop){
+      if(!state.items.length)return {start:0,end:0};
+      const visible=virtualIndexAtOffset(state,scrollTop);
+      let start=Math.max(0,Math.floor(visible/virtualChunkSize)*virtualChunkSize-virtualChunkSize);
+      let end=Math.min(state.items.length,start+virtualWindowSize);
+      if(end-start<virtualWindowSize)start=Math.max(0,end-virtualWindowSize);
+      return {start,end};
+    }
+    function renderVirtualContent(state,start,end){
+      const top=state.offsets[start];const bottom=state.offsets[state.items.length]-state.offsets[end];
+      const cards=state.items.slice(start,end).map((place,index)=>renderPlace(place,start+index,state.category)).join('');
+      return `<div class="place-list"><div class="virtual-spacer virtual-spacer-top" style="height:${top}px" aria-hidden="true"></div><div class="virtual-items">${cards}</div><div class="virtual-spacer virtual-spacer-bottom" style="height:${bottom}px" aria-hidden="true"></div></div>`;
+    }
+    function updateVirtualSpacers(section,state){
+      const top=section.querySelector('.virtual-spacer-top');const bottom=section.querySelector('.virtual-spacer-bottom');
+      if(top)top.style.height=`${state.offsets[state.start]}px`;
+      if(bottom)bottom.style.height=`${state.offsets[state.items.length]-state.offsets[state.end]}px`;
+    }
+    function getVirtualResizeObserver(){
+      if(virtualResizeObserver||!('ResizeObserver' in window))return virtualResizeObserver;
+      virtualResizeObserver=new ResizeObserver(entries=>{
+        const changedStates=new Map();
+        entries.forEach(entry=>{
+          const row=entry.target;const section=row.closest('.ranked-section');const state=section&&virtualStates.get(section.dataset.category);const index=Number(row.dataset.originalIndex);
+          if(!state||index<0)return;
+          const box=Array.isArray(entry.borderBoxSize)?entry.borderBoxSize[0]:entry.borderBoxSize;const extent=(box?.blockSize||entry.contentRect.height)+10;
+          if(Math.abs(state.sizes[index]-extent)>.5){state.sizes[index]=extent;changedStates.set(state,section)}
+        });
+        changedStates.forEach((section,state)=>{rebuildVirtualOffsets(state);updateVirtualSpacers(section,state)});
+      });
+      return virtualResizeObserver;
+    }
+    function observeVirtualRows(section,state){
+      const observer=getVirtualResizeObserver();
+      if(observer)section.querySelectorAll('.place-row[data-original-index]').forEach(row=>observer.observe(row));
+      state.scrollTop=section.scrollTop;
+    }
+    function unobserveVirtualRows(section){
+      if(virtualResizeObserver)section.querySelectorAll('.place-row[data-original-index]').forEach(row=>virtualResizeObserver.unobserve(row));
+    }
+    function renderVirtualWindow(section,category,force=false){
+      const state=virtualStateFor(category);const range=virtualRangeFor(state,section.scrollTop);
+      if(!force&&state.start===range.start&&state.end===range.end){observeVirtualRows(section,state);return}
+      const preservedScrollTop=section.scrollTop;state.start=range.start;state.end=range.end;unobserveVirtualRows(section);
+      section.innerHTML=renderVirtualContent(state,state.start,state.end);section.scrollTop=preservedScrollTop;
+      updateLocationDistances(false,section);scheduleGalleryHydration(section);observeVirtualRows(section,state);
+    }
+    function renderCategoryShell(c){return `<section class="ranked-section" data-category="${esc(c)}" data-rendered="false"></section>`}
+    function ensureCategoryRendered(index){
+      const section=categorySections[index];const category=renderedCategories[index];
+      if(!section||!category||section.dataset.rendered==='true')return;
+      const state=virtualStateFor(category);section.dataset.rendered='true';unobserveVirtualRows(section);
+      const range=virtualRangeFor(state,state.scrollTop);state.start=range.start;state.end=range.end;
+      section.innerHTML=renderVirtualContent(state,state.start,state.end);section.scrollTop=state.scrollTop;
+      updateLocationDistances(false,section);scheduleGalleryHydration(section);observeVirtualRows(section,state);
+    }
+    function renderCategories(){
+      categoryPlaceCache=new Map();virtualStates=new Map();renderedCategories=currentCategoryOrder().filter(hasCategoryPlaces);
+      virtualResizeObserver?.disconnect();
+      cardsGrid.innerHTML=renderedCategories.map(renderCategoryShell).join('');
+      renderCategoryTrack();bindCategoryCarousel();updateLocationDistances();
+    }
+    function currentCategoryIndex(){const w=Math.max(cardsGrid.clientWidth,1); return Math.min(renderedCategories.length-1,Math.max(0,Math.round(cardsGrid.scrollLeft/w)))}
+    function categoryVisual(index){const category=renderedCategories[Math.min(renderedCategories.length-1,Math.max(0,index))]||'';return {category,image:categoryImages[category]||categoryImages['전체 보기']||categoryImages['모두 보기'],label:categoryLabels[category]||category,description:categoryDescriptions[category]||''}}
+    function categoryRawIndex(){const width=Math.max(cardsGrid.clientWidth,1);return Math.min(Math.max(0,renderedCategories.length-1),Math.max(0,cardsGrid.scrollLeft/width))}
+    function setCategoryTrackRaw(raw,knownWidth=0){
+      if(!categoryTrack||!renderedCategories.length)return;
+      const clamped=Math.min(renderedCategories.length-1,Math.max(0,raw)); const width=Math.max(knownWidth||categorySwipeTarget.clientWidth,1);
+      const lower=Math.floor(clamped);const upper=Math.ceil(clamped);const nextVisible=new Set([lower,upper]);
+      categoryTrackVisibleIndices.forEach(index=>{if(!nextVisible.has(index))categoryTrackSlides[index]?.classList.remove('is-visible')});
+      nextVisible.forEach(index=>{
+        const slide=categoryTrackSlides[index];if(!slide)return;
+        slide.classList.add('is-visible');slide.style.transform=`translate3d(${((index-clamped)*width).toFixed(2)}px,0,0)`;
+      });
+      categoryTrackVisibleIndices=nextVisible;
+      const active=Math.round(clamped);
+      if(active!==categoryTrackActiveIndex){
+        categoryTrackSlides.find(slide=>Number(slide.dataset.categoryIndex)===categoryTrackActiveIndex)?.setAttribute('aria-hidden','true');
+        categoryTrackSlides.find(slide=>Number(slide.dataset.categoryIndex)===active)?.setAttribute('aria-hidden','false');
+        preloadCategoryTitleImages(active);
+        categoryTrackActiveIndex=active;
+      }
+    }
+    function syncCategoryTrackFromCards(){setCategoryTrackRaw(categoryRawIndex())}
+    function preloadCategoryTitleImages(index){
+      for(let i=Math.max(0,index-2);i<=Math.min(categoryTrackSlides.length-1,index+2);i++){
+        const image=categoryTrackSlides[i]?.querySelector('.category-image[data-src]');const src=image?.dataset.src;
+        if(!src)continue;
+        image.src=src;image.removeAttribute('data-src');image.decode?.().catch(()=>{});
+      }
+    }
+    function cancelCategoryTitleAnimation(){
+      categoryTitleAnimations.forEach(animation=>animation.cancel());
+      categoryTitleAnimations=[];
+    }
+    function animateCategoryTitle(fromRaw,toRaw,width,duration){
+      if(!categoryTrack?.animate)return false;
+      cancelCategoryTitleAnimation();
+      const minIndex=Math.max(0,Math.floor(Math.min(fromRaw,toRaw)));const maxIndex=Math.min(renderedCategories.length-1,Math.ceil(Math.max(fromRaw,toRaw)));
+      const nextVisible=new Set();
+      for(let index=minIndex;index<=maxIndex;index++)nextVisible.add(index);
+      categoryTrackVisibleIndices.forEach(index=>{if(!nextVisible.has(index))categoryTrackSlides[index]?.classList.remove('is-visible')});
+      nextVisible.forEach(index=>{
+        const slide=categoryTrackSlides[index];if(!slide)return;
+        const from=`translate3d(${((index-fromRaw)*width).toFixed(2)}px,0,0)`;const to=`translate3d(${((index-toRaw)*width).toFixed(2)}px,0,0)`;
+        slide.classList.add('is-visible');slide.style.transform=to;
+        categoryTitleAnimations.push(slide.animate([{transform:from},{transform:to}],{duration,easing:'cubic-bezier(.65,0,.35,1)',fill:'both'}));
+      });
+      categoryTrackVisibleIndices=nextVisible;preloadCategoryTitleImages(Math.round(toRaw));
+      return categoryTitleAnimations.length>0;
+    }
+    function renderCategoryTrack(){
+      if(!categoryTrack)return;
+      const active=currentCategoryIndex();
+      categoryTrack.innerHTML=renderedCategories.map((category,index)=>{const visual=categoryVisual(index);return `<div class="category-slide" data-category-index="${index}" aria-hidden="${index!==active}"><img class="category-image" data-src="${esc(visual.image||'')}" alt="" aria-hidden="true" decoding="async"><div class="category-copy"><span class="category-slide-label">${esc(visual.label)}</span><span class="category-slide-desc">${esc(visual.description)}</span></div></div>`}).join('');
+      categoryTrackSlides=Array.from(categoryTrack.querySelectorAll('.category-slide'));categoryTrackVisibleIndices=new Set();categoryTrackActiveIndex=-1;setCategoryTrackRaw(active);
+    }
+    function setSlideDepth(depth=0){const active=Math.min(1,Math.max(0,depth))>0;if(active)cardsSection.classList.add('is-live-motion');else cardsSection.classList.remove('is-live-motion')}
+    function clearSlideDepth(){cardsSection.classList.remove('is-live-motion')}
+    function cancelCategoryMaintenance(){
+      categoryMaintenanceToken+=1;
+      if(!categoryMaintenanceHandle)return;
+      if('cancelIdleCallback' in window)window.cancelIdleCallback(categoryMaintenanceHandle);else clearTimeout(categoryMaintenanceHandle);
+      categoryMaintenanceHandle=0;
+    }
+    function scheduleCategoryMaintenance(i){
+      cancelCategoryMaintenance();
+      const token=categoryMaintenanceToken;
+      const tasks=[];
+      categorySections.forEach((section,index)=>{
+        if(Math.abs(index-i)>1&&section.dataset.rendered!=='false')tasks.push(()=>{
+          const state=virtualStates.get(renderedCategories[index]);if(state)state.scrollTop=section.scrollTop;
+          unobserveVirtualRows(section);section.replaceChildren();section.dataset.rendered='false';
+        });
+      });
+      if(!tasks.length)return;
+      const requestWork=callback=>{
+        if('requestIdleCallback' in window)categoryMaintenanceHandle=window.requestIdleCallback(callback,{timeout:1200});
+        else categoryMaintenanceHandle=window.setTimeout(()=>callback({didTimeout:true,timeRemaining:()=>0}),120);
+      };
+      const run=deadline=>{
+        categoryMaintenanceHandle=0;
+        if(token!==categoryMaintenanceToken)return;
+        if(isProgrammaticSlide||dragState||categorySwipeState||cardsSection.classList.contains('is-live-motion')||(!deadline.didTimeout&&deadline.timeRemaining()<7)){requestWork(run);return}
+        tasks.shift()?.();
+        if(tasks.length)requestWork(run);
+      };
+      requestWork(run);
+    }
+    function primeCategoryWindow(i){
+      const changed=i!==primedCategoryIndex;
+      primedCategoryIndex=i;
+      [i,i+1,i-1].forEach(ensureCategoryRendered);
+      categorySections.forEach((section,index)=>{
+        const isPrime=Math.abs(index-i)<=1;section.classList.toggle('is-prime',isPrime);section.classList.toggle('is-current',index===i);
+      });
+      const currentSection=categorySections[i];const currentState=virtualStates.get(renderedCategories[i]);
+      if(currentSection&&currentState)renderVirtualWindow(currentSection,renderedCategories[i]);
+      if(changed||!categoryMaintenanceHandle)scheduleCategoryMaintenance(i);
+    }
+    function updateCategoryMeta(){const i=currentCategoryIndex();const changed=i!==primedCategoryIndex;setCategoryTrackRaw(i);updateCategoryProgressByScroll(false);categoryPrevButton.disabled=i===0;categoryNextButton.disabled=i===renderedCategories.length-1;primeCategoryWindow(i);if(changed&&categoryAnnouncement)categoryAnnouncement.textContent=`${categoryVisual(i).label} 카테고리`}
+    function requestCategoryMetaUpdate(){if(isProgrammaticSlide||dragState||categorySwipeState||cardsSection.classList.contains('is-live-motion')||categoryMetaFrame)return;categoryMetaFrame=window.requestAnimationFrame(()=>{categoryMetaFrame=0;updateCategoryMeta()})}
+    function handleCardsScroll(){
+      if(isProgrammaticSlide||dragState||categorySwipeState){lastCardsScrollLeft=cardsGrid.scrollLeft;return}
+      syncCategoryTrackFromCards(); updateHorizontalScrollFlash(true);
+      if(!isProgrammaticSlide&&!dragState&&!categorySwipeState){
+        const left=cardsGrid.scrollLeft; const delta=left-lastCardsScrollLeft; lastCardsScrollLeft=left;
+        if(Math.abs(delta)>.5){setSlideDepth(1);showCategoryProgress();updateCategoryProgressByScroll(false);clearTimeout(scrollMotionTimer);scrollMotionTimer=setTimeout(()=>{clearSlideDepth();updateCategoryMeta();hideCategoryProgressSoon()},140)}
+      }else lastCardsScrollLeft=cardsGrid.scrollLeft;
+      requestCategoryMetaUpdate();
+    }
+    function easeInOutCubic(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2}
+    function dragStartThreshold(){return 18}
+    function dragPageThreshold(){return Math.min(120,Math.max(54,cardsGrid.clientWidth*.2))}
+    function showCategoryProgress(){clearTimeout(categoryProgressTimer);categoryProgressTrack?.classList.add('is-visible')}
+    function hideCategoryProgressSoon(){clearTimeout(categoryProgressTimer);categoryProgressTimer=setTimeout(()=>categoryProgressTrack?.classList.remove('is-visible'),620)}
+    function paintCategoryProgress(scrollLeft,maxScroll,trackWidth){
+      if(!categoryProgress)return;
+      const dotSize=Math.min(8,trackWidth);const maxLeft=Math.max(0,trackWidth-dotSize);
+      const left=maxScroll>1?Math.round((scrollLeft/maxScroll)*maxLeft):0;
+      categoryProgress.style.width=`${dotSize}px`;categoryProgress.style.transform=`translateX(${left}px)`;
+    }
+    function updateCategoryProgressByScroll(reveal=true){
+      if(!categoryProgressTrack||!categoryProgress)return;
+      const trackWidth=categoryProgressTrack.clientWidth||1;
+      const maxScroll=Math.max(0,cardsGrid.scrollWidth-cardsGrid.clientWidth);
+      paintCategoryProgress(cardsGrid.scrollLeft,maxScroll,trackWidth);
+      if(reveal){showCategoryProgress(); hideCategoryProgressSoon()}
+    }
+    function readCategoryMotionMetrics(){
+      const cardsWidth=Math.max(cardsGrid.clientWidth,1);
+      return {cardsWidth,titleWidth:Math.max(categorySwipeTarget.clientWidth,1),maxScroll:Math.max(0,cardsGrid.scrollWidth-cardsWidth),progressWidth:categoryProgressTrack?.clientWidth||1,horizontal:readHorizontalScrollMetrics()};
+    }
+    function paintCategoryMotion(scrollLeft,metrics,revealHorizontal=false,paintTitle=true){
+      if(paintTitle)setCategoryTrackRaw(scrollLeft/metrics.cardsWidth,metrics.titleWidth);
+      paintCategoryProgress(scrollLeft,metrics.maxScroll,metrics.progressWidth);
+      paintHorizontalScrollFlash(scrollLeft,metrics.horizontal,revealHorizontal);
+    }
+    function applyQueuedCategoryMotion(){
+      categoryMotionFrame=0;
+      const motion=pendingCategoryMotion;pendingCategoryMotion=null;
+      if(!motion)return;
+      cardsGrid.scrollLeft=motion.scrollLeft;paintCategoryMotion(motion.scrollLeft,motion.metrics,motion.revealHorizontal);
+    }
+    function queueCategoryMotion(scrollLeft,metrics,revealHorizontal=false){
+      pendingCategoryMotion={scrollLeft,metrics,revealHorizontal};
+      if(!categoryMotionFrame)categoryMotionFrame=window.requestAnimationFrame(applyQueuedCategoryMotion);
+    }
+    function flushCategoryMotion(){
+      if(categoryMotionFrame)window.cancelAnimationFrame(categoryMotionFrame);
+      applyQueuedCategoryMotion();
+    }
+    function cancelQueuedCategoryMotion(){
+      if(categoryMotionFrame)window.cancelAnimationFrame(categoryMotionFrame);
+      categoryMotionFrame=0;pendingCategoryMotion=null;
+    }
+    function stopSlideAnimation(){if(slideAnimation)window.cancelAnimationFrame(slideAnimation);if(categoryMetaFrame)window.cancelAnimationFrame(categoryMetaFrame);cancelQueuedCategoryMotion();clearTimeout(scrollMotionTimer);cancelCategoryMaintenance();cancelCategoryTitleAnimation();slideAnimation=0;categoryMetaFrame=0;isProgrammaticSlide=false;cardsGrid.classList.remove('is-sliding');cardsGrid.style.scrollSnapType='';clearSlideDepth();syncCategoryTrackFromCards()}
+    function scrollToCategory(i,animate=true){
+      const targetIndex=Math.min(renderedCategories.length-1,Math.max(0,i));
+      stopSlideAnimation();
+      const cardsWidth=Math.max(cardsGrid.clientWidth,1);const target=targetIndex*cardsWidth;
+      if(!animate||Math.abs(cardsGrid.scrollLeft-target)<1){cardsGrid.scrollLeft=target;setCategoryTrackRaw(targetIndex);updateCategoryMeta();return}
+      const start=cardsGrid.scrollLeft;const delta=target-start;const distanceRatio=Math.min(1,Math.abs(delta)/cardsWidth);const duration=Math.max(120,240*distanceRatio);
+      isProgrammaticSlide=true;setSlideDepth(1);showCategoryProgress();cardsGrid.classList.add('is-sliding');cardsGrid.style.scrollSnapType='none';ensureCategoryRendered(targetIndex);updateContentScrollbars(true);
+      const motion=readCategoryMotionMetrics();
+      const titleIsComposited=animateCategoryTitle(start/cardsWidth,targetIndex,motion.titleWidth,duration);
+      const startTime=performance.now();
+      const step=now=>{const t=Math.min(1,(now-startTime)/duration);const eased=easeInOutCubic(t);const next=start+delta*eased;cardsGrid.scrollLeft=next;paintCategoryMotion(next,motion,false,!titleIsComposited);if(t<1){slideAnimation=window.requestAnimationFrame(step);return}slideAnimation=0;isProgrammaticSlide=false;cardsGrid.scrollLeft=target;cancelCategoryTitleAnimation();setCategoryTrackRaw(targetIndex,motion.titleWidth);cardsGrid.classList.remove('is-sliding');cardsGrid.style.scrollSnapType='';clearSlideDepth();updateCategoryMeta();hideCategoryProgressSoon();hideScrollFlashSoon()};
+      slideAnimation=window.requestAnimationFrame(step);
+    }
+    function loadGalleryImage(img){const src=img?.dataset?.src; if(!src)return; const key=imageCanonicalKey(src); const loadId=`${Date.now()}-${Math.random()}`; img.dataset.loadId=loadId; img.dataset.imageKey=key; img.referrerPolicy='no-referrer'; img.onload=()=>{if(img.dataset.loadId!==loadId)return; if(img.naturalWidth>0)img.dataset.loaded='1'; else handleGalleryError(img,true)}; img.onerror=()=>{if(img.dataset.loadId===loadId)handleGalleryError(img,true)}; img.src=imageDisplayUrl(src); img.removeAttribute('data-src'); window.setTimeout(()=>{if(!img.isConnected||img.dataset.loadId!==loadId)return; if(!img.complete||img.naturalWidth===0){const current=img.currentSrc||img.src; handleGalleryError(img,true); window.setTimeout(()=>{if(img.isConnected&&(img.currentSrc||img.src)===current&&img.complete&&img.naturalWidth===0)img.closest('.gallery-item')?.remove()},900)}},4200); img.decode?.().catch(()=>{})}
+    function getGalleryObserver(){
+      if(galleryObserver||!('IntersectionObserver' in window))return galleryObserver;
+      galleryObserver=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){galleryObserver.unobserve(entry.target);loadGalleryImage(entry.target)}})},{root:null,rootMargin:'280px 0px'});
+      return galleryObserver;
+    }
+    function hydrateGalleryImages(root=document){
+      const imgs=Array.from(root.querySelectorAll('.gallery-img[data-src]')); if(!imgs.length)return;
+      const observer=getGalleryObserver();if(observer){imgs.forEach(img=>observer.observe(img));return}
+      imgs.slice(0,12).forEach(loadGalleryImage);
+    }
+    function scheduleGalleryHydration(root=document){window.requestAnimationFrame(()=>hydrateGalleryImages(root))}
+    function scheduleAheadPreload(index=currentCategoryIndex()){const section=categorySections[index];if(section)scheduleGalleryHydration(section)}
+    function hideScrollFlashSoon(){clearTimeout(scrollFlashTimer);scrollFlashTimer=setTimeout(()=>{scrollFlashY?.classList.remove('is-visible');scrollFlashX?.classList.remove('is-visible')},720)}
+    function syncScrollFlashGeometry(){if(!scrollFlashY||!cardsGrid||!cardsSection)return;const sectionTop=cardsSection.getBoundingClientRect().top;const contentTop=cardsGrid.getBoundingClientRect().top;scrollFlashY.style.top=`${Math.max(0,Math.round(contentTop-sectionTop))}px`}
+    function updateScrollFlash(section,reveal=true){
+      if(!scrollFlashY||!scrollFlashYThumb||!section||section===cardsGrid)return;
+      const max=Math.max(0,section.scrollHeight-section.clientHeight);const hasOverflow=max>2;
+      const track=scrollFlashY.clientHeight||section.clientHeight||1;
+      const h=hasOverflow?Math.max(32,Math.round(track*Math.min(1,section.clientHeight/section.scrollHeight))):track;
+      const top=hasOverflow?Math.round((section.scrollTop/max)*Math.max(0,track-h)):0;
+      scrollFlashY.classList.toggle('has-overflow',hasOverflow);
+      scrollFlashYThumb.style.height=`${h}px`;scrollFlashYThumb.style.transform=`translateY(${top}px)`;
+      if(reveal&&hasOverflow){scrollFlashY.classList.add('is-visible');hideScrollFlashSoon()}
+      else if(!hasOverflow)scrollFlashY.classList.remove('is-visible');
+    }
+    function readHorizontalScrollMetrics(){const clientWidth=Math.max(cardsGrid.clientWidth,1);const scrollWidth=Math.max(cardsGrid.scrollWidth,clientWidth);const max=Math.max(0,scrollWidth-clientWidth);const track=scrollFlashX?.clientWidth||clientWidth;const ratio=max>2?Math.min(1,clientWidth/scrollWidth):1;const width=max>2?Math.max(32,Math.round(track*ratio)):track;return {max,track,width}}
+    function paintHorizontalScrollFlash(scrollLeft,metrics,reveal=true){if(!scrollFlashX||!scrollFlashXThumb)return;if(metrics.max<=2&&!reveal){scrollFlashX.classList.remove('is-visible');return}if(!reveal&&!scrollFlashX.classList.contains('is-visible'))return;const left=metrics.max>2?Math.round((scrollLeft/metrics.max)*Math.max(0,metrics.track-metrics.width)):0;scrollFlashXThumb.style.width=`${metrics.width}px`;scrollFlashXThumb.style.transform=`translateX(${left}px)`;if(reveal){scrollFlashX.classList.add('is-visible');hideScrollFlashSoon()}}
+    function updateHorizontalScrollFlash(reveal=true){paintHorizontalScrollFlash(cardsGrid.scrollLeft,readHorizontalScrollMetrics(),reveal)}
+    function updateContentScrollbars(reveal=true){syncScrollFlashGeometry();updateHorizontalScrollFlash(reveal);updateScrollFlash(categorySections[currentCategoryIndex()],reveal)}
+    function handleSectionScroll(section,index){
+      pendingScrolledSection=section;pendingScrolledIndex=index;
+      if(verticalScrollFrame)return;
+      verticalScrollFrame=window.requestAnimationFrame(()=>{
+        verticalScrollFrame=0;const activeSection=pendingScrolledSection;const activeIndex=pendingScrolledIndex;pendingScrolledSection=null;pendingScrolledIndex=-1;
+        if(!activeSection?.isConnected)return;
+        const category=renderedCategories[activeIndex];const state=virtualStates.get(category);
+        if(state){state.scrollTop=activeSection.scrollTop;renderVirtualWindow(activeSection,category)}
+        updateScrollFlash(activeSection,true);
+      });
+    }
+    function bindCategoryCarousel(){
+      categorySections=Array.from(cardsGrid.querySelectorAll('.ranked-section')); cardsGrid.setAttribute('tabindex','0'); lastCardsScrollLeft=cardsGrid.scrollLeft;
+      categorySections.forEach((section,index)=>section.addEventListener('scroll',()=>handleSectionScroll(section,index),{passive:true}));
+      updateCategoryMeta();
+    }
+    categoryPrevButton.addEventListener('click',()=>scrollToCategory(currentCategoryIndex()-1));
+    categoryNextButton.addEventListener('click',()=>scrollToCategory(currentCategoryIndex()+1));
+    function categorySwipeThreshold(){return Math.max(42,(categorySwipeTarget?.clientWidth||240)*.18)}
+    categorySwipeTarget?.addEventListener('pointerdown',e=>{if(e.button!==0||renderedCategories.length<2)return;stopSlideAnimation();categorySwipeState={x:e.clientX,y:e.clientY,startRaw:categoryRawIndex(),index:currentCategoryIndex(),pointerId:e.pointerId,horizontal:false,lastDx:0,motion:readCategoryMotionMetrics()}});
+    categorySwipeTarget?.addEventListener('pointermove',e=>{if(!categorySwipeState||e.pointerId!==categorySwipeState.pointerId)return;const dx=e.clientX-categorySwipeState.x;const dy=e.clientY-categorySwipeState.y;const absX=Math.abs(dx);const absY=Math.abs(dy);categorySwipeState.lastDx=dx;if(!categorySwipeState.horizontal){if(absX<8&&absY<8)return;if(absY>absX){categorySwipeState=null;scheduleCategoryMaintenance(currentCategoryIndex());return}categorySwipeState.horizontal=true;categorySwipeTarget.setPointerCapture?.(e.pointerId);categorySwipeTarget.classList.add('is-swiping');cardsGrid.style.scrollSnapType='none';setSlideDepth(1)}e.preventDefault();const motion=categorySwipeState.motion;const raw=Math.min(renderedCategories.length-1,Math.max(0,categorySwipeState.startRaw-dx/motion.titleWidth));queueCategoryMotion(raw*motion.cardsWidth,motion,true)});
+    function finishCategorySwipe(cancelled=false){if(!categorySwipeState)return;const state=categorySwipeState;flushCategoryMotion();categorySwipeState=null;categorySwipeTarget?.classList.remove('is-swiping');clearSlideDepth();if(!state.horizontal){updateCategoryMeta();return}const dx=state.lastDx;const threshold=categorySwipeThreshold();let target=state.index;if(!cancelled&&dx<=-threshold)target=state.index+1;else if(!cancelled&&dx>=threshold)target=state.index-1;scrollToCategory(target)}
+    categorySwipeTarget?.addEventListener('pointerup',()=>finishCategorySwipe(false));
+    categorySwipeTarget?.addEventListener('pointercancel',()=>finishCategorySwipe(true));
+    mealToggle?.addEventListener('click',()=>setMealMode(mealModes[(mealModes.indexOf(currentMealMode)+1)%mealModes.length]));
+    recommendationSortButton?.addEventListener('click',()=>setRecommendationSort());
+    nearbySortButton?.addEventListener('click',()=>requestCurrentLocation(false));
+    ['pointerdown','keydown','wheel','touchstart'].forEach(type=>document.addEventListener(type,noteUserActivity,{passive:true}));
+    document.addEventListener('visibilitychange',()=>{if(document.hidden)cancelIdleLocationRefresh();else if(nearbySortRequested)resetIdleLocationRefresh()});
+    window.addEventListener('pagehide',()=>{cancelIdleLocationRefresh();clearInterval(locationProgressTimer)});
+    cardsGrid.addEventListener('scroll',handleCardsScroll,{passive:true});
+    function isInteractivePointerTarget(target){return target instanceof Element&&!!target.closest('a,button,input,select,textarea,summary')}
+    cardsGrid.addEventListener('pointerdown',e=>{if(e.button!==0||isInteractivePointerTarget(e.target))return;stopSlideAnimation();dragState={x:e.clientX,scrollLeft:cardsGrid.scrollLeft,index:currentCategoryIndex(),active:false,moved:false,lastDx:0,pointerId:e.pointerId,motion:readCategoryMotionMetrics()};updateContentScrollbars(true)});
+    cardsGrid.addEventListener('pointermove',e=>{if(!dragState||e.pointerId!==dragState.pointerId)return;const dx=e.clientX-dragState.x;dragState.lastDx=dx;const abs=Math.abs(dx);const start=dragStartThreshold();if(abs<=start&&!dragState.active)return;if(!dragState.active){dragState.active=true;cardsGrid.setPointerCapture?.(e.pointerId);cardsGrid.classList.add('is-dragging');setSlideDepth(1)}dragState.moved=true;const next=Math.min(dragState.motion.maxScroll,Math.max(0,dragState.scrollLeft-dx));queueCategoryMotion(next,dragState.motion,true);showCategoryProgress()});
+    function finishDrag(){if(!dragState)return;const state=dragState;flushCategoryMotion();const moved=state.moved;if(moved)suppressClickUntil=Date.now()+260;dragState=null;cardsGrid.classList.remove('is-dragging');clearSlideDepth();if(!moved){updateCategoryMeta();hideCategoryProgressSoon();hideScrollFlashSoon();return}const dx=state.lastDx;const threshold=dragPageThreshold();let target=state.index;if(dx<=-threshold)target=state.index+1;else if(dx>=threshold)target=state.index-1;scrollToCategory(target)}
+    cardsGrid.addEventListener('pointerup',finishDrag); cardsGrid.addEventListener('pointercancel',finishDrag); cardsGrid.addEventListener('click',e=>{if(Date.now()<suppressClickUntil)e.preventDefault()},true);
+    window.addEventListener('resize',()=>scrollToCategory(currentCategoryIndex(),false));
+    function goRegionIndex(){window.location.href='index.html'}
+    function setupSystemBack(){
+      try{if(window.history?.pushState){const state=history.state&&typeof history.state==='object'?history.state:{}; history.pushState({...state,foodRegionBack:true},'',location.href); window.addEventListener('popstate',goRegionIndex)}}catch{}
+      window.addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();goRegionIndex()}});
+    }
+    systemTheme.addEventListener?.('change',()=>{if(storedThemeMode()==='system')applyThemeMode('system')});
+    window.addEventListener('storage',e=>{if(e.key===themeStorageKey)applyThemeMode(storedThemeMode())});
+    applyThemeMode();
+    updatePageTitle();
+    setHeroForMeal();
+    updateMealToggle();
+    if(currentUserLocation)nearbySortDisabled=distanceFromRegionAnchor(currentUserLocation)>=nearbyMaximumDistance;
+    updateSortTabs();
+    setupSystemBack();
+    renderCategories();
+    if('serviceWorker' in navigator)window.addEventListener('load',()=>{
+      navigator.serviceWorker.register('sw.js')
+        .then(()=>navigator.serviceWorker.ready)
+        .then(registration=>registration.active?.postMessage({type:'warm',urls:[location.href,new URL(DATA_URL,location.href).href]}))
+        .catch(()=>{});
+    },{once:true});
+    })().catch(error=>{
+      console.error(error);
+      const cards=document.getElementById('cardsGrid');
+      if(cards)cards.innerHTML='<p role="alert">지역 데이터를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.</p>';
+    });
+  </script>
+</body>
+</html>

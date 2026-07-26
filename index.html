@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ko" data-theme-mode="light" data-effective-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="supported-color-schemes" content="light dark">
+  <title>맛집</title>
+  <style>
+    *{box-sizing:border-box}
+    :root{--orange-accent:#ff8a24;color-scheme:light dark}
+    html{background:var(--page-bg);color-scheme:light dark}
+    body{position:relative;margin:0;min-height:100dvh;overflow-x:hidden;background:var(--page-bg) url("assets/landing-bg-starry-sky.webp") center/cover no-repeat;color:var(--page-text);color-scheme:light dark;font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",system-ui,-apple-system,sans-serif;line-height:1.45;transition:background-color 180ms ease,color 180ms ease}
+    button{appearance:none;-webkit-appearance:none;font:inherit}
+    body::before{content:"";position:fixed;inset:0;z-index:0;background:var(--page-overlay);pointer-events:none;transition:background 180ms ease}
+    body::after{content:"";position:fixed;left:0;right:0;top:0;z-index:0;height:min(34vh,310px);background:linear-gradient(180deg,rgba(7,10,38,.14) 0%,rgba(7,10,38,0) 100%);opacity:.55;pointer-events:none}
+    html[data-effective-theme="light"]{--page-bg:#9eeaff;--page-text:#17364a;--page-overlay:linear-gradient(180deg,rgba(4,8,30,.02) 0%,rgba(93,183,229,.04) 45%,rgba(255,255,255,.14) 100%);--star-opacity:.88;--star-opacity-low:.18;--star-opacity-soft:.54;--star-spark-opacity:.74;--star-spark-opacity-low:.08;--star-spark-opacity-soft:.36;--region-border:#56b7d9;--region-shadow:5px 5px 0 rgba(56,151,196,.13);--region-hover-border:#2d9dd4;--region-hover-shadow:7px 8px 0 rgba(56,151,196,.16);--region-overlay:linear-gradient(180deg,rgba(9,34,52,.03) 0%,rgba(9,34,52,.08) 48%,rgba(9,34,52,.62) 100%);--region-art-filter:none;--control-border:#2d9dd4;--control-bg:rgba(255,255,255,.92);--control-text:#1681b9;--control-shadow:4px 4px 0 rgba(42,155,212,.16);--control-hover-bg:#fff4df;--control-hover-text:#d56212;--theme-border:#2d9dd4;--theme-bg:rgba(255,255,255,.92);--theme-shadow:4px 4px 0 rgba(42,155,212,.16);--theme-core:#ff8a24;--theme-system-core:#fff;--theme-system-icon:#577789;--theme-icon-shadow:0 2px 7px rgba(18,50,71,.18);--qr-backdrop:rgba(18,50,71,.42);--qr-panel-border:#2d9dd4;--qr-panel-bg:#fff;--qr-panel-shadow:7px 7px 0 rgba(42,155,212,.18);--qr-title:#123247;--qr-image-border:#d8eef8;--qr-image-bg:#fff;--qr-url:#23664a;--qr-close-bg:#e4f6ff;--qr-close-text:#146f9b;color-scheme:light dark}
+    html[data-effective-theme="dark"]{--page-bg:#091236;--page-text:#f5fbff;--page-overlay:linear-gradient(180deg,rgba(4,7,25,.1) 0%,rgba(28,18,72,.08) 48%,rgba(3,10,30,.18) 100%);--star-opacity:.96;--star-opacity-low:.24;--star-opacity-soft:.62;--star-spark-opacity:.9;--star-spark-opacity-low:.12;--star-spark-opacity-soft:.48;--region-border:#52c8ee;--region-shadow:5px 5px 0 rgba(0,0,0,.22);--region-hover-border:#ffdd83;--region-hover-shadow:7px 8px 0 rgba(0,0,0,.26);--region-overlay:linear-gradient(180deg,rgba(8,12,34,.08) 0%,rgba(8,12,34,.22) 45%,rgba(8,12,34,.76) 100%);--region-art-filter:brightness(.8) saturate(.95);--control-border:#ffdd83;--control-bg:#17205a;--control-text:#c6d4ef;--control-shadow:4px 4px 0 rgba(0,0,0,.24);--control-hover-bg:#2b2542;--control-hover-text:#ffbd73;--theme-border:#ffdd83;--theme-bg:#17205a;--theme-shadow:4px 4px 0 rgba(0,0,0,.24);--theme-core:#ff8a24;--theme-system-core:#ff8a24;--theme-system-icon:#c6d4ef;--theme-icon-shadow:0 2px 7px rgba(0,0,0,.28);--qr-backdrop:rgba(4,7,25,.62);--qr-panel-border:#52c8ee;--qr-panel-bg:#101c45;--qr-panel-shadow:7px 7px 0 rgba(0,0,0,.24);--qr-title:#f5fbff;--qr-image-border:#2d416f;--qr-image-bg:#fff;--qr-url:#b8f2d1;--qr-close-bg:#143b5a;--qr-close-text:#bcecff;color-scheme:light dark}
+    a{color:inherit;text-decoration:none}
+    .shell{display:flex;position:relative;z-index:3;min-height:100dvh;align-items:center;justify-content:center;padding:28px 14px}
+    .shell::before{display:none}
+    .twinkle-layer{position:fixed;left:0;right:0;top:0;z-index:2;height:min(28vh,260px);overflow:hidden;pointer-events:none}
+    .twinkle-layer span{position:absolute;left:var(--x);top:var(--y);width:var(--s);height:var(--s);opacity:0;transform:translate(-50%,-50%) scale(.45) rotate(var(--r,0deg));animation:twinkleRare var(--d) ease-in-out infinite;animation-delay:var(--delay)}
+    .twinkle-layer .star-dot{border-radius:999px;background:#fff;box-shadow:0 0 6px rgba(255,255,255,.95),0 0 18px rgba(123,206,255,.5)}
+    .twinkle-layer .star-cross{background:transparent}
+    .twinkle-layer .star-cross::before,.twinkle-layer .star-cross::after{content:"";position:absolute;left:50%;top:50%;border-radius:999px;background:rgba(255,255,255,.95);box-shadow:0 0 8px rgba(255,255,255,.8);transform:translate(-50%,-50%)}
+    .twinkle-layer .star-cross::before{width:calc(var(--s) * 5);height:1px}
+    .twinkle-layer .star-cross::after{width:1px;height:calc(var(--s) * 5)}
+    .twinkle-layer .star-diamond{border-radius:1px;background:#fff;box-shadow:0 0 7px rgba(255,255,255,.85),0 0 16px rgba(255,220,146,.42)}
+    .twinkle-layer .star-ring{border:1px solid rgba(255,255,255,.92);border-radius:999px;box-shadow:0 0 7px rgba(255,255,255,.72),inset 0 0 5px rgba(255,255,255,.58)}
+    .sky-flight{position:fixed;top:var(--flight-top,clamp(520px,72vh,760px));left:0;z-index:1;width:clamp(34px,4.6vw,69px);opacity:.9;pointer-events:none;transform:translate3d(125vw,0,0);animation:flightPass var(--flight-duration,88s) linear infinite;animation-delay:var(--flight-delay,3.4s);will-change:transform}
+    .sky-flight img{display:block;width:100%;height:auto;filter:drop-shadow(0 12px 24px rgba(19,58,103,.2));animation:flightFloat 7.5s ease-in-out infinite}
+    .selector{width:min(760px,100%);min-width:0}
+    .region-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));align-items:stretch;gap:14px;min-width:0}
+    .region-card{display:block;position:relative;min-width:0;aspect-ratio:1/1;overflow:hidden;border:2px solid var(--region-border);border-radius:8px;background:#fff;box-shadow:var(--region-shadow);isolation:isolate;transition:transform 150ms ease,box-shadow 150ms ease,border-color 150ms ease}
+    .region-card::before{content:"";position:absolute;inset:0;z-index:1;background:var(--region-overlay);pointer-events:none}
+    .region-card:hover,.region-card:focus-visible{border-color:var(--region-hover-border);box-shadow:var(--region-hover-shadow);transform:translateY(-3px)}
+    .region-visual{position:absolute;inset:0;z-index:0;overflow:hidden}
+    .region-art{display:block;width:100%;height:100%;object-fit:cover;object-position:center;transform:scale(1.035);transition:transform 170ms ease,filter 170ms ease}
+    .region-card:hover .region-art,.region-card:focus-visible .region-art{transform:scale(1.07)}
+    .region-art{filter:var(--region-art-filter)}
+    .region-text{display:block;position:absolute;left:0;right:0;bottom:0;z-index:2;min-width:0;padding:18px 20px 17px}
+    .region-name{display:block;color:#fff;font-size:34px;font-weight:900;line-height:1.08;text-shadow:0 2px 10px rgba(0,0,0,.34);word-break:keep-all}
+    .qr-button{display:inline-flex;position:fixed;top:14px;right:14px;z-index:30;align-items:center;justify-content:center;width:44px;height:44px;border:2px solid var(--control-border);border-radius:999px;background:var(--control-bg);color:var(--control-text);cursor:pointer;box-shadow:var(--control-shadow)}
+    .qr-button:hover{background:var(--control-hover-bg);color:var(--control-hover-text);transform:translateY(-1px)}
+    .qr-button svg,.qr-close svg{display:block;width:22px;height:22px;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;fill:none}
+    .theme-toggle{display:inline-flex;position:fixed;right:14px;bottom:14px;z-index:30;align-items:center;justify-content:center;width:44px;height:44px;padding:0;overflow:hidden;border:2px solid var(--theme-border);border-radius:999px;background:var(--theme-bg);color:#fff;color-scheme:light dark;forced-color-adjust:none;cursor:pointer;box-shadow:var(--theme-shadow);transition:background 150ms ease,border-color 150ms ease,transform 150ms ease,box-shadow 150ms ease}
+    .theme-toggle::before{content:"";position:absolute;inset:4px;border-radius:999px;background:var(--theme-core);forced-color-adjust:none;box-shadow:var(--theme-icon-shadow);transition:background 150ms ease}
+    .theme-toggle:hover{transform:translateY(-1px)}
+    .theme-toggle svg{display:block;position:absolute;z-index:1;width:23px;height:23px;stroke:currentColor;stroke-width:2.25;stroke-linecap:round;stroke-linejoin:round;fill:none;forced-color-adjust:none;opacity:0;transform:scale(.68) rotate(18deg);transition:opacity 150ms ease,transform 150ms ease,color 150ms ease}
+    .theme-toggle .sun-icon{color:#fff}
+    .theme-toggle .system-icon{color:var(--theme-system-icon)}
+    .theme-toggle .moon-icon{color:#fff}
+    .theme-toggle .face{stroke-width:2}
+    body[data-theme-mode="light"] .theme-toggle .sun-icon,body[data-theme-mode="system"] .theme-toggle .system-icon,body[data-theme-mode="dark"] .theme-toggle .moon-icon{opacity:1;transform:scale(1) rotate(0)}
+    body[data-theme-mode="system"] .theme-toggle::before{background:var(--theme-system-core)}
+    .qr-dialog{display:grid;position:fixed;inset:0;z-index:60;place-items:center;padding:20px}
+    .qr-dialog[hidden]{display:none}
+    .qr-backdrop{position:absolute;inset:0;background:var(--qr-backdrop);backdrop-filter:blur(2px)}
+    .qr-panel{position:relative;z-index:1;width:min(312px,calc(100vw - 36px));padding:16px;border:2px solid var(--qr-panel-border);border-radius:8px;background:var(--qr-panel-bg);box-shadow:var(--qr-panel-shadow)}
+    .qr-panel h2{margin:0 42px 12px 0;color:var(--qr-title);font-size:18px;line-height:1.25;letter-spacing:0}
+    .qr-panel img{display:block;width:min(230px,70vw);height:auto;margin:0 auto 12px;border:1px solid var(--qr-image-border);border-radius:8px;background:var(--qr-image-bg)}
+    .qr-url{display:block;overflow:hidden;color:var(--qr-url);font-size:13px;font-weight:900;line-height:1.35;text-align:center;text-overflow:ellipsis;white-space:nowrap}
+    .qr-close{display:inline-flex;position:absolute;top:8px;right:8px;align-items:center;justify-content:center;width:34px;height:34px;border:0;border-radius:999px;background:var(--qr-close-bg);color:var(--qr-close-text);cursor:pointer}
+    .qr-close:hover{background:var(--control-hover-bg);color:var(--control-hover-text)}
+    @keyframes twinkleRare{0%,86%,100%{opacity:0;transform:translate(-50%,-50%) scale(.42) rotate(var(--r,0deg))}90%{opacity:var(--star-spark-opacity-soft);transform:translate(-50%,-50%) scale(.76) rotate(calc(var(--r,0deg) + 8deg))}93%{opacity:var(--star-spark-opacity);transform:translate(-50%,-50%) scale(1.08) rotate(calc(var(--r,0deg) + 18deg))}96%{opacity:0;transform:translate(-50%,-50%) scale(.54) rotate(calc(var(--r,0deg) + 28deg))}}
+    @keyframes flightPass{0%{transform:translate3d(125vw,0,0)}72%{transform:translate3d(-140%,0,0)}100%{transform:translate3d(-140%,0,0)}}
+    @keyframes flightFloat{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(8px) rotate(1deg)}}
+    @media(max-width:680px){.shell{display:block;min-height:100dvh;padding:82px 0 18px}.selector{width:min(380px,calc(100vw - 24px));margin:0 auto}.region-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.region-text{padding:13px}.region-name{font-size:28px}.qr-button{top:10px;right:10px;width:40px;height:40px}.theme-toggle{right:10px;bottom:10px;width:40px;height:40px}.theme-toggle svg{width:20px;height:20px}.qr-panel{padding:14px}.qr-panel img{width:min(210px,68vw)}}
+    @media(prefers-reduced-motion:reduce){.twinkle-layer span,.sky-flight,.sky-flight img{animation:none}.sky-flight{transform:translate3d(125vw,0,0)}.region-card,.region-art,.theme-toggle,.theme-toggle::before,.theme-toggle svg{transition:none}}
+  </style>
+</head>
+<body data-theme-mode="light" data-effective-theme="light">
+  <script>
+    (()=>{try{const key='food.themeMode'; const modes=['light','system','dark']; const mode=modes.includes(localStorage.getItem(key))?localStorage.getItem(key):'light'; const effective=mode==='dark'||(mode==='system'&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light'; document.documentElement.setAttribute('data-theme-mode',mode); document.documentElement.setAttribute('data-effective-theme',effective); document.body.setAttribute('data-theme-mode',mode); document.body.setAttribute('data-effective-theme',effective)}catch{}})();
+  </script>
+  <div class="twinkle-layer" aria-hidden="true">
+    <span class="star-dot" style="--x:9%;--y:18%;--s:3px;--d:28s;--delay:-4s"></span>
+    <span class="star-cross" style="--x:18%;--y:29%;--s:5px;--d:36s;--delay:-21s"></span>
+    <span class="star-diamond" style="--x:27%;--y:13%;--s:4px;--d:31s;--delay:-12s;--r:45deg"></span>
+    <span class="star-ring" style="--x:39%;--y:24%;--s:7px;--d:42s;--delay:-27s"></span>
+    <span class="star-dot" style="--x:53%;--y:10%;--s:3px;--d:30s;--delay:-16s"></span>
+    <span class="star-cross" style="--x:68%;--y:18%;--s:6px;--d:40s;--delay:-8s"></span>
+    <span class="star-diamond" style="--x:81%;--y:27%;--s:4px;--d:34s;--delay:-25s;--r:45deg"></span>
+    <span class="star-ring" style="--x:93%;--y:12%;--s:6px;--d:38s;--delay:-14s"></span>
+  </div>
+  <div class="sky-flight" aria-hidden="true">
+    <img src="assets/sky-jet-v4.webp" alt="" decoding="async">
+  </div>
+  <main class="shell">
+    <section class="selector" aria-label="지역별 맛집 목록">
+      <div class="region-grid">
+        <a class="region-card" href="pangyo.html" data-region-name="판교역" aria-label="판교역 맛집 목록">
+          <span class="region-visual" aria-hidden="true">
+            <img class="region-art" src="assets/region-pangyo-v7.webp" alt="" loading="eager" decoding="async" fetchpriority="high">
+          </span>
+          <span class="region-text"><span class="region-name">판교역</span></span>
+        </a>
+        <a class="region-card" href="beomgye-station.html" data-region-name="범계역" aria-label="범계역 맛집 목록">
+          <span class="region-visual" aria-hidden="true">
+            <img class="region-art" src="assets/region-beomgye-station-v6.webp" alt="" loading="eager" decoding="async" fetchpriority="low">
+          </span>
+          <span class="region-text"><span class="region-name">범계역</span></span>
+        </a>
+        <a class="region-card" href="pyeongchon-station.html" data-region-name="평촌역" aria-label="평촌역 맛집 목록">
+          <span class="region-visual" aria-hidden="true">
+            <img class="region-art" src="assets/region-pyeongchon-station-v6.webp" alt="" loading="lazy" decoding="async" fetchpriority="low">
+          </span>
+          <span class="region-text"><span class="region-name">평촌역</span></span>
+        </a>
+        <a class="region-card" href="indeogwon.html" data-region-name="인덕원" aria-label="인덕원 맛집 목록">
+          <span class="region-visual" aria-hidden="true">
+            <img class="region-art" src="assets/region-indeogwon-v8.webp" alt="" loading="lazy" decoding="async" fetchpriority="low">
+          </span>
+          <span class="region-text"><span class="region-name">인덕원</span></span>
+        </a>
+        <a class="region-card" href="dongtan-station.html" data-region-name="동탄역" aria-label="동탄역 맛집 목록">
+          <span class="region-visual" aria-hidden="true">
+            <img class="region-art" src="assets/region-dongtan-station-v6.webp" alt="" loading="lazy" decoding="async" fetchpriority="low">
+          </span>
+          <span class="region-text"><span class="region-name">동탄역</span></span>
+        </a>
+        <a class="region-card" href="seohyeon-station.html" data-region-name="서현역" aria-label="서현역 맛집 목록">
+          <span class="region-visual" aria-hidden="true">
+            <img class="region-art" src="assets/region-seohyeon-station.webp" alt="" loading="lazy" decoding="async" fetchpriority="low">
+          </span>
+          <span class="region-text"><span class="region-name">서현역</span></span>
+        </a>
+      </div>
+    </section>
+  </main>
+  <button id="qrToggle" class="qr-button" type="button" aria-label="공유 QR 코드 열기" title="공유 QR 코드">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h6v6H4z"/><path d="M14 4h6v6h-6z"/><path d="M4 14h6v6H4z"/><path d="M15 15h2v2h-2z"/><path d="M19 15h1v5h-5v-1"/><path d="M14 20v-2"/><path d="M20 12v1"/><path d="M12 4v2"/><path d="M12 9v1"/></svg>
+  </button>
+  <button id="themeToggle" class="theme-toggle" type="button" aria-label="현재 라이트 모드, 시스템 모드로 전환" title="라이트 모드">
+    <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="4.6"/>
+      <path d="M12 2.8v2M12 19.2v2M4.8 4.8l1.4 1.4M17.8 17.8l1.4 1.4M2.8 12h2M19.2 12h2M6.2 17.8l-1.4 1.4M19.2 4.8l-1.4 1.4"/>
+      <path class="face" d="M9.9 12.6h.01M14.1 12.6h.01M10.4 14.8c.9.7 2.3.7 3.2 0"/>
+    </svg>
+    <svg class="system-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <rect x="5" y="5" width="14" height="10" rx="3"/>
+      <path d="M9 19h6M12 15v4"/>
+      <path class="face" d="M9.8 10.2h.01M14.2 10.2h.01M10.7 12.4c.8.5 1.8.5 2.6 0"/>
+    </svg>
+    <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M18.8 15.2A6.8 6.8 0 0 1 8.8 5.2 7.6 7.6 0 1 0 18.8 15.2z"/>
+      <path class="face" d="M12.2 11.8h.01M15.6 11.8h.01M12.8 14c.7.5 1.7.5 2.4 0"/>
+    </svg>
+  </button>
+  <div id="qrDialog" class="qr-dialog" role="dialog" aria-modal="true" aria-labelledby="qrTitle" hidden>
+    <div class="qr-backdrop" data-qr-close></div>
+    <div class="qr-panel">
+      <button id="qrCloseButton" class="qr-close" type="button" aria-label="공유 QR 코드 닫기">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+      <h2 id="qrTitle">공유 QR</h2>
+      <img src="site-qr.svg" alt="https://csbyeon.github.io/food/ QR 코드">
+      <a class="qr-url" href="https://csbyeon.github.io/food/" target="_blank" rel="noreferrer">csbyeon.github.io/food</a>
+    </div>
+  </div>
+  <script>
+    const qrToggle=document.getElementById('qrToggle');
+    const qrDialog=document.getElementById('qrDialog');
+    const qrCloseButton=document.getElementById('qrCloseButton');
+    const themeToggle=document.getElementById('themeToggle');
+    const pageBody=document.body;
+    function openQrDialog(){qrDialog.hidden=false; qrCloseButton?.focus()}
+    function closeQrDialog(){if(qrDialog.hidden)return; qrDialog.hidden=true; qrToggle?.focus()}
+    qrToggle?.addEventListener('click',openQrDialog);
+    qrCloseButton?.addEventListener('click',closeQrDialog);
+    qrDialog?.addEventListener('click',e=>{if(e.target?.hasAttribute('data-qr-close'))closeQrDialog()});
+    window.addEventListener('keydown',e=>{if(e.key==='Escape'&&!qrDialog?.hidden)closeQrDialog()});
+
+    function randomBetween(min,max){
+      return min+Math.random()*(max-min);
+    }
+    function randomizeSkyFlight(){
+      const flight=document.querySelector('.sky-flight');
+      if(!flight)return;
+      const vh=Math.max(window.innerHeight||0,document.documentElement.clientHeight||0,620);
+      const smallScreen=window.matchMedia('(max-width:680px)').matches;
+      const minTop=smallScreen?Math.max(360,Math.round(vh*.7)):Math.max(410,Math.round(vh*.66));
+      const maxTop=smallScreen?Math.min(vh-72,Math.round(vh*.82)):Math.min(vh-96,Math.round(vh*.76));
+      flight.style.setProperty('--flight-top',`${Math.round(randomBetween(minTop,Math.max(minTop,maxTop)))}px`);
+      flight.style.setProperty('--flight-delay',`${randomBetween(2.4,6.2).toFixed(2)}s`);
+      flight.style.setProperty('--flight-duration',`${Math.round(randomBetween(78,104))}s`);
+    }
+    randomizeSkyFlight();
+
+    const preferredRegionStorageKey='food.preferredRegion';
+    const preferredRegionCookieName='food_preferred_region';
+    function readPreferredRegionCookie(){
+      const prefix=`${preferredRegionCookieName}=`;
+      const cookie=document.cookie.split(';').map(part=>part.trim()).find(part=>part.startsWith(prefix));
+      if(!cookie)return '';
+      try{return decodeURIComponent(cookie.slice(prefix.length))}catch{return ''}
+    }
+    function storedPreferredRegion(){
+      try{const stored=localStorage.getItem(preferredRegionStorageKey); if(stored)return stored}catch{}
+      return readPreferredRegionCookie();
+    }
+    function storePreferredRegion(regionName){
+      if(!regionName)return;
+      try{localStorage.setItem(preferredRegionStorageKey,regionName)}catch{}
+      try{document.cookie=`${preferredRegionCookieName}=${encodeURIComponent(regionName)}; Max-Age=31536000; Path=/; SameSite=Lax`}catch{}
+    }
+    function applyPreferredRegionOrder(){
+      const grid=document.querySelector('.region-grid');
+      if(!grid)return;
+      const cards=[...grid.querySelectorAll('.region-card[data-region-name]')];
+      const preferred=storedPreferredRegion();
+      const preferredCard=cards.find(card=>card.dataset.regionName===preferred);
+      if(preferredCard)grid.prepend(preferredCard);
+      grid.addEventListener('click',event=>{
+        const card=event.target?.closest?.('.region-card[data-region-name]');
+        if(card&&grid.contains(card))storePreferredRegion(card.dataset.regionName);
+      });
+    }
+    applyPreferredRegionOrder();
+
+    const themeStorageKey='food.themeMode';
+    const themeModes=['light','system','dark'];
+    const systemTheme=window.matchMedia('(prefers-color-scheme: dark)');
+    function storedThemeMode(){
+      try{const stored=localStorage.getItem(themeStorageKey); if(themeModes.includes(stored))return stored}catch{}
+      return 'light';
+    }
+    function storeThemeMode(mode){
+      try{localStorage.setItem(themeStorageKey,mode)}catch{}
+    }
+    function effectiveTheme(mode){
+      return mode==='system'&&systemTheme.matches?'dark':mode==='dark'?'dark':'light';
+    }
+    function setTheme(mode,persist=true){
+      const nextMode=themeModes.includes(mode)?mode:'light';
+      const nextIndex=themeModes.indexOf(nextMode);
+      const nextClickMode=themeModes[(nextIndex+1)%themeModes.length];
+      const labelByMode={light:'라이트 모드',system:'시스템 모드',dark:'다크 모드'};
+      const nextEffectiveTheme=effectiveTheme(nextMode);
+      document.documentElement.setAttribute('data-theme-mode',nextMode);
+      document.documentElement.setAttribute('data-effective-theme',nextEffectiveTheme);
+      pageBody.setAttribute('data-theme-mode',nextMode);
+      pageBody.setAttribute('data-effective-theme',nextEffectiveTheme);
+      if(persist)storeThemeMode(nextMode);
+      themeToggle?.setAttribute('aria-label',`현재 ${labelByMode[nextMode]}, ${labelByMode[nextClickMode]}로 전환`);
+      themeToggle?.setAttribute('title',labelByMode[nextMode]);
+    }
+    setTheme(storedThemeMode(),false);
+    themeToggle?.addEventListener('click',()=>{
+      const current=pageBody.getAttribute('data-theme-mode')||'light';
+      setTheme(themeModes[(themeModes.indexOf(current)+1)%themeModes.length]);
+    });
+    systemTheme.addEventListener?.('change',()=>{if(pageBody.getAttribute('data-theme-mode')==='system')setTheme('system')});
+    if('serviceWorker' in navigator)window.addEventListener('load',()=>{
+      navigator.serviceWorker.register('sw.js')
+        .then(()=>navigator.serviceWorker.ready)
+        .then(registration=>registration.active?.postMessage({type:'warm',urls:[location.href]}))
+        .catch(()=>{});
+    },{once:true});
+  </script>
+</body>
+</html>

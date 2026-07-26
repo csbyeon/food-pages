@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
   <meta name="supported-color-schemes" content="light dark">
-  <link rel="preload" href="assets/data/pangyo.572ee0feb717e5b0.json" as="fetch" crossorigin="anonymous" data-region-data>
+  <link rel="preload" href="assets/data/pangyo.6f002e65231af81a.json" as="fetch" crossorigin="anonymous" data-region-data>
   <title>판교역 아/점심</title>
   <style>
     :root{--orange-accent:#ff8a24;--orange-line:6px;--hero-bg:#c8f1ff;--hero-image:url("assets/hero-pangyo-lunch-v2.webp");color-scheme:light dark}
@@ -94,6 +94,7 @@
     html[data-effective-theme="dark"] .youtube-link{border-color:#8e4545;background:#3b1d22;color:#ff8d88}
     .zone-text{display:block;margin-top:2px;color:var(--subtle-text);font-size:12px;line-height:1.35;word-break:keep-all}
     .price-chip{flex:0 0 auto;max-width:140px;padding:4px 7px;border-radius:999px;background:var(--price-bg);color:var(--price-text);font-size:11px;font-weight:900;line-height:1.2;text-align:right;white-space:nowrap}
+    .franchise-chip{flex:0 0 auto;padding:4px 7px;border:1px solid var(--review-chip-bg);border-radius:999px;background:var(--review-chip-bg);color:var(--review-chip-text);font-size:11px;font-weight:900;line-height:1.2;white-space:nowrap}
     .place-meta-chips{display:flex;flex:0 0 auto;flex-direction:column;align-items:flex-end;gap:4px}
     .distance-chip{padding:4px 7px;border:1px solid var(--location-border);border-radius:999px;background:var(--location-bg);color:var(--location-text);font-size:11px;font-weight:900;line-height:1.2;text-decoration:none;white-space:nowrap}
     .delivery-chip{display:inline-flex;align-items:center;gap:4px;padding:4px 7px;border:1px solid #20a8a4;border-radius:999px;background:#e6fbfa;color:#087b78;font-size:11px;font-weight:900;line-height:1.2;text-decoration:none;white-space:nowrap}
@@ -204,7 +205,7 @@
   </main>
   <script>
     (async()=>{
-    const DATA_URL='assets/data/pangyo.572ee0feb717e5b0.json';
+    const DATA_URL='assets/data/pangyo.6f002e65231af81a.json';
     const DATA = await fetch(DATA_URL,{credentials:'omit'}).then(response=>{
       if(!response.ok)throw new Error(`지역 데이터 요청 실패: ${response.status}`);
       return response.json();
@@ -436,8 +437,8 @@
       return '';
     }
     function renderPlace(place,originalIndex=0,category=''){
-      const nd=naverDataFor(place); const links=linksFor(place); const titleActions=titleActionsFor(place,links); const reviewActions=reviewActionsFor(links); const deliveryAction=deliveryActionFor(place,links); const price=priceLabel(place); const priceAction=price?`<span class="price-chip">${esc(price)}</span>`:''; const reason=categoryMatchReason(place,category); const reasonBlock=reason?`<p class="category-match-reason"><b>${esc(category)} 선정 이유</b><span>${esc(reason)}</span></p>`:'';
-      return `<article class="place-row" data-place-id="${esc(place.id)}" data-original-index="${originalIndex}"><div class="place-head"><div class="place-title"><div class="place-name-line"><h4>${esc(place.name)}</h4>${titleActions}</div><span class="zone-text">${esc(place.zone||'')}</span></div><div class="place-meta-chips">${priceAction}${deliveryAction}<a class="distance-chip" href="${esc(links.map)}" target="_blank" rel="noreferrer" hidden></a></div></div><p class="place-fit">${esc(place.fit||'')}</p>${reasonBlock}<div class="place-info-grid"><div class="place-info-row"><b>위치</b><span>${esc(place.location||'')} · ${esc(place.hours||'확인 필요')}</span></div><div class="place-info-row"><b>메뉴</b><span>${esc(place.menu||'')}</span></div><div class="place-info-row"><b>좋음</b><span>${esc(place.pros?.[0]||place.fit||'')}</span></div><div class="place-info-row"><b>주의</b><span>${esc(place.cons?.[0]||'당일 운영 확인 필요')}</span></div></div><div class="review-details"><div class="review-heading"><span>리뷰</span><span class="review-links">${reviewActions}</span></div>${reviewBlock(place,nd)}</div>${renderReferenceNote(place)}${renderGallery(place,nd,links)}</article>`
+      const nd=naverDataFor(place); const links=linksFor(place); const titleActions=titleActionsFor(place,links); const reviewActions=reviewActionsFor(links); const deliveryAction=deliveryActionFor(place,links); const price=priceLabel(place); const priceAction=price?`<span class="price-chip">${esc(price)}</span>`:''; const franchiseAction=place.franchise?'<span class="franchise-chip">프랜차이즈</span>':''; const reason=categoryMatchReason(place,category); const reasonBlock=reason?`<p class="category-match-reason"><b>${esc(category)} 선정 이유</b><span>${esc(reason)}</span></p>`:'';
+      return `<article class="place-row" data-place-id="${esc(place.id)}" data-original-index="${originalIndex}"><div class="place-head"><div class="place-title"><div class="place-name-line"><h4>${esc(place.name)}</h4>${titleActions}</div><span class="zone-text">${esc(place.zone||'')}</span></div><div class="place-meta-chips">${franchiseAction}${priceAction}${deliveryAction}<a class="distance-chip" href="${esc(links.map)}" target="_blank" rel="noreferrer" hidden></a></div></div><p class="place-fit">${esc(place.fit||'')}</p>${reasonBlock}<div class="place-info-grid"><div class="place-info-row"><b>위치</b><span>${esc(place.location||'')} · ${esc(place.hours||'확인 필요')}</span></div><div class="place-info-row"><b>메뉴</b><span>${esc(place.menu||'')}</span></div><div class="place-info-row"><b>좋음</b><span>${esc(place.pros?.[0]||place.fit||'')}</span></div><div class="place-info-row"><b>주의</b><span>${esc(place.cons?.[0]||'당일 운영 확인 필요')}</span></div></div><div class="review-details"><div class="review-heading"><span>리뷰</span><span class="review-links">${reviewActions}</span></div>${reviewBlock(place,nd)}</div>${renderReferenceNote(place)}${renderGallery(place,nd,links)}</article>`
     }
     function byPlaceKey(key){return placeByKey.get(key)}
     function validPlaceCoordinate(place){return Number.isFinite(place?.latitude)&&Number.isFinite(place?.longitude)}

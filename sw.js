@@ -1,4 +1,4 @@
-const CACHE_NAME="food-4b1b75c1f4512a92";
+const CACHE_NAME="food-cb88fa7e62daf478";
 const INDEX_URL=new URL('./index.html',self.registration.scope).href;
 
 self.addEventListener('install',event=>{

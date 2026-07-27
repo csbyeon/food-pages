@@ -13,7 +13,7 @@
     html{background:var(--page-bg);color-scheme:light dark}
     html[data-effective-theme="light"]{--page-bg:#eaf8ff;--page-text:#17364a;--heading:#123247;--title-border:#2089c1;--title-bg:rgba(255,255,255,.9);--title-shadow:7px 7px 0 rgba(42,155,212,.18);--title-label:#1681b9;--meta-text:#457388;--subtle-text:#527386;--body-text:#32566b;--strong-text:#123247;--panel-border:#2d9dd4;--panel-bg:#f7fdff;--panel-shadow:5px 5px 0 rgba(42,155,212,.14);--motion-shadow:rgba(18,50,71,.08);--panel-sheen:linear-gradient(110deg,transparent 37%,rgba(255,255,255,.54) 50%,transparent 63%);--category-image-filter:drop-shadow(0 3px 0 rgba(42,155,212,.16));--nav-bg:rgba(255,255,255,.72);--nav-hover-bg:#fff4df;--nav-shadow:0 5px 14px rgba(18,50,71,.14);--card-border:#56b7d9;--card-bg:#fff;--card-shadow:5px 5px 0 rgba(56,151,196,.12);--home-border:#ffd29b;--home-bg:#fff0d8;--home-text:#d56212;--price-bg:#e4f6ff;--price-text:#146f9b;--location-border:#9bd6bc;--location-bg:#effbf5;--location-text:#237957;--location-status:#527386;--inline-border:#dff4e8;--inline-bg:#dff4e8;--inline-text:#23664a;--review-link-border:#b9ebd1;--review-link-bg:#e8f9f0;--review-link-text:#23805b;--review-chip-bg:#fff4b8;--review-chip-text:#24546a;--gallery-bg:#ddf5ff;--meal-toggle-border:#2d9dd4;--meal-toggle-bg:rgba(255,255,255,.92);--meal-toggle-core:#9eeaff;--meal-lunch-icon:#ff8a24;--meal-dinner-icon:#fff2a6;--meal-toggle-shadow:4px 4px 0 rgba(42,155,212,.16);--meal-toggle-core-shadow:0 2px 7px rgba(18,50,71,.18);--meal-dinner-border:#ffdd83;--meal-dinner-bg:#17205a;--meal-dinner-core:#17205a;--meal-dinner-shadow:4px 4px 0 rgba(0,0,0,.24);color-scheme:light dark}
     html[data-effective-theme="dark"]{--page-bg:#091236;--page-text:#f5fbff;--heading:#f5fbff;--title-border:#52c8ee;--title-bg:rgba(9,18,54,.88);--title-shadow:7px 7px 0 rgba(0,0,0,.24);--title-label:#9de8ff;--meta-text:#c6d4ef;--subtle-text:#c6d4ef;--body-text:#c6d4ef;--strong-text:#f5fbff;--panel-border:#52c8ee;--panel-bg:#101c45;--panel-shadow:5px 5px 0 rgba(0,0,0,.24);--motion-shadow:rgba(0,0,0,.18);--panel-sheen:linear-gradient(110deg,transparent 37%,rgba(255,255,255,.18) 50%,transparent 63%);--category-image-filter:drop-shadow(0 3px 0 rgba(0,0,0,.2));--nav-bg:rgba(12,27,65,.82);--nav-hover-bg:#2b2542;--nav-shadow:0 5px 14px rgba(0,0,0,.24);--card-border:#52c8ee;--card-bg:#101c45;--card-shadow:5px 5px 0 rgba(0,0,0,.24);--home-border:#7a5a31;--home-bg:#2b2542;--home-text:#ffbd73;--price-bg:#143b5a;--price-text:#bcecff;--location-border:#2f7556;--location-bg:#173e30;--location-text:#b8f2d1;--location-status:#c6d4ef;--inline-border:#2f7556;--inline-bg:#173e30;--inline-text:#b8f2d1;--review-link-border:#2f7556;--review-link-bg:#173e30;--review-link-text:#b8f2d1;--review-chip-bg:#544a15;--review-chip-text:#fff2a6;--gallery-bg:#182c55;--meal-toggle-border:#ffdd83;--meal-toggle-bg:#17205a;--meal-toggle-core:#9eeaff;--meal-lunch-icon:#ff8a24;--meal-dinner-icon:#fff2a6;--meal-toggle-shadow:4px 4px 0 rgba(0,0,0,.24);--meal-toggle-core-shadow:0 2px 7px rgba(0,0,0,.28);--meal-dinner-border:#ffdd83;--meal-dinner-bg:#17205a;--meal-dinner-core:#17205a;--meal-dinner-shadow:4px 4px 0 rgba(0,0,0,.24);color-scheme:light dark}
-    body{margin:0;background:var(--page-bg);color:var(--page-text);color-scheme:light dark;font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",system-ui,-apple-system,sans-serif;line-height:1.45;display:flex;flex-direction:column;height:100dvh;overflow:hidden}
+    body{margin:0;background:var(--page-bg);color:var(--page-text);color-scheme:light dark;font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",system-ui,-apple-system,sans-serif;line-height:1.45;display:flex;flex-direction:column;height:100vh;height:100dvh;overflow:hidden}
     button{appearance:none;-webkit-appearance:none;font:inherit}
     a{color:inherit;text-decoration:none}
     body[data-meal-mode="lunch"]{--hero-bg:#c8f1ff}
@@ -78,6 +78,7 @@
     .virtual-items{display:grid;gap:10px;padding-bottom:10px}
     .virtual-spacer{display:block;width:1px;pointer-events:none}
     .place-row{display:block;padding:14px;border:1px solid var(--card-border);border-radius:8px;background:var(--card-bg);box-shadow:var(--card-shadow);content-visibility:auto;contain-intrinsic-size:auto 520px}
+    .boot-message{margin:0 2px;padding:18px;border:1px solid var(--card-border);border-radius:10px;background:var(--card-bg);box-shadow:var(--card-shadow);color:var(--body-text);font-size:14px;font-weight:800;line-height:1.55;text-align:center}
     .place-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:6px}
     .place-title{min-width:0}
     .place-name-line{display:block;min-width:0}
@@ -198,11 +199,17 @@
         <button id="nearbySortButton" class="sort-tab" type="button" role="tab" aria-selected="false"><span id="nearbySortLabel">가까운순</span></button>
       </div>
       <span id="locationAnnouncement" class="location-toast" role="status" aria-live="polite"></span>
-      <div id="cardsGrid"></div>
+      <div id="cardsGrid"><noscript><p class="boot-message" role="alert">콘텐츠를 표시하려면 Safari 설정에서 JavaScript를 켜 주세요.</p></noscript></div>
       <div id="scrollFlashY" class="scroll-flash scroll-flash-y" aria-hidden="true"><span class="scroll-flash-thumb"></span></div>
       <div id="scrollFlashX" class="scroll-flash scroll-flash-x" aria-hidden="true"><span class="scroll-flash-thumb"></span></div>
     </section>
   </main>
+  <script>
+    window.__foodBootTimer=window.setTimeout(function(){
+      var cards=document.getElementById('cardsGrid');
+      if(cards&&!cards.querySelector('.place-row'))cards.innerHTML='<p class="boot-message" role="alert">콘텐츠를 열 수 없습니다. Safari의 JavaScript 설정을 확인하거나 iOS를 업데이트한 뒤 다시 시도해 주세요.</p>';
+    },5000);
+  </script>
   <script>
     (async()=>{
     const DATA_URL='assets/data/beomgye-station.214b7acfafa56fab.json';
@@ -233,10 +240,10 @@
     const pageTitle=document.getElementById('pageTitle');
     const cardsTitle=document.getElementById('cards-title');
     const scrollFlashY=document.getElementById('scrollFlashY');
-    const scrollFlashYThumb=scrollFlashY?.querySelector('span');
+    const scrollFlashYThumb=scrollFlashY?scrollFlashY.querySelector('span'):null;
     const scrollFlashX=document.getElementById('scrollFlashX');
-    const scrollFlashXThumb=scrollFlashX?.querySelector('span');
-    const mealModes=['lunch','dinner','cafe'].filter(mode=>(mealCategories?.[mode]?.categoryOrder||[]).length);
+    const scrollFlashXThumb=scrollFlashX?scrollFlashX.querySelector('span'):null;
+    const mealModes=['lunch','dinner','cafe'].filter(mode=>(mealCategories&&mealCategories[mode]&&mealCategories[mode].categoryOrder||[]).length);
     const themeStorageKey='food.themeMode';
     const locationCacheKey='food.sessionLocation.v1';
     const locationCacheMaxAge=5*60*1000;
@@ -260,7 +267,7 @@
     const virtualEstimatedExtent=compactViewport?445:555;
     const virtualChunkSize=compactViewport?3:4;
     const virtualWindowSize=compactViewport?8:10;
-    function esc(v){return String(v??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;')}
+    function esc(v){return String(v==null?'':v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;')}
     function mapQuery(place){return `${place.alias||place.name} ${DATA.searchArea||''}`.trim()}
     function naverDataFor(place){return naverPlaceData[place.id]||naverPlaceData[place.name]||null}
     function linksFor(place){
@@ -323,7 +330,7 @@
     function priceLabel(place){return usablePrice(priceByName[place.id])||usablePrice(priceByName[place.name])||usablePrice(priceByCategory[place.category])}
     function mealTimes(place){return Array.isArray(place.mealTimes)&&place.mealTimes.length?place.mealTimes:['dinner']}
     function mealMatches(place){return mealTimes(place).includes(currentMealMode)}
-    function titleForMeal(){return DATA.mealTitles?.[currentMealMode]||DATA.pageTitle||document.title}
+    function titleForMeal(){return DATA.mealTitles&&DATA.mealTitles[currentMealMode]||DATA.pageTitle||document.title}
     function updatePageTitle(){
       const title=titleForMeal();
       document.title=title;
@@ -335,13 +342,13 @@
       const nextMealMode=mealModes[(currentIndex+1)%mealModes.length];
       const labelByMode={breakfast:'아침 모드',lunch:'아침/점심 모드',dinner:'저녁 모드',cafe:'카페 모드'};
       const shortLabelByMode={breakfast:'아침',lunch:'아/점심',dinner:'저녁',cafe:'카페'};
-      mealToggle?.setAttribute('aria-label',`현재 ${labelByMode[currentMealMode]}, ${labelByMode[nextMealMode]}로 전환`);
-      mealToggle?.setAttribute('title',labelByMode[currentMealMode]);
+      if(mealToggle)mealToggle.setAttribute('aria-label',`현재 ${labelByMode[currentMealMode]}, ${labelByMode[nextMealMode]}로 전환`);
+      if(mealToggle)mealToggle.setAttribute('title',labelByMode[currentMealMode]);
       if(mealToggleLabel)mealToggleLabel.textContent=shortLabelByMode[currentMealMode];
     }
-    function currentMealConfig(){return mealCategories?.[currentMealMode]||null}
-    function currentCategoryOrder(){return currentMealConfig()?.categoryOrder||categoryOrder||[]}
-    function heroForMeal(){return currentMealConfig()?.heroImage||'assets/pangyo-food-hero-sky.webp'}
+    function currentMealConfig(){return mealCategories&&mealCategories[currentMealMode]||null}
+    function currentCategoryOrder(){const config=currentMealConfig();return config&&config.categoryOrder||categoryOrder||[]}
+    function heroForMeal(){const config=currentMealConfig();return config&&config.heroImage||'assets/pangyo-food-hero-sky.webp'}
     function storedThemeMode(){try{const stored=localStorage.getItem(themeStorageKey); if(themeModes.includes(stored))return stored}catch{} return 'light'}
     function effectiveTheme(mode){return mode==='system'&&systemTheme.matches?'dark':mode==='dark'?'dark':'light'}
     function applyThemeMode(mode=storedThemeMode()){
@@ -349,15 +356,15 @@
       const nextEffective=effectiveTheme(nextMode);
       document.documentElement.setAttribute('data-theme-mode',nextMode);
       document.documentElement.setAttribute('data-effective-theme',nextEffective);
-      pageBody?.setAttribute('data-theme-mode',nextMode);
-      pageBody?.setAttribute('data-effective-theme',nextEffective);
+      if(pageBody)pageBody.setAttribute('data-theme-mode',nextMode);
+      if(pageBody)pageBody.setAttribute('data-effective-theme',nextEffective);
     }
-    function setHeroForMeal(){const hero=heroForMeal(); document.documentElement.style.setProperty('--hero-image',`url("${hero}")`); pageBody?.setAttribute('data-meal-mode',currentMealMode)}
+    function setHeroForMeal(){const hero=heroForMeal(); document.documentElement.style.setProperty('--hero-image',`url("${hero}")`); if(pageBody)pageBody.setAttribute('data-meal-mode',currentMealMode)}
     function setMealMode(mode){
       if(!mealModes.includes(mode)||mode===currentMealMode)return;
       stopSlideAnimation(); dragState=null; cardsGrid.classList.remove('is-dragging'); currentMealMode=mode; primedCategoryIndex=-1; cardsGrid.scrollLeft=0; updatePageTitle(); setHeroForMeal(); updateMealToggle(); renderCategories(); updateContentScrollbars(false);
     }
-    function reviewPoints(place){return [place.pros?.[0]||place.fit, place.cons?.[0]||'당일 운영 확인 필요', place.viral].filter(Boolean)}
+    function reviewPoints(place){return [place.pros&&place.pros[0]||place.fit, place.cons&&place.cons[0]||'당일 운영 확인 필요', place.viral].filter(Boolean)}
     function reviewBlock(place,nd){
       const naverItems=nd?[...(nd.k||[]),...(nd.m||[]).slice(0,2).map(x=>`메뉴 언급 ${x}`)]:[];
       const items=naverItems.length?naverItems:reviewPoints(place).slice(0,3);
@@ -394,28 +401,28 @@
       const seen=new Set();
       return (urls||[]).map(url=>String(url||'').trim()).filter(Boolean).filter(url=>{const key=imageCanonicalKey(url); if(!key||seen.has(key))return false; seen.add(key); return true});
     }
-    function gallerySourceList(gallery){try{return JSON.parse(gallery?.dataset?.gallerySrcs||'[]')}catch{return []}}
+    function gallerySourceList(gallery){try{return JSON.parse(gallery&&gallery.dataset&&gallery.dataset.gallerySrcs||'[]')}catch{return []}}
     function activeGalleryKeys(gallery){
       const keys=new Set(gallery?Array.from(gallery.querySelectorAll('.gallery-img')).map(img=>imageCanonicalKey(img.dataset.src||img.currentSrc||img.src)).filter(Boolean):[]);
-      if(gallery?._failedImageKeys)gallery._failedImageKeys.forEach(key=>keys.add(key));
+      if(gallery&&gallery._failedImageKeys)gallery._failedImageKeys.forEach(key=>keys.add(key));
       return keys;
     }
     function handleGalleryError(img,removeWhenExhausted=true){
-      const gallery=img?.closest?.('.place-gallery');
-      const item=img?.closest?.('.gallery-item');
-      if(!gallery){item?.remove();return}
+      const gallery=img&&img.closest?img.closest('.place-gallery'):null;
+      const item=img&&img.closest?img.closest('.gallery-item'):null;
+      if(!gallery){if(item)item.remove();return}
       const failedKey=imageCanonicalKey(img.currentSrc||img.src||img.dataset.src);
       gallery._failedImageKeys=gallery._failedImageKeys||new Set();
       if(failedKey)gallery._failedImageKeys.add(failedKey);
       const used=activeGalleryKeys(gallery);
       const next=gallerySourceList(gallery).find(url=>!used.has(imageCanonicalKey(url)));
-      if(!next){if(removeWhenExhausted)item?.remove();return}
+      if(!next){if(removeWhenExhausted&&item)item.remove();return}
       img.removeAttribute('src');
       img.dataset.src=next;
       window.setTimeout(()=>loadGalleryImage(img),0);
     }
     function renderGallery(place,nd,links){
-      const imageUrls=galleryImageCandidates(nd?.i);
+      const imageUrls=galleryImageCandidates(nd&&nd.i);
       if(!imageUrls.length)return '';
       return `<div class="place-gallery" aria-label="${esc(place.name)} 매장 사진" data-gallery-srcs="${esc(JSON.stringify(imageUrls))}">${imageUrls.slice(0,3).map(url=>`<a class="gallery-item" href="${esc(links.map)}" target="_blank" rel="noreferrer"><img class="gallery-img" data-src="${esc(url)}" alt="${esc(place.name)} 매장 사진" loading="lazy" decoding="async" fetchpriority="low" referrerpolicy="no-referrer" onerror="handleGalleryError(this)"></a>`).join('')}</div>`
     }
@@ -438,10 +445,10 @@
     }
     function renderPlace(place,originalIndex=0,category=''){
       const nd=naverDataFor(place); const links=linksFor(place); const titleActions=titleActionsFor(place,links); const reviewActions=reviewActionsFor(links); const deliveryAction=deliveryActionFor(place,links); const price=priceLabel(place); const priceAction=price?`<span class="price-chip">${esc(price)}</span>`:''; const franchiseAction=place.franchise?'<span class="franchise-chip">프랜차이즈</span>':''; const reason=categoryMatchReason(place,category); const reasonBlock=reason?`<p class="category-match-reason"><b>${esc(category)} 선정 이유</b><span>${esc(reason)}</span></p>`:'';
-      return `<article class="place-row" data-place-id="${esc(place.id)}" data-original-index="${originalIndex}"><div class="place-head"><div class="place-title"><div class="place-name-line"><h4>${esc(place.name)}</h4>${titleActions}</div><span class="zone-text">${esc(place.zone||'')}</span></div><div class="place-meta-chips">${franchiseAction}${priceAction}${deliveryAction}<a class="distance-chip" href="${esc(links.map)}" target="_blank" rel="noreferrer" hidden></a></div></div><p class="place-fit">${esc(place.fit||'')}</p>${reasonBlock}<div class="place-info-grid"><div class="place-info-row"><b>위치</b><span>${esc(place.location||'')} · ${esc(place.hours||'확인 필요')}</span></div><div class="place-info-row"><b>메뉴</b><span>${esc(place.menu||'')}</span></div><div class="place-info-row"><b>좋음</b><span>${esc(place.pros?.[0]||place.fit||'')}</span></div><div class="place-info-row"><b>주의</b><span>${esc(place.cons?.[0]||'당일 운영 확인 필요')}</span></div></div><div class="review-details"><div class="review-heading"><span>리뷰</span><span class="review-links">${reviewActions}</span></div>${reviewBlock(place,nd)}</div>${renderReferenceNote(place)}${renderGallery(place,nd,links)}</article>`
+      return `<article class="place-row" data-place-id="${esc(place.id)}" data-original-index="${originalIndex}"><div class="place-head"><div class="place-title"><div class="place-name-line"><h4>${esc(place.name)}</h4>${titleActions}</div><span class="zone-text">${esc(place.zone||'')}</span></div><div class="place-meta-chips">${franchiseAction}${priceAction}${deliveryAction}<a class="distance-chip" href="${esc(links.map)}" target="_blank" rel="noreferrer" hidden></a></div></div><p class="place-fit">${esc(place.fit||'')}</p>${reasonBlock}<div class="place-info-grid"><div class="place-info-row"><b>위치</b><span>${esc(place.location||'')} · ${esc(place.hours||'확인 필요')}</span></div><div class="place-info-row"><b>메뉴</b><span>${esc(place.menu||'')}</span></div><div class="place-info-row"><b>좋음</b><span>${esc(place.pros&&place.pros[0]||place.fit||'')}</span></div><div class="place-info-row"><b>주의</b><span>${esc(place.cons&&place.cons[0]||'당일 운영 확인 필요')}</span></div></div><div class="review-details"><div class="review-heading"><span>리뷰</span><span class="review-links">${reviewActions}</span></div>${reviewBlock(place,nd)}</div>${renderReferenceNote(place)}${renderGallery(place,nd,links)}</article>`
     }
     function byPlaceKey(key){return placeByKey.get(key)}
-    function validPlaceCoordinate(place){return Number.isFinite(place?.latitude)&&Number.isFinite(place?.longitude)}
+    function validPlaceCoordinate(place){return !!place&&Number.isFinite(place.latitude)&&Number.isFinite(place.longitude)}
     function distanceMeters(from,to){
       const radians=value=>value*Math.PI/180;
       const earthRadius=6371000;
@@ -460,13 +467,13 @@
     function readCachedUserLocation(){
       try{
         const cached=JSON.parse(sessionStorage.getItem(locationCacheKey)||'null');
-        const latitude=Number(cached?.latitude); const longitude=Number(cached?.longitude); const updatedAt=Number(cached?.updatedAt);
+        const latitude=Number(cached&&cached.latitude); const longitude=Number(cached&&cached.longitude); const updatedAt=Number(cached&&cached.updatedAt);
         if(!Number.isFinite(latitude)||!Number.isFinite(longitude)||!Number.isFinite(updatedAt)||Date.now()-updatedAt>locationCacheMaxAge)return null;
-        return {latitude,longitude,accuracy:Number(cached?.accuracy)||0,updatedAt};
+        return {latitude,longitude,accuracy:Number(cached&&cached.accuracy)||0,updatedAt};
       }catch{return null}
     }
     function cacheUserLocation(location){try{sessionStorage.setItem(locationCacheKey,JSON.stringify(location))}catch{}}
-    function setLocationProgress(value){nearbySortButton?.style.setProperty('--location-progress',`${Math.min(100,Math.max(0,value)).toFixed(1)}%`)}
+    function setLocationProgress(value){if(nearbySortButton)nearbySortButton.style.setProperty('--location-progress',`${Math.min(100,Math.max(0,value)).toFixed(1)}%`)}
     function startLocationProgress(){
       clearInterval(locationProgressTimer);
       const startedAt=Date.now(); const initial=currentUserLocation?24:8;
@@ -481,7 +488,7 @@
     function applyDistanceSort(){
       const active=currentCategoryIndex();
       categoryPlaceCache=new Map();virtualStates=new Map();primedCategoryIndex=-1;
-      categorySections.forEach(section=>{section.replaceChildren();section.scrollTop=0;section.dataset.rendered='false'});
+      categorySections.forEach(section=>{section.textContent='';section.scrollTop=0;section.dataset.rendered='false'});
       primeCategoryWindow(active);updateContentScrollbars(false);
     }
     const nearbyMaximumDistance=10000;
@@ -494,8 +501,8 @@
       if(visible)locationToastTimer=window.setTimeout(()=>locationAnnouncement.classList.remove('is-visible'),3200);
     }
     function updateSortTabs(){
-      recommendationSortButton?.setAttribute('aria-selected',String(!sortByDistance));
-      nearbySortButton?.setAttribute('aria-selected',String(sortByDistance));
+      if(recommendationSortButton)recommendationSortButton.setAttribute('aria-selected',String(!sortByDistance));
+      if(nearbySortButton)nearbySortButton.setAttribute('aria-selected',String(sortByDistance));
       if(nearbySortButton){
         nearbySortButton.disabled=nearbySortDisabled||(locationRequestInFlight&&!currentUserLocation);
         nearbySortButton.classList.toggle('is-loading',locationRequestInFlight);
@@ -504,7 +511,7 @@
         nearbySortButton.setAttribute('aria-label',locationRequestInFlight?'가까운순, 현재 위치 확인 중':'가까운순');
         nearbySortButton.title=nearbySortDisabled?'지역 중심에서 10km 이상 떨어져 있어 사용할 수 없습니다.':'';
       }
-      pageBody?.setAttribute('data-nearby-unavailable',String(nearbySortDisabled));
+      if(pageBody)pageBody.setAttribute('data-nearby-unavailable',String(nearbySortDisabled));
     }
     function setRecommendationSort(stopNearbyRefresh=true){
       sortByDistance=false;
@@ -552,7 +559,7 @@
       if(error.code===3)return '위치 확인 시간이 초과됐습니다. 다시 눌러 주세요.';
       if(error.code!==1)return '기기에서 현재 위치를 가져오지 못했습니다.';
       let permissionState='unknown';
-      try{permissionState=(await navigator.permissions?.query({name:'geolocation'}))?.state||'unknown'}catch{}
+      try{if(navigator.permissions&&navigator.permissions.query){const permission=await navigator.permissions.query({name:'geolocation'});permissionState=permission&&permission.state||'unknown'}}catch{}
       if(permissionState==='denied')return '이 사이트의 위치 권한이 차단돼 있습니다. 주소창의 사이트 설정에서 허용해 주세요.';
       if(permissionState==='granted')return '사이트 권한은 허용됐지만 기기가 위치를 제공하지 않았습니다. 기기 위치 서비스와 브라우저 앱 권한을 확인해 주세요.';
       if(permissionState==='prompt')return '브라우저의 위치 사용 요청에서 허용을 선택해 주세요.';
@@ -624,12 +631,12 @@
         if(nearbySortRequested)resetIdleLocationRefresh(); else cancelIdleLocationRefresh();
       },{enableHighAccuracy:false,timeout:6000,maximumAge:automatic?15000:60000});
     }
-    function countNumber(v){return Number(String(v??'').replace(/[^0-9]/g,''))||0}
+    function countNumber(v){return Number(String(v==null?'':v).replace(/[^0-9]/g,''))||0}
     function popularityScore(place){const nd=naverDataFor(place);const naverScore=nd?countNumber(nd.vc)*2+countNumber(nd.bc):0;const mapScore=countNumber(place.mapReviewCount)*2;return Math.max(naverScore,mapScore)}
-    function sortByPopularity(list){return list.slice().sort((a,b)=>popularityScore(b)-popularityScore(a)||(a.priority??99)-(b.priority??99)||a.name.localeCompare(b.name,'ko'))}
+    function sortByPopularity(list){return list.slice().sort((a,b)=>popularityScore(b)-popularityScore(a)||((a.priority==null?99:a.priority)-(b.priority==null?99:b.priority))||a.name.localeCompare(b.name,'ko'))}
     function categoryPlaces(category){
       if(categoryPlaceCache.has(category))return categoryPlaceCache.get(category);
-      const mealPlaceKeys=currentMealConfig()?.categoryPlaces?.[category];
+      const mealConfig=currentMealConfig();const mealPlaceKeys=mealConfig&&mealConfig.categoryPlaces&&mealConfig.categoryPlaces[category];
       const list=mealPlaceKeys
         ? sortByPopularity(mealPlaceKeys.map(byPlaceKey).filter(Boolean))
         : sortByPopularity((specialCategoryPlaces[category]?specialCategoryPlaces[category].map(byPlaceKey).filter(Boolean):places.filter(p=>p.category===category)).filter(mealMatches));
@@ -683,7 +690,7 @@
         entries.forEach(entry=>{
           const row=entry.target;const section=row.closest('.ranked-section');const state=section&&virtualStates.get(section.dataset.category);const index=Number(row.dataset.originalIndex);
           if(!state||index<0)return;
-          const box=Array.isArray(entry.borderBoxSize)?entry.borderBoxSize[0]:entry.borderBoxSize;const extent=(box?.blockSize||entry.contentRect.height)+10;
+          const box=Array.isArray(entry.borderBoxSize)?entry.borderBoxSize[0]:entry.borderBoxSize;const extent=(box&&box.blockSize||entry.contentRect.height)+10;
           if(Math.abs(state.sizes[index]-extent)>.5){state.sizes[index]=extent;changedStates.set(state,section)}
         });
         changedStates.forEach((section,state)=>{rebuildVirtualOffsets(state);updateVirtualSpacers(section,state)});
@@ -716,7 +723,7 @@
     }
     function renderCategories(){
       categoryPlaceCache=new Map();virtualStates=new Map();renderedCategories=currentCategoryOrder().filter(hasCategoryPlaces);
-      virtualResizeObserver?.disconnect();
+      if(virtualResizeObserver)virtualResizeObserver.disconnect();
       cardsGrid.innerHTML=renderedCategories.map(renderCategoryShell).join('');
       renderCategoryTrack();bindCategoryCarousel();updateLocationDistances();
     }
@@ -727,7 +734,7 @@
       if(!categoryTrack||!renderedCategories.length)return;
       const clamped=Math.min(renderedCategories.length-1,Math.max(0,raw)); const width=Math.max(knownWidth||categorySwipeTarget.clientWidth,1);
       const lower=Math.floor(clamped);const upper=Math.ceil(clamped);const nextVisible=new Set([lower,upper]);
-      categoryTrackVisibleIndices.forEach(index=>{if(!nextVisible.has(index))categoryTrackSlides[index]?.classList.remove('is-visible')});
+      categoryTrackVisibleIndices.forEach(index=>{const slide=categoryTrackSlides[index];if(!nextVisible.has(index)&&slide)slide.classList.remove('is-visible')});
       nextVisible.forEach(index=>{
         const slide=categoryTrackSlides[index];if(!slide)return;
         slide.classList.add('is-visible');slide.style.transform=`translate3d(${((index-clamped)*width).toFixed(2)}px,0,0)`;
@@ -735,8 +742,10 @@
       categoryTrackVisibleIndices=nextVisible;
       const active=Math.round(clamped);
       if(active!==categoryTrackActiveIndex){
-        categoryTrackSlides.find(slide=>Number(slide.dataset.categoryIndex)===categoryTrackActiveIndex)?.setAttribute('aria-hidden','true');
-        categoryTrackSlides.find(slide=>Number(slide.dataset.categoryIndex)===active)?.setAttribute('aria-hidden','false');
+        const previousSlide=categoryTrackSlides.find(slide=>Number(slide.dataset.categoryIndex)===categoryTrackActiveIndex);
+        const activeSlide=categoryTrackSlides.find(slide=>Number(slide.dataset.categoryIndex)===active);
+        if(previousSlide)previousSlide.setAttribute('aria-hidden','true');
+        if(activeSlide)activeSlide.setAttribute('aria-hidden','false');
         preloadCategoryTitleImages(active);
         categoryTrackActiveIndex=active;
       }
@@ -744,9 +753,9 @@
     function syncCategoryTrackFromCards(){setCategoryTrackRaw(categoryRawIndex())}
     function preloadCategoryTitleImages(index){
       for(let i=Math.max(0,index-2);i<=Math.min(categoryTrackSlides.length-1,index+2);i++){
-        const image=categoryTrackSlides[i]?.querySelector('.category-image[data-src]');const src=image?.dataset.src;
+        const slide=categoryTrackSlides[i];const image=slide?slide.querySelector('.category-image[data-src]'):null;const src=image&&image.dataset.src;
         if(!src)continue;
-        image.src=src;image.removeAttribute('data-src');image.decode?.().catch(()=>{});
+        image.src=src;image.removeAttribute('data-src');if(image.decode)image.decode().catch(()=>{});
       }
     }
     function cancelCategoryTitleAnimation(){
@@ -754,12 +763,12 @@
       categoryTitleAnimations=[];
     }
     function animateCategoryTitle(fromRaw,toRaw,width,duration){
-      if(!categoryTrack?.animate)return false;
+      if(!categoryTrack||!categoryTrack.animate)return false;
       cancelCategoryTitleAnimation();
       const minIndex=Math.max(0,Math.floor(Math.min(fromRaw,toRaw)));const maxIndex=Math.min(renderedCategories.length-1,Math.ceil(Math.max(fromRaw,toRaw)));
       const nextVisible=new Set();
       for(let index=minIndex;index<=maxIndex;index++)nextVisible.add(index);
-      categoryTrackVisibleIndices.forEach(index=>{if(!nextVisible.has(index))categoryTrackSlides[index]?.classList.remove('is-visible')});
+      categoryTrackVisibleIndices.forEach(index=>{const slide=categoryTrackSlides[index];if(!nextVisible.has(index)&&slide)slide.classList.remove('is-visible')});
       nextVisible.forEach(index=>{
         const slide=categoryTrackSlides[index];if(!slide)return;
         const from=`translate3d(${((index-fromRaw)*width).toFixed(2)}px,0,0)`;const to=`translate3d(${((index-toRaw)*width).toFixed(2)}px,0,0)`;
@@ -790,7 +799,7 @@
       categorySections.forEach((section,index)=>{
         if(Math.abs(index-i)>1&&section.dataset.rendered!=='false')tasks.push(()=>{
           const state=virtualStates.get(renderedCategories[index]);if(state)state.scrollTop=section.scrollTop;
-          unobserveVirtualRows(section);section.replaceChildren();section.dataset.rendered='false';
+          unobserveVirtualRows(section);section.textContent='';section.dataset.rendered='false';
         });
       });
       if(!tasks.length)return;
@@ -802,7 +811,7 @@
         categoryMaintenanceHandle=0;
         if(token!==categoryMaintenanceToken)return;
         if(isProgrammaticSlide||dragState||categorySwipeState||cardsSection.classList.contains('is-live-motion')||(!deadline.didTimeout&&deadline.timeRemaining()<7)){requestWork(run);return}
-        tasks.shift()?.();
+        const task=tasks.shift();if(task)task();
         if(tasks.length)requestWork(run);
       };
       requestWork(run);
@@ -832,8 +841,8 @@
     function easeInOutCubic(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2}
     function dragStartThreshold(){return 18}
     function dragPageThreshold(){return Math.min(120,Math.max(54,cardsGrid.clientWidth*.2))}
-    function showCategoryProgress(){clearTimeout(categoryProgressTimer);categoryProgressTrack?.classList.add('is-visible')}
-    function hideCategoryProgressSoon(){clearTimeout(categoryProgressTimer);categoryProgressTimer=setTimeout(()=>categoryProgressTrack?.classList.remove('is-visible'),620)}
+    function showCategoryProgress(){clearTimeout(categoryProgressTimer);if(categoryProgressTrack)categoryProgressTrack.classList.add('is-visible')}
+    function hideCategoryProgressSoon(){clearTimeout(categoryProgressTimer);categoryProgressTimer=setTimeout(()=>{if(categoryProgressTrack)categoryProgressTrack.classList.remove('is-visible')},620)}
     function paintCategoryProgress(scrollLeft,maxScroll,trackWidth){
       if(!categoryProgress)return;
       const dotSize=Math.min(8,trackWidth);const maxLeft=Math.max(0,trackWidth-dotSize);
@@ -849,7 +858,7 @@
     }
     function readCategoryMotionMetrics(){
       const cardsWidth=Math.max(cardsGrid.clientWidth,1);
-      return {cardsWidth,titleWidth:Math.max(categorySwipeTarget.clientWidth,1),maxScroll:Math.max(0,cardsGrid.scrollWidth-cardsWidth),progressWidth:categoryProgressTrack?.clientWidth||1,horizontal:readHorizontalScrollMetrics()};
+      return {cardsWidth,titleWidth:Math.max(categorySwipeTarget.clientWidth,1),maxScroll:Math.max(0,cardsGrid.scrollWidth-cardsWidth),progressWidth:categoryProgressTrack&&categoryProgressTrack.clientWidth||1,horizontal:readHorizontalScrollMetrics()};
     }
     function paintCategoryMotion(scrollLeft,metrics,revealHorizontal=false,paintTitle=true){
       if(paintTitle)setCategoryTrackRaw(scrollLeft/metrics.cardsWidth,metrics.titleWidth);
@@ -888,7 +897,7 @@
       const step=now=>{const t=Math.min(1,(now-startTime)/duration);const eased=easeInOutCubic(t);const next=start+delta*eased;cardsGrid.scrollLeft=next;paintCategoryMotion(next,motion,false,!titleIsComposited);if(t<1){slideAnimation=window.requestAnimationFrame(step);return}slideAnimation=0;isProgrammaticSlide=false;cardsGrid.scrollLeft=target;cancelCategoryTitleAnimation();setCategoryTrackRaw(targetIndex,motion.titleWidth);cardsGrid.classList.remove('is-sliding');cardsGrid.style.scrollSnapType='';clearSlideDepth();updateCategoryMeta();hideCategoryProgressSoon();hideScrollFlashSoon()};
       slideAnimation=window.requestAnimationFrame(step);
     }
-    function loadGalleryImage(img){const src=img?.dataset?.src; if(!src)return; const key=imageCanonicalKey(src); const loadId=`${Date.now()}-${Math.random()}`; img.dataset.loadId=loadId; img.dataset.imageKey=key; img.referrerPolicy='no-referrer'; img.onload=()=>{if(img.dataset.loadId!==loadId)return; if(img.naturalWidth>0)img.dataset.loaded='1'; else handleGalleryError(img,true)}; img.onerror=()=>{if(img.dataset.loadId===loadId)handleGalleryError(img,true)}; img.src=imageDisplayUrl(src); img.removeAttribute('data-src'); window.setTimeout(()=>{if(!img.isConnected||img.dataset.loadId!==loadId)return; if(!img.complete||img.naturalWidth===0){const current=img.currentSrc||img.src; handleGalleryError(img,true); window.setTimeout(()=>{if(img.isConnected&&(img.currentSrc||img.src)===current&&img.complete&&img.naturalWidth===0)img.closest('.gallery-item')?.remove()},900)}},4200); img.decode?.().catch(()=>{})}
+    function loadGalleryImage(img){const src=img&&img.dataset&&img.dataset.src; if(!src)return; const key=imageCanonicalKey(src); const loadId=`${Date.now()}-${Math.random()}`; img.dataset.loadId=loadId; img.dataset.imageKey=key; img.referrerPolicy='no-referrer'; img.onload=()=>{if(img.dataset.loadId!==loadId)return; if(img.naturalWidth>0)img.dataset.loaded='1'; else handleGalleryError(img,true)}; img.onerror=()=>{if(img.dataset.loadId===loadId)handleGalleryError(img,true)}; img.src=imageDisplayUrl(src); img.removeAttribute('data-src'); window.setTimeout(()=>{if(!img.isConnected||img.dataset.loadId!==loadId)return; if(!img.complete||img.naturalWidth===0){const current=img.currentSrc||img.src; handleGalleryError(img,true); window.setTimeout(()=>{if(img.isConnected&&(img.currentSrc||img.src)===current&&img.complete&&img.naturalWidth===0){const item=img.closest('.gallery-item');if(item)item.remove()}},900)}},4200); if(img.decode)img.decode().catch(()=>{})}
     function getGalleryObserver(){
       if(galleryObserver||!('IntersectionObserver' in window))return galleryObserver;
       galleryObserver=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){galleryObserver.unobserve(entry.target);loadGalleryImage(entry.target)}})},{root:null,rootMargin:'280px 0px'});
@@ -901,7 +910,7 @@
     }
     function scheduleGalleryHydration(root=document){window.requestAnimationFrame(()=>hydrateGalleryImages(root))}
     function scheduleAheadPreload(index=currentCategoryIndex()){const section=categorySections[index];if(section)scheduleGalleryHydration(section)}
-    function hideScrollFlashSoon(){clearTimeout(scrollFlashTimer);scrollFlashTimer=setTimeout(()=>{scrollFlashY?.classList.remove('is-visible');scrollFlashX?.classList.remove('is-visible')},720)}
+    function hideScrollFlashSoon(){clearTimeout(scrollFlashTimer);scrollFlashTimer=setTimeout(()=>{if(scrollFlashY)scrollFlashY.classList.remove('is-visible');if(scrollFlashX)scrollFlashX.classList.remove('is-visible')},720)}
     function syncScrollFlashGeometry(){if(!scrollFlashY||!cardsGrid||!cardsSection)return;const sectionTop=cardsSection.getBoundingClientRect().top;const contentTop=cardsGrid.getBoundingClientRect().top;scrollFlashY.style.top=`${Math.max(0,Math.round(contentTop-sectionTop))}px`}
     function updateScrollFlash(section,reveal=true){
       if(!scrollFlashY||!scrollFlashYThumb||!section||section===cardsGrid)return;
@@ -914,7 +923,7 @@
       if(reveal&&hasOverflow){scrollFlashY.classList.add('is-visible');hideScrollFlashSoon()}
       else if(!hasOverflow)scrollFlashY.classList.remove('is-visible');
     }
-    function readHorizontalScrollMetrics(){const clientWidth=Math.max(cardsGrid.clientWidth,1);const scrollWidth=Math.max(cardsGrid.scrollWidth,clientWidth);const max=Math.max(0,scrollWidth-clientWidth);const track=scrollFlashX?.clientWidth||clientWidth;const ratio=max>2?Math.min(1,clientWidth/scrollWidth):1;const width=max>2?Math.max(32,Math.round(track*ratio)):track;return {max,track,width}}
+    function readHorizontalScrollMetrics(){const clientWidth=Math.max(cardsGrid.clientWidth,1);const scrollWidth=Math.max(cardsGrid.scrollWidth,clientWidth);const max=Math.max(0,scrollWidth-clientWidth);const track=scrollFlashX&&scrollFlashX.clientWidth||clientWidth;const ratio=max>2?Math.min(1,clientWidth/scrollWidth):1;const width=max>2?Math.max(32,Math.round(track*ratio)):track;return {max,track,width}}
     function paintHorizontalScrollFlash(scrollLeft,metrics,reveal=true){if(!scrollFlashX||!scrollFlashXThumb)return;if(metrics.max<=2&&!reveal){scrollFlashX.classList.remove('is-visible');return}if(!reveal&&!scrollFlashX.classList.contains('is-visible'))return;const left=metrics.max>2?Math.round((scrollLeft/metrics.max)*Math.max(0,metrics.track-metrics.width)):0;scrollFlashXThumb.style.width=`${metrics.width}px`;scrollFlashXThumb.style.transform=`translateX(${left}px)`;if(reveal){scrollFlashX.classList.add('is-visible');hideScrollFlashSoon()}}
     function updateHorizontalScrollFlash(reveal=true){paintHorizontalScrollFlash(cardsGrid.scrollLeft,readHorizontalScrollMetrics(),reveal)}
     function updateContentScrollbars(reveal=true){syncScrollFlashGeometry();updateHorizontalScrollFlash(reveal);updateScrollFlash(categorySections[currentCategoryIndex()],reveal)}
@@ -923,7 +932,7 @@
       if(verticalScrollFrame)return;
       verticalScrollFrame=window.requestAnimationFrame(()=>{
         verticalScrollFrame=0;const activeSection=pendingScrolledSection;const activeIndex=pendingScrolledIndex;pendingScrolledSection=null;pendingScrolledIndex=-1;
-        if(!activeSection?.isConnected)return;
+        if(!activeSection||!activeSection.isConnected)return;
         const category=renderedCategories[activeIndex];const state=virtualStates.get(category);
         if(state){state.scrollTop=activeSection.scrollTop;renderVirtualWindow(activeSection,category)}
         updateScrollFlash(activeSection,true);
@@ -936,31 +945,32 @@
     }
     categoryPrevButton.addEventListener('click',()=>scrollToCategory(currentCategoryIndex()-1));
     categoryNextButton.addEventListener('click',()=>scrollToCategory(currentCategoryIndex()+1));
-    function categorySwipeThreshold(){return Math.max(42,(categorySwipeTarget?.clientWidth||240)*.18)}
-    categorySwipeTarget?.addEventListener('pointerdown',e=>{if(e.button!==0||renderedCategories.length<2)return;stopSlideAnimation();categorySwipeState={x:e.clientX,y:e.clientY,startRaw:categoryRawIndex(),index:currentCategoryIndex(),pointerId:e.pointerId,horizontal:false,lastDx:0,motion:readCategoryMotionMetrics()}});
-    categorySwipeTarget?.addEventListener('pointermove',e=>{if(!categorySwipeState||e.pointerId!==categorySwipeState.pointerId)return;const dx=e.clientX-categorySwipeState.x;const dy=e.clientY-categorySwipeState.y;const absX=Math.abs(dx);const absY=Math.abs(dy);categorySwipeState.lastDx=dx;if(!categorySwipeState.horizontal){if(absX<8&&absY<8)return;if(absY>absX){categorySwipeState=null;scheduleCategoryMaintenance(currentCategoryIndex());return}categorySwipeState.horizontal=true;categorySwipeTarget.setPointerCapture?.(e.pointerId);categorySwipeTarget.classList.add('is-swiping');cardsGrid.style.scrollSnapType='none';setSlideDepth(1)}e.preventDefault();const motion=categorySwipeState.motion;const raw=Math.min(renderedCategories.length-1,Math.max(0,categorySwipeState.startRaw-dx/motion.titleWidth));queueCategoryMotion(raw*motion.cardsWidth,motion,true)});
-    function finishCategorySwipe(cancelled=false){if(!categorySwipeState)return;const state=categorySwipeState;flushCategoryMotion();categorySwipeState=null;categorySwipeTarget?.classList.remove('is-swiping');clearSlideDepth();if(!state.horizontal){updateCategoryMeta();return}const dx=state.lastDx;const threshold=categorySwipeThreshold();let target=state.index;if(!cancelled&&dx<=-threshold)target=state.index+1;else if(!cancelled&&dx>=threshold)target=state.index-1;scrollToCategory(target)}
-    categorySwipeTarget?.addEventListener('pointerup',()=>finishCategorySwipe(false));
-    categorySwipeTarget?.addEventListener('pointercancel',()=>finishCategorySwipe(true));
-    mealToggle?.addEventListener('click',()=>setMealMode(mealModes[(mealModes.indexOf(currentMealMode)+1)%mealModes.length]));
-    recommendationSortButton?.addEventListener('click',()=>setRecommendationSort());
-    nearbySortButton?.addEventListener('click',()=>requestCurrentLocation(false));
+    function categorySwipeThreshold(){return Math.max(42,(categorySwipeTarget&&categorySwipeTarget.clientWidth||240)*.18)}
+    if(categorySwipeTarget)categorySwipeTarget.addEventListener('pointerdown',e=>{if(e.button!==0||renderedCategories.length<2)return;stopSlideAnimation();categorySwipeState={x:e.clientX,y:e.clientY,startRaw:categoryRawIndex(),index:currentCategoryIndex(),pointerId:e.pointerId,horizontal:false,lastDx:0,motion:readCategoryMotionMetrics()}});
+    if(categorySwipeTarget)categorySwipeTarget.addEventListener('pointermove',e=>{if(!categorySwipeState||e.pointerId!==categorySwipeState.pointerId)return;const dx=e.clientX-categorySwipeState.x;const dy=e.clientY-categorySwipeState.y;const absX=Math.abs(dx);const absY=Math.abs(dy);categorySwipeState.lastDx=dx;if(!categorySwipeState.horizontal){if(absX<8&&absY<8)return;if(absY>absX){categorySwipeState=null;scheduleCategoryMaintenance(currentCategoryIndex());return}categorySwipeState.horizontal=true;if(categorySwipeTarget.setPointerCapture)categorySwipeTarget.setPointerCapture(e.pointerId);categorySwipeTarget.classList.add('is-swiping');cardsGrid.style.scrollSnapType='none';setSlideDepth(1)}e.preventDefault();const motion=categorySwipeState.motion;const raw=Math.min(renderedCategories.length-1,Math.max(0,categorySwipeState.startRaw-dx/motion.titleWidth));queueCategoryMotion(raw*motion.cardsWidth,motion,true)});
+    function finishCategorySwipe(cancelled=false){if(!categorySwipeState)return;const state=categorySwipeState;flushCategoryMotion();categorySwipeState=null;if(categorySwipeTarget)categorySwipeTarget.classList.remove('is-swiping');clearSlideDepth();if(!state.horizontal){updateCategoryMeta();return}const dx=state.lastDx;const threshold=categorySwipeThreshold();let target=state.index;if(!cancelled&&dx<=-threshold)target=state.index+1;else if(!cancelled&&dx>=threshold)target=state.index-1;scrollToCategory(target)}
+    if(categorySwipeTarget)categorySwipeTarget.addEventListener('pointerup',()=>finishCategorySwipe(false));
+    if(categorySwipeTarget)categorySwipeTarget.addEventListener('pointercancel',()=>finishCategorySwipe(true));
+    if(mealToggle)mealToggle.addEventListener('click',()=>setMealMode(mealModes[(mealModes.indexOf(currentMealMode)+1)%mealModes.length]));
+    if(recommendationSortButton)recommendationSortButton.addEventListener('click',()=>setRecommendationSort());
+    if(nearbySortButton)nearbySortButton.addEventListener('click',()=>requestCurrentLocation(false));
     ['pointerdown','keydown','wheel','touchstart'].forEach(type=>document.addEventListener(type,noteUserActivity,{passive:true}));
     document.addEventListener('visibilitychange',()=>{if(document.hidden)cancelIdleLocationRefresh();else if(nearbySortRequested)resetIdleLocationRefresh()});
     window.addEventListener('pagehide',()=>{cancelIdleLocationRefresh();clearInterval(locationProgressTimer)});
     cardsGrid.addEventListener('scroll',handleCardsScroll,{passive:true});
     function isInteractivePointerTarget(target){return target instanceof Element&&!!target.closest('a,button,input,select,textarea,summary')}
     cardsGrid.addEventListener('pointerdown',e=>{if(e.button!==0||isInteractivePointerTarget(e.target))return;stopSlideAnimation();dragState={x:e.clientX,scrollLeft:cardsGrid.scrollLeft,index:currentCategoryIndex(),active:false,moved:false,lastDx:0,pointerId:e.pointerId,motion:readCategoryMotionMetrics()};updateContentScrollbars(true)});
-    cardsGrid.addEventListener('pointermove',e=>{if(!dragState||e.pointerId!==dragState.pointerId)return;const dx=e.clientX-dragState.x;dragState.lastDx=dx;const abs=Math.abs(dx);const start=dragStartThreshold();if(abs<=start&&!dragState.active)return;if(!dragState.active){dragState.active=true;cardsGrid.setPointerCapture?.(e.pointerId);cardsGrid.classList.add('is-dragging');setSlideDepth(1)}dragState.moved=true;const next=Math.min(dragState.motion.maxScroll,Math.max(0,dragState.scrollLeft-dx));queueCategoryMotion(next,dragState.motion,true);showCategoryProgress()});
+    cardsGrid.addEventListener('pointermove',e=>{if(!dragState||e.pointerId!==dragState.pointerId)return;const dx=e.clientX-dragState.x;dragState.lastDx=dx;const abs=Math.abs(dx);const start=dragStartThreshold();if(abs<=start&&!dragState.active)return;if(!dragState.active){dragState.active=true;if(cardsGrid.setPointerCapture)cardsGrid.setPointerCapture(e.pointerId);cardsGrid.classList.add('is-dragging');setSlideDepth(1)}dragState.moved=true;const next=Math.min(dragState.motion.maxScroll,Math.max(0,dragState.scrollLeft-dx));queueCategoryMotion(next,dragState.motion,true);showCategoryProgress()});
     function finishDrag(){if(!dragState)return;const state=dragState;flushCategoryMotion();const moved=state.moved;if(moved)suppressClickUntil=Date.now()+260;dragState=null;cardsGrid.classList.remove('is-dragging');clearSlideDepth();if(!moved){updateCategoryMeta();hideCategoryProgressSoon();hideScrollFlashSoon();return}const dx=state.lastDx;const threshold=dragPageThreshold();let target=state.index;if(dx<=-threshold)target=state.index+1;else if(dx>=threshold)target=state.index-1;scrollToCategory(target)}
     cardsGrid.addEventListener('pointerup',finishDrag); cardsGrid.addEventListener('pointercancel',finishDrag); cardsGrid.addEventListener('click',e=>{if(Date.now()<suppressClickUntil)e.preventDefault()},true);
     window.addEventListener('resize',()=>scrollToCategory(currentCategoryIndex(),false));
     function goRegionIndex(){window.location.href='index.html'}
     function setupSystemBack(){
-      try{if(window.history?.pushState){const state=history.state&&typeof history.state==='object'?history.state:{}; history.pushState({...state,foodRegionBack:true},'',location.href); window.addEventListener('popstate',goRegionIndex)}}catch{}
+      try{if(window.history&&window.history.pushState){const state=history.state&&typeof history.state==='object'?history.state:{}; history.pushState(Object.assign({},state,{foodRegionBack:true}),'',location.href); window.addEventListener('popstate',goRegionIndex)}}catch{}
       window.addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();goRegionIndex()}});
     }
-    systemTheme.addEventListener?.('change',()=>{if(storedThemeMode()==='system')applyThemeMode('system')});
+    const handleSystemThemeChange=()=>{if(storedThemeMode()==='system')applyThemeMode('system')};
+    if(systemTheme.addEventListener)systemTheme.addEventListener('change',handleSystemThemeChange);else if(systemTheme.addListener)systemTheme.addListener(handleSystemThemeChange);
     window.addEventListener('storage',e=>{if(e.key===themeStorageKey)applyThemeMode(storedThemeMode())});
     applyThemeMode();
     updatePageTitle();
@@ -970,16 +980,18 @@
     updateSortTabs();
     setupSystemBack();
     renderCategories();
+    clearTimeout(window.__foodBootTimer);
     if('serviceWorker' in navigator)window.addEventListener('load',()=>{
       navigator.serviceWorker.register('sw.js')
         .then(()=>navigator.serviceWorker.ready)
-        .then(registration=>registration.active?.postMessage({type:'warm',urls:[location.href,new URL(DATA_URL,location.href).href]}))
+        .then(registration=>{if(registration.active)registration.active.postMessage({type:'warm',urls:[location.href,new URL(DATA_URL,location.href).href]})})
         .catch(()=>{});
     },{once:true});
     })().catch(error=>{
+      clearTimeout(window.__foodBootTimer);
       console.error(error);
       const cards=document.getElementById('cardsGrid');
-      if(cards)cards.innerHTML='<p role="alert">지역 데이터를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.</p>';
+      if(cards)cards.innerHTML='<p class="boot-message" role="alert">지역 데이터를 불러오지 못했습니다. 네트워크 연결을 확인한 뒤 다시 시도해 주세요.</p>';
     });
   </script>
 </body>

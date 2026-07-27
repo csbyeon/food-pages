@@ -165,12 +165,12 @@
     const qrCloseButton=document.getElementById('qrCloseButton');
     const themeToggle=document.getElementById('themeToggle');
     const pageBody=document.body;
-    function openQrDialog(){qrDialog.hidden=false; qrCloseButton?.focus()}
-    function closeQrDialog(){if(qrDialog.hidden)return; qrDialog.hidden=true; qrToggle?.focus()}
-    qrToggle?.addEventListener('click',openQrDialog);
-    qrCloseButton?.addEventListener('click',closeQrDialog);
-    qrDialog?.addEventListener('click',e=>{if(e.target?.hasAttribute('data-qr-close'))closeQrDialog()});
-    window.addEventListener('keydown',e=>{if(e.key==='Escape'&&!qrDialog?.hidden)closeQrDialog()});
+    function openQrDialog(){qrDialog.hidden=false; if(qrCloseButton)qrCloseButton.focus()}
+    function closeQrDialog(){if(qrDialog.hidden)return; qrDialog.hidden=true; if(qrToggle)qrToggle.focus()}
+    if(qrToggle)qrToggle.addEventListener('click',openQrDialog);
+    if(qrCloseButton)qrCloseButton.addEventListener('click',closeQrDialog);
+    if(qrDialog)qrDialog.addEventListener('click',e=>{if(e.target&&e.target.hasAttribute('data-qr-close'))closeQrDialog()});
+    window.addEventListener('keydown',e=>{if(e.key==='Escape'&&qrDialog&&!qrDialog.hidden)closeQrDialog()});
 
     function randomBetween(min,max){
       return min+Math.random()*(max-min);
@@ -213,7 +213,7 @@
       const preferredCard=cards.find(card=>card.dataset.regionName===preferred);
       if(preferredCard)grid.prepend(preferredCard);
       grid.addEventListener('click',event=>{
-        const card=event.target?.closest?.('.region-card[data-region-name]');
+        const card=event.target&&event.target.closest?event.target.closest('.region-card[data-region-name]'):null;
         if(card&&grid.contains(card))storePreferredRegion(card.dataset.regionName);
       });
     }
@@ -243,19 +243,20 @@
       pageBody.setAttribute('data-theme-mode',nextMode);
       pageBody.setAttribute('data-effective-theme',nextEffectiveTheme);
       if(persist)storeThemeMode(nextMode);
-      themeToggle?.setAttribute('aria-label',`현재 ${labelByMode[nextMode]}, ${labelByMode[nextClickMode]}로 전환`);
-      themeToggle?.setAttribute('title',labelByMode[nextMode]);
+      if(themeToggle)themeToggle.setAttribute('aria-label',`현재 ${labelByMode[nextMode]}, ${labelByMode[nextClickMode]}로 전환`);
+      if(themeToggle)themeToggle.setAttribute('title',labelByMode[nextMode]);
     }
     setTheme(storedThemeMode(),false);
-    themeToggle?.addEventListener('click',()=>{
+    if(themeToggle)themeToggle.addEventListener('click',()=>{
       const current=pageBody.getAttribute('data-theme-mode')||'light';
       setTheme(themeModes[(themeModes.indexOf(current)+1)%themeModes.length]);
     });
-    systemTheme.addEventListener?.('change',()=>{if(pageBody.getAttribute('data-theme-mode')==='system')setTheme('system')});
+    const handleSystemThemeChange=()=>{if(pageBody.getAttribute('data-theme-mode')==='system')setTheme('system')};
+    if(systemTheme.addEventListener)systemTheme.addEventListener('change',handleSystemThemeChange);else if(systemTheme.addListener)systemTheme.addListener(handleSystemThemeChange);
     if('serviceWorker' in navigator)window.addEventListener('load',()=>{
       navigator.serviceWorker.register('sw.js')
         .then(()=>navigator.serviceWorker.ready)
-        .then(registration=>registration.active?.postMessage({type:'warm',urls:[location.href]}))
+        .then(registration=>{if(registration.active)registration.active.postMessage({type:'warm',urls:[location.href]})})
         .catch(()=>{});
     },{once:true});
   </script>

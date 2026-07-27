@@ -1,4 +1,4 @@
-const CACHE_NAME="food-5557a03d5e984f3f";
+const CACHE_NAME="food-b793ccec397068ef";
 const INDEX_URL=new URL('./index.html',self.registration.scope).href;
 
 self.addEventListener('install',event=>{
@@ -14,7 +14,7 @@ self.addEventListener('activate',event=>{
 });
 
 self.addEventListener('message',event=>{
-  if(event.data?.type!=='warm'||!Array.isArray(event.data.urls))return;
+  if(!event.data||event.data.type!=='warm'||!Array.isArray(event.data.urls))return;
   const urls=event.data.urls
     .map(value=>new URL(value,self.registration.scope))
     .filter(url=>url.origin===self.location.origin)

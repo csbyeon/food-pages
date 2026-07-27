@@ -34,6 +34,7 @@
     .category-track{display:block;position:relative;z-index:2;width:100%;height:82px;min-height:82px;contain:layout paint}
     .category-slide{display:grid;visibility:hidden;position:absolute;inset:0;grid-template-columns:76px minmax(0,1fr);align-items:center;width:100%;height:82px;min-height:82px;padding:8px 16px 8px 8px;overflow:hidden;pointer-events:none;transform:translate3d(100%,0,0);backface-visibility:hidden}
     .category-slide.is-visible{visibility:visible;will-change:transform}
+    .category-slide:first-child:only-child{visibility:visible;transform:translate3d(0,0,0)}
     .category-status::after{content:"";position:absolute;inset:-35% -20%;z-index:1;pointer-events:none;background:var(--panel-sheen);opacity:var(--slide-sheen-opacity);transform:translateX(var(--slide-sheen-x)) rotate(2deg);transition:opacity 150ms ease,transform 150ms ease}
     .category-image{display:block;position:relative;z-index:1;width:66px;height:66px;object-fit:contain;filter:var(--category-image-filter);transform:translateX(var(--slide-shift)) rotate(var(--slide-icon-rotate)) translateZ(10px);transition:transform 150ms ease}
     .category-copy{position:relative;z-index:1;min-width:0;transform:translateZ(6px)}
@@ -79,6 +80,15 @@
     .virtual-spacer{display:block;width:1px;pointer-events:none}
     .place-row{display:block;padding:14px;border:1px solid var(--card-border);border-radius:8px;background:var(--card-bg);box-shadow:var(--card-shadow);content-visibility:auto;contain-intrinsic-size:auto 520px}
     .boot-message{margin:0 2px;padding:18px;border:1px solid var(--card-border);border-radius:10px;background:var(--card-bg);box-shadow:var(--card-shadow);color:var(--body-text);font-size:14px;font-weight:800;line-height:1.55;text-align:center}
+    .static-fallback{display:block}
+    .fallback-intro{margin:0 0 10px;padding:12px;border:1px solid var(--card-border);border-radius:10px;background:var(--card-bg);box-shadow:var(--card-shadow)}
+    .fallback-intro p{margin:0;color:var(--body-text);font-size:13px;font-weight:800;line-height:1.45}
+    .fallback-meal-nav{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+    .fallback-meal-link{display:inline-flex;align-items:center;justify-content:center;min-height:34px;padding:6px 11px;border:1px solid var(--review-link-border);border-radius:999px;background:var(--review-link-bg);color:var(--review-link-text);font-size:12px;font-weight:900;text-decoration:none}
+    .fallback-list{display:grid;gap:10px;padding-bottom:10px}
+    .fallback-place-row .place-name-line{display:flex;align-items:center;justify-content:space-between;gap:8px}
+    .fallback-map-link{display:inline-flex;flex:0 0 auto;align-items:center;justify-content:center;padding:4px 9px;border:1px solid var(--location-border);border-radius:999px;background:var(--location-bg);color:var(--location-text);font-size:12px;font-weight:900;text-decoration:none}
+    .fallback-status{margin:9px 0 0;padding:9px;border-radius:8px;background:var(--review-chip-bg);color:var(--review-chip-text);font-size:12px;font-weight:900}
     .place-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:6px}
     .place-title{min-width:0}
     .place-name-line{display:block;min-width:0}
@@ -146,6 +156,7 @@
     .meal-toggle .lunch-icon{color:#fff}
     .meal-toggle .dinner-icon{color:#fff2a6}
     .meal-toggle .cafe-icon{color:#fff}
+    body:not([data-enhanced="true"]) .meal-toggle,body:not([data-enhanced="true"]) .category-nav,body:not([data-enhanced="true"]) .sort-tabs{display:none}
     body[data-meal-mode="breakfast"] .meal-toggle .breakfast-icon,body[data-meal-mode="lunch"] .meal-toggle .lunch-icon,body[data-meal-mode="dinner"] .meal-toggle .dinner-icon,body[data-meal-mode="cafe"] .meal-toggle .cafe-icon{opacity:1;transform:scale(1) rotate(0)}
     body[data-meal-mode="breakfast"] .meal-toggle::before{background:#ed9b35}
     body[data-meal-mode="dinner"] .meal-toggle{border-color:var(--meal-dinner-border);background:var(--meal-dinner-bg);box-shadow:var(--meal-dinner-shadow)}
@@ -199,7 +210,7 @@
         <button id="nearbySortButton" class="sort-tab" type="button" role="tab" aria-selected="false"><span id="nearbySortLabel">가까운순</span></button>
       </div>
       <span id="locationAnnouncement" class="location-toast" role="status" aria-live="polite"></span>
-      <div id="cardsGrid"><noscript><p class="boot-message" role="alert">콘텐츠를 표시하려면 Safari 설정에서 JavaScript를 켜 주세요.</p></noscript></div>
+      <div id="cardsGrid"><section class="ranked-section static-fallback is-prime" data-static-fallback data-rendered="true"><div class="fallback-intro"><noscript><p role="status">JavaScript 없이 기본 HTML 목록을 표시하고 있습니다.</p></noscript><p>백반/정식 기본 목록입니다. 전체 음식점은 식사 시간별 정적 목록에서 볼 수 있습니다.</p><nav class="fallback-meal-nav" aria-label="JavaScript 없이 보는 전체 목록"><a class="fallback-meal-link" href="browse/indeogwon-lunch.html">점심 전체 목록</a><a class="fallback-meal-link" href="browse/indeogwon-dinner.html">저녁 전체 목록</a><a class="fallback-meal-link" href="browse/indeogwon-cafe.html">카페 전체 목록</a></nav><p class="fallback-status" data-fallback-status role="status" hidden></p></div><div class="fallback-list"><article class="place-row fallback-place-row" data-place-id="indeogwon-place-b671d190"><div class="place-head"><div class="place-title"><div class="place-name-line"><h4>남원추어탕 안양/인덕원권</h4><a class="fallback-map-link" href="https://www.google.com/maps/search/?api=1&amp;query=%EB%82%A8%EC%9B%90%EC%B6%94%EC%96%B4%ED%83%95%20%EC%95%88%EC%96%91%2F%EC%9D%B8%EB%8D%95%EC%9B%90%EA%B6%8C%20%EC%9D%B8%EB%8D%95%EC%9B%90" target="_blank" rel="noreferrer">구글 지도</a></div><span class="zone-text">안양/인덕원 확장권</span></div></div><p class="place-fit">추어탕, 보양식 점심과 어른 동석 식사</p><div class="place-info-grid"><div class="place-info-row"><b>위치</b><span>안양/인덕원 확장권 · 방문 전 최신 영업시간 확인 필요</span></div><div class="place-info-row"><b>메뉴</b><span>추어탕, 돌솥밥/한식 반찬 계열</span></div><div class="place-info-row"><b>좋음</b><span>어른 동석/보양식 점심에 적합</span></div><div class="place-info-row"><b>주의</b><span>정확한 지점/영업 확인 필요</span></div></div></article><article class="place-row fallback-place-row" data-place-id="indeogwon-place-b502186c"><div class="place-head"><div class="place-title"><div class="place-name-line"><h4>한송정</h4><a class="fallback-map-link" href="https://map.naver.com/p/entry/place/11707625" target="_blank" rel="noreferrer">네이버 지도</a></div><span class="zone-text">안양/인덕원 확장권</span></div></div><p class="place-fit">한정식/한식, 어른 동석 점심과 조용한 저녁</p><div class="place-info-grid"><div class="place-info-row"><b>위치</b><span>안양/인덕원 확장권 · 방문 전 최신 영업시간 확인 필요</span></div><div class="place-info-row"><b>메뉴</b><span>한식 정식, 한정식류</span></div><div class="place-info-row"><b>좋음</b><span>어른 동석 점심에 적합</span></div><div class="place-info-row"><b>주의</b><span>정확 지점/예약 확인 필요</span></div></div></article><article class="place-row fallback-place-row" data-place-id="indeogwon-place-fcb0e468"><div class="place-head"><div class="place-title"><div class="place-name-line"><h4>임가네착한상차림</h4><a class="fallback-map-link" href="https://place.map.kakao.com/20752439" target="_blank" rel="noreferrer">카카오 지도</a></div><span class="zone-text">경기 안양시 동안구 귀인로190번길 53</span></div></div><p class="place-fit">인덕원권의 한정식 선택지</p><div class="place-info-grid"><div class="place-info-row"><b>위치</b><span>경기 안양시 동안구 귀인로190번길 53 (경기 안양시 동안구 평촌동 917-8 1층) · 영업시간 정보 부족</span></div><div class="place-info-row"><b>메뉴</b><span>한정식 (상세 메뉴 정보 부족)</span></div><div class="place-info-row"><b>좋음</b><span>카카오맵 후기 323건</span></div><div class="place-info-row"><b>주의</b><span>메뉴·가격·영업시간 교차 근거가 부족함</span></div></div></article><article class="place-row fallback-place-row" data-place-id="indeogwon-place-ee74a10e"><div class="place-head"><div class="place-title"><div class="place-name-line"><h4>우리어머니와고등어</h4><a class="fallback-map-link" href="https://place.map.kakao.com/13071650" target="_blank" rel="noreferrer">카카오 지도</a></div><span class="zone-text">경기 안양시 동안구 부림로 171</span></div></div><p class="place-fit">인덕원권의 한정식 선택지</p><div class="place-info-grid"><div class="place-info-row"><b>위치</b><span>경기 안양시 동안구 부림로 171 (경기 안양시 동안구 관양동 1588-6 라츠 2층) · 영업시간 정보 부족</span></div><div class="place-info-row"><b>메뉴</b><span>한정식 (상세 메뉴 정보 부족)</span></div><div class="place-info-row"><b>좋음</b><span>카카오맵 후기 17건</span></div><div class="place-info-row"><b>주의</b><span>메뉴·가격·영업시간 교차 근거가 부족함</span></div></div></article></div></section></div>
       <div id="scrollFlashY" class="scroll-flash scroll-flash-y" aria-hidden="true"><span class="scroll-flash-thumb"></span></div>
       <div id="scrollFlashX" class="scroll-flash scroll-flash-x" aria-hidden="true"><span class="scroll-flash-thumb"></span></div>
     </section>
@@ -207,7 +218,10 @@
   <script>
     window.__foodBootTimer=window.setTimeout(function(){
       var cards=document.getElementById('cardsGrid');
-      if(cards&&!cards.querySelector('.place-row'))cards.innerHTML='<p class="boot-message" role="alert">콘텐츠를 열 수 없습니다. Safari의 JavaScript 설정을 확인하거나 iOS를 업데이트한 뒤 다시 시도해 주세요.</p>';
+      var fallback=cards?cards.querySelector('[data-static-fallback]'):null;
+      var status=fallback?fallback.querySelector('[data-fallback-status]'):null;
+      if(status){status.hidden=false;status.textContent='동적 기능 준비가 지연되어 기본 HTML 목록을 표시합니다. 아래 전체 목록 링크도 이용할 수 있습니다.'}
+      else if(cards&&!cards.querySelector('.place-row'))cards.innerHTML='<p class="boot-message" role="alert">콘텐츠를 열 수 없습니다. 브라우저 설정과 네트워크 연결을 확인한 뒤 다시 시도해 주세요.</p>';
     },5000);
   </script>
   <script>
@@ -980,6 +994,7 @@
     updateSortTabs();
     setupSystemBack();
     renderCategories();
+    pageBody.setAttribute('data-enhanced','true');
     clearTimeout(window.__foodBootTimer);
     if('serviceWorker' in navigator)window.addEventListener('load',()=>{
       navigator.serviceWorker.register('sw.js')
@@ -991,7 +1006,10 @@
       clearTimeout(window.__foodBootTimer);
       console.error(error);
       const cards=document.getElementById('cardsGrid');
-      if(cards)cards.innerHTML='<p class="boot-message" role="alert">지역 데이터를 불러오지 못했습니다. 네트워크 연결을 확인한 뒤 다시 시도해 주세요.</p>';
+      const fallback=cards?cards.querySelector('[data-static-fallback]'):null;
+      const status=fallback?fallback.querySelector('[data-fallback-status]'):null;
+      if(status){status.hidden=false;status.textContent='동적 기능을 불러오지 못해 기본 HTML 목록을 표시합니다. 아래 전체 목록 링크도 이용할 수 있습니다.'}
+      else if(cards)cards.innerHTML='<p class="boot-message" role="alert">지역 데이터를 불러오지 못했습니다. 네트워크 연결을 확인한 뒤 다시 시도해 주세요.</p>';
     });
   </script>
 </body>

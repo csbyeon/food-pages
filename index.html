@@ -32,7 +32,7 @@
     .sky-flight img{display:block;width:100%;height:auto;filter:drop-shadow(0 12px 24px rgba(19,58,103,.2));animation:flightFloat 7.5s ease-in-out infinite}
     .selector{width:min(760px,100%);min-width:0}
     .region-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));align-items:stretch;gap:14px;min-width:0}
-    .region-card{display:block;position:relative;min-width:0;aspect-ratio:1/1;overflow:hidden;border:2px solid var(--region-border);border-radius:8px;background:#fff;box-shadow:var(--region-shadow);isolation:isolate;transition:transform 150ms ease,box-shadow 150ms ease,border-color 150ms ease}
+    .region-card{display:block;position:relative;width:100%;min-width:0;aspect-ratio:1/1;overflow:hidden;border:2px solid var(--region-border);border-radius:8px;background:#fff;box-shadow:var(--region-shadow);isolation:isolate;transition:transform 150ms ease,box-shadow 150ms ease,border-color 150ms ease}
     .region-card::before{content:"";position:absolute;inset:0;z-index:1;background:var(--region-overlay);pointer-events:none}
     .region-card:hover,.region-card:focus-visible{border-color:var(--region-hover-border);box-shadow:var(--region-hover-shadow);transform:translateY(-3px)}
     .region-visual{position:absolute;inset:0;z-index:0;overflow:hidden}

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
   <meta name="supported-color-schemes" content="light dark">
-  <link rel="preload" href="assets/data/indeogwon.5b1a892c3596335c.json" as="fetch" crossorigin="anonymous" data-region-data>
+  <link rel="preload" href="assets/data/indeogwon.bbe3021a5c300018.json" as="fetch" crossorigin="anonymous" data-region-data>
   <title>인덕원 아/점심</title>
   <style>
     :root{--orange-accent:#ff8a24;--orange-line:6px;--hero-bg:#c8f1ff;--hero-image:url("assets/hero-indeogwon-lunch-v2.webp");color-scheme:light dark}
@@ -227,7 +227,7 @@
   </script>
   <script>
     (async()=>{
-    const DATA_URL='assets/data/indeogwon.5b1a892c3596335c.json';
+    const DATA_URL='assets/data/indeogwon.bbe3021a5c300018.json';
     const DATA = await fetch(DATA_URL,{credentials:'omit'}).then(response=>{
       if(!response.ok)throw new Error(`지역 데이터 요청 실패: ${response.status}`);
       return response.json();
@@ -383,9 +383,17 @@
     }
     function reviewPoints(place){return [place.pros&&place.pros[0]||place.fit, place.cons&&place.cons[0]||'당일 운영 확인 필요', place.viral].filter(Boolean)}
     function reviewBlock(place,nd){
-      const naverItems=nd?[...(nd.k||[]),...(nd.m||[]).slice(0,2).map(x=>`메뉴 언급 ${x}`)]:[];
-      const items=naverItems.length?naverItems:reviewPoints(place).slice(0,3);
-      const counts=nd?[nd.vc?`방문자 ${nd.vc}`:'',nd.bc?`블로그 ${nd.bc}`:''].filter(Boolean).join(' · '):'최신 리뷰는 링크에서 확인';
+      const evidenceItems=nd?[...(nd.k||[]),...(nd.m||[]).slice(0,2).map(x=>`메뉴 언급 ${x}`)]:[];
+      const items=evidenceItems.length?evidenceItems:reviewPoints(place).slice(0,3);
+      const countLabel=(value)=>{const count=countNumber(value);return count?count.toLocaleString('ko-KR'):''};
+      const counts=[
+        nd&&nd.vc?`네이버 방문자 ${countLabel(nd.vc)}`:'',
+        nd&&nd.bc?`네이버 블로그 ${countLabel(nd.bc)}`:'',
+        place.mapReviewCount?`카카오 후기 ${countLabel(place.mapReviewCount)}`:'',
+        place.kakaoRatingCount?`카카오 평가 ${countLabel(place.kakaoRatingCount)}`:'',
+        place.googleReviewCount?`구글 리뷰 ${countLabel(place.googleReviewCount)}`:'',
+        place.googleRatingCount?`구글 평가 ${countLabel(place.googleRatingCount)}`:''
+      ].filter(Boolean).join(' · ');
       return `<div class="review-source"><p class="review-counts">${esc(counts||'리뷰 확인 가능')}</p><div class="review-chips">${items.slice(0,6).map(x=>`<span class="review-chip">${esc(x)}</span>`).join('')}</div></div>`
     }
     function imageCanonicalKey(url){
@@ -649,7 +657,7 @@
       },{enableHighAccuracy:false,timeout:6000,maximumAge:automatic?15000:60000});
     }
     function countNumber(v){return Number(String(v==null?'':v).replace(/[^0-9]/g,''))||0}
-    function popularityScore(place){const nd=naverDataFor(place);const naverScore=nd?countNumber(nd.vc)*2+countNumber(nd.bc):0;const mapScore=countNumber(place.mapReviewCount)*2;return Math.max(naverScore,mapScore)}
+    function popularityScore(place){const prepared=countNumber(place.reviewScore);if(prepared)return prepared;const nd=naverDataFor(place);const naverScore=nd?countNumber(nd.vc)*2+countNumber(nd.bc):0;const kakaoScore=countNumber(place.mapReviewCount)*2+countNumber(place.kakaoRatingCount);const googleScore=countNumber(place.googleReviewCount)*2+countNumber(place.googleRatingCount);return naverScore+kakaoScore+googleScore}
     function sortByPopularity(list){return list.slice().sort((a,b)=>popularityScore(b)-popularityScore(a)||((a.priority==null?99:a.priority)-(b.priority==null?99:b.priority))||a.name.localeCompare(b.name,'ko'))}
     function categoryPlaces(category){
       if(categoryPlaceCache.has(category))return categoryPlaceCache.get(category);

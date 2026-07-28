@@ -277,11 +277,12 @@
     let idleLocationRefreshTimer=0;
     let idleLocationRefreshDueAt=0;
     let locationToastTimer=0;
-    let renderedCategories=[]; let categorySections=[]; let categoryTrackSlides=[]; let categoryTrackVisibleIndices=new Set(); let categoryTrackActiveIndex=-1; let categoryPlaceCache=new Map(); let virtualStates=new Map(); let dragState=null; let categorySwipeState=null; let suppressClickUntil=0; let scrollFlashTimer=0; let categoryProgressTimer=0; let scrollMotionTimer=0; let slideSettleTimer=0; let programmaticSlideTarget=-1; let programmaticSlideMotion=null; let nativeScrollMotion=null; let categoryTitleAnimations=[]; let categoryMotionFrame=0; let pendingCategoryMotion=null; let categoryPreviewFrame=0; let pendingCategoryPreview=null; let categoryMetaFrame=0; let verticalScrollFrame=0; let pendingScrolledSection=null; let pendingScrolledIndex=-1; let isProgrammaticSlide=false; let primedCategoryIndex=-1; let categoryMaintenanceHandle=0; let categoryMaintenanceToken=0; let galleryObserver=null; let virtualResizeObserver=null; let deferredGalleryImages=new Set(); let deferredVirtualStates=new Map(); let galleryLoadQueue=[]; let galleryLoadQueued=new Set(); let galleryLoadHandle=0; let galleryLoadsInFlight=0; let lastCardsScrollLeft=0;
+    let renderedCategories=[]; let categorySections=[]; let categoryTrackSlides=[]; let categoryTrackVisibleIndices=new Set(); let categoryTrackActiveIndex=-1; let categoryPlaceCache=new Map(); let virtualStates=new Map(); let dragState=null; let categorySwipeState=null; let suppressClickUntil=0; let scrollFlashTimer=0; let categoryProgressTimer=0; let scrollMotionTimer=0; let slideSettleTimer=0; let programmaticSlideTarget=-1; let programmaticSlideMotion=null; let nativeScrollMotion=null; let categoryTitleAnimations=[]; let categoryMotionFrame=0; let pendingCategoryMotion=null; let categoryPreviewFrame=0; let pendingCategoryPreview=null; let categoryMetaFrame=0; let categoryContentFrame=0; let categoryContentToken=0; let verticalScrollFrame=0; let pendingScrolledSection=null; let pendingScrolledIndex=-1; let isProgrammaticSlide=false; let primedCategoryIndex=-1; let categoryMaintenanceHandle=0; let categoryMaintenanceToken=0; let galleryObserver=null; let virtualResizeObserver=null; let deferredGalleryImages=new Set(); let deferredVirtualStates=new Map(); let galleryLoadQueue=[]; let galleryLoadQueued=new Set(); let galleryLoadHandle=0; let galleryLoadsInFlight=0; let lastCardsScrollLeft=0;
     const compactViewport=window.matchMedia('(max-width:680px)').matches;
     const virtualEstimatedExtent=compactViewport?445:555;
     const virtualChunkSize=compactViewport?3:4;
     const virtualWindowSize=compactViewport?8:10;
+    const directSwipeCategoryLead=1.08;
     function isHorizontalMotionActive(){return isProgrammaticSlide||!!dragState||!!categorySwipeState||cardsSection.classList.contains('is-live-motion')}
     function esc(v){return String(v==null?'':v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;')}
     function mapQuery(place){return `${place.alias||place.name} ${DATA.searchArea||''}`.trim()}
@@ -739,6 +740,7 @@
       updateLocationDistances(false,section);scheduleGalleryHydration(section);observeVirtualRows(section,state);
     }
     function renderCategories(){
+      cancelDeferredCategoryContent();
       categoryPlaceCache=new Map();virtualStates=new Map();renderedCategories=currentCategoryOrder().filter(hasCategoryPlaces);
       if(virtualResizeObserver)virtualResizeObserver.disconnect();
       cardsGrid.innerHTML=renderedCategories.map(renderCategoryShell).join('');
@@ -845,6 +847,24 @@
       };
       requestWork(run);
     }
+    function cancelDeferredCategoryContent(){
+      categoryContentToken+=1;
+      if(categoryContentFrame)window.cancelAnimationFrame(categoryContentFrame);
+      categoryContentFrame=0;
+    }
+    function scheduleCategoryContentAfterTitle(i,deferAdjacent=true){
+      cancelDeferredCategoryContent();
+      const token=categoryContentToken;
+      categoryContentFrame=window.requestAnimationFrame(()=>{
+        if(token!==categoryContentToken)return;
+        categoryContentFrame=window.requestAnimationFrame(()=>{
+          categoryContentFrame=0;
+          if(token!==categoryContentToken||isHorizontalMotionActive()||currentCategoryIndex()!==i)return;
+          primeCategoryWindow(i,deferAdjacent);
+          flushDeferredMotionWork();
+        });
+      });
+    }
     function primeCategoryWindow(i,deferAdjacent=false){
       const changed=i!==primedCategoryIndex;
       primedCategoryIndex=i;
@@ -856,8 +876,8 @@
       if(currentSection&&currentState)renderVirtualWindow(currentSection,renderedCategories[i]);
       if(changed||!categoryMaintenanceHandle)scheduleCategoryMaintenance(i);
     }
-    function updateCategoryMeta(deferAdjacent=false){const i=currentCategoryIndex();const changed=i!==primedCategoryIndex;setCategoryTrackRaw(i);updateCategoryProgressByScroll(false);categoryPrevButton.disabled=i===0;categoryNextButton.disabled=i===renderedCategories.length-1;primeCategoryWindow(i,deferAdjacent);if(changed&&categoryAnnouncement)categoryAnnouncement.textContent=`${categoryVisual(i).label} 카테고리`}
-    function requestCategoryMetaUpdate(){if(isProgrammaticSlide||dragState||categorySwipeState||cardsSection.classList.contains('is-live-motion')||categoryMetaFrame)return;categoryMetaFrame=window.requestAnimationFrame(()=>{categoryMetaFrame=0;updateCategoryMeta()})}
+    function updateCategoryMeta(deferAdjacent=false,deferContent=false){const i=currentCategoryIndex();const changed=i!==primedCategoryIndex;setCategoryTrackRaw(i);updateCategoryProgressByScroll(false);categoryPrevButton.disabled=i===0;categoryNextButton.disabled=i===renderedCategories.length-1;if(deferContent)scheduleCategoryContentAfterTitle(i,deferAdjacent);else{cancelDeferredCategoryContent();primeCategoryWindow(i,deferAdjacent)}if(changed&&categoryAnnouncement)categoryAnnouncement.textContent=`${categoryVisual(i).label} 카테고리`}
+    function requestCategoryMetaUpdate(){if(isProgrammaticSlide||dragState||categorySwipeState||cardsSection.classList.contains('is-live-motion')||categoryMetaFrame||categoryContentFrame)return;categoryMetaFrame=window.requestAnimationFrame(()=>{categoryMetaFrame=0;updateCategoryMeta()})}
     function handleCardsScroll(){
       const left=cardsGrid.scrollLeft;const delta=left-lastCardsScrollLeft;lastCardsScrollLeft=left;
       if(isProgrammaticSlide){
@@ -866,9 +886,9 @@
       }
       if(dragState||categorySwipeState)return;
       if(Math.abs(delta)>.5){
-        if(!nativeScrollMotion)nativeScrollMotion=readCategoryMotionMetrics();
+        if(!nativeScrollMotion)nativeScrollMotion=readCategoryMotionMetrics(left-delta);
         setSlideDepth(1);showCategoryProgress();paintCategoryMotion(left,nativeScrollMotion,true);
-        clearTimeout(scrollMotionTimer);scrollMotionTimer=setTimeout(()=>{nativeScrollMotion=null;clearSlideDepth();updateCategoryMeta(true);hideCategoryProgressSoon();flushDeferredMotionWork()},140);
+        clearTimeout(scrollMotionTimer);scrollMotionTimer=setTimeout(()=>{nativeScrollMotion=null;clearSlideDepth();updateCategoryMeta(true,true);hideCategoryProgressSoon()},140);
         return;
       }
       requestCategoryMetaUpdate();
@@ -890,12 +910,19 @@
       paintCategoryProgress(cardsGrid.scrollLeft,maxScroll,trackWidth);
       if(reveal){showCategoryProgress(); hideCategoryProgressSoon()}
     }
-    function readCategoryMotionMetrics(){
+    function readCategoryMotionMetrics(originScrollLeft=cardsGrid.scrollLeft){
       const cardsWidth=Math.max(cardsGrid.clientWidth,1);
-      return {cardsWidth,titleWidth:Math.max(categorySwipeTarget.clientWidth,1),maxScroll:Math.max(0,cardsGrid.scrollWidth-cardsWidth),progressWidth:categoryProgressTrack&&categoryProgressTrack.clientWidth||1,horizontal:readHorizontalScrollMetrics()};
+      return {cardsWidth,titleWidth:Math.max(categorySwipeTarget.clientWidth,1),titleOriginRaw:Math.round(originScrollLeft/cardsWidth),maxScroll:Math.max(0,cardsGrid.scrollWidth-cardsWidth),progressWidth:categoryProgressTrack&&categoryProgressTrack.clientWidth||1,horizontal:readHorizontalScrollMetrics()};
+    }
+    function directSwipeCategoryRaw(scrollLeft,metrics){
+      const raw=Math.min(renderedCategories.length-1,Math.max(0,scrollLeft/metrics.cardsWidth));
+      const origin=Math.min(renderedCategories.length-1,Math.max(0,metrics.titleOriginRaw));
+      const delta=raw-origin;if(Math.abs(delta)<.001)return raw;
+      const distance=Math.abs(delta);const whole=Math.floor(distance);const fraction=distance-whole;
+      return Math.min(renderedCategories.length-1,Math.max(0,origin+Math.sign(delta)*(whole+Math.min(1,fraction*directSwipeCategoryLead))));
     }
     function paintCategoryMotion(scrollLeft,metrics,revealHorizontal=false,paintTitle=true){
-      if(paintTitle)setCategoryTrackRaw(scrollLeft/metrics.cardsWidth,metrics.titleWidth);
+      if(paintTitle)setCategoryTrackRaw(directSwipeCategoryRaw(scrollLeft,metrics),metrics.titleWidth);
       paintCategoryProgress(scrollLeft,metrics.maxScroll,metrics.progressWidth);
       paintHorizontalScrollFlash(scrollLeft,metrics.horizontal,revealHorizontal);
     }
@@ -934,7 +961,7 @@
     function cancelQueuedCategoryPreview(){if(categoryPreviewFrame)window.cancelAnimationFrame(categoryPreviewFrame);categoryPreviewFrame=0;pendingCategoryPreview=null}
     function stopSlideAnimation(syncTitle=true){
       if(categoryMetaFrame)window.cancelAnimationFrame(categoryMetaFrame);
-      cancelQueuedCategoryMotion();cancelQueuedCategoryPreview();clearTimeout(scrollMotionTimer);clearTimeout(slideSettleTimer);cancelCategoryMaintenance();cancelCategoryTitleAnimation();
+      cancelQueuedCategoryMotion();cancelQueuedCategoryPreview();clearTimeout(scrollMotionTimer);clearTimeout(slideSettleTimer);cancelCategoryMaintenance();cancelDeferredCategoryContent();cancelCategoryTitleAnimation();
       if(isProgrammaticSlide)cardsGrid.scrollLeft=cardsGrid.scrollLeft;
       categoryMetaFrame=0;slideSettleTimer=0;programmaticSlideTarget=-1;programmaticSlideMotion=null;nativeScrollMotion=null;isProgrammaticSlide=false;
       cardsGrid.classList.remove('is-sliding');cardsGrid.style.scrollSnapType='';clearSlideDepth();if(syncTitle)syncCategoryTrackFromCards();
@@ -944,7 +971,7 @@
       const targetIndex=Math.min(renderedCategories.length-1,Math.max(0,programmaticSlideTarget));const width=Math.max(cardsGrid.clientWidth,1);
       clearTimeout(slideSettleTimer);slideSettleTimer=0;isProgrammaticSlide=false;programmaticSlideTarget=-1;programmaticSlideMotion=null;
       cardsGrid.scrollLeft=targetIndex*width;cancelCategoryTitleAnimation();setCategoryTrackRaw(targetIndex);cardsGrid.classList.remove('is-sliding');cardsGrid.style.scrollSnapType='';clearSlideDepth();
-      updateCategoryMeta(true);hideCategoryProgressSoon();hideScrollFlashSoon();flushDeferredMotionWork();
+      updateCategoryMeta(true,true);hideCategoryProgressSoon();hideScrollFlashSoon();
     }
     function scrollToCategory(i,animate=true,titleFromRaw=NaN){
       const targetIndex=Math.min(renderedCategories.length-1,Math.max(0,i));
@@ -952,8 +979,8 @@
       const cardsWidth=Math.max(cardsGrid.clientWidth,1);const target=targetIndex*cardsWidth;const start=cardsGrid.scrollLeft;const fromRaw=Number.isFinite(titleFromRaw)?titleFromRaw:start/cardsWidth;
       const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;const needsCardsMove=Math.abs(start-target)>=1;const needsTitleMove=Math.abs(fromRaw-targetIndex)>.01;
       if(!animate||reducedMotion||(!needsCardsMove&&!needsTitleMove)){cardsGrid.scrollLeft=target;setCategoryTrackRaw(targetIndex);updateCategoryMeta();flushDeferredMotionWork();return}
-      const distanceRatio=Math.min(1,Math.max(Math.abs(start-target)/cardsWidth,Math.abs(fromRaw-targetIndex)));const duration=Math.max(150,260*distanceRatio);
-      isProgrammaticSlide=true;programmaticSlideTarget=targetIndex;setSlideDepth(1);showCategoryProgress();cardsGrid.classList.add('is-sliding');ensureCategoryRendered(targetIndex);
+      const distanceRatio=Math.min(1,Math.max(Math.abs(start-target)/cardsWidth,Math.abs(fromRaw-targetIndex)));const duration=Math.max(145,240*distanceRatio);
+      isProgrammaticSlide=true;programmaticSlideTarget=targetIndex;setSlideDepth(1);showCategoryProgress();cardsGrid.classList.add('is-sliding');
       const motion=readCategoryMotionMetrics();
       programmaticSlideMotion=motion;animateCategoryTitle(fromRaw,targetIndex,motion.titleWidth,duration);paintCategoryProgress(start,motion.maxScroll,motion.progressWidth);
       if(needsCardsMove){try{cardsGrid.scrollTo({left:target,top:0,behavior:'smooth'})}catch{cardsGrid.scrollLeft=target}slideSettleTimer=setTimeout(finishProgrammaticSlide,700)}
